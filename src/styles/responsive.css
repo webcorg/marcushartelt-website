@@ -1341,3 +1341,125 @@
     object-position:top center !important;
   }
 }
+
+
+/* ---------------------------------------------------------- */
+/* MOBILE FIX: CONSISTENT PROJECT SCANLINES AND NO ZOOM       */
+/* ---------------------------------------------------------- */
+@media (max-width:640px){
+  html,
+  body{
+    touch-action:pan-x pan-y !important;
+    overscroll-behavior-x:none;
+  }
+
+  .teletext-screen{
+    position:relative !important;
+    isolation:isolate !important;
+    touch-action:pan-x pan-y !important;
+  }
+
+  .teletext-screen::after,
+  .teletext-screen.scanlines-original::after{
+    content:"" !important;
+    position:absolute !important;
+    inset:0 !important;
+    z-index:1000 !important;
+    display:block !important;
+    pointer-events:none !important;
+    opacity:1 !important;
+  }
+
+  .teletext-screen--home .menu-item{
+    display:grid !important;
+    grid-template-columns:auto minmax(24px, 1fr) auto !important;
+    align-items:baseline !important;
+    column-gap:8px !important;
+  }
+
+  .teletext-screen--home .menu-dots{
+    display:block !important;
+    min-width:24px !important;
+    height:0.85em !important;
+    align-self:center !important;
+    opacity:1 !important;
+    visibility:visible !important;
+    background-image:radial-gradient(currentColor 2px, transparent 2px) !important;
+    background-size:8px 8px !important;
+    background-repeat:repeat-x !important;
+    background-position:left center !important;
+    color:inherit !important;
+  }
+
+  .category-theme,
+  .category-theme-fashion,
+  .category-theme-lifestyle,
+  .category-theme-fashion-week,
+  .category-theme-events,
+  .project-detail-split,
+  .project-detail-info-column,
+  .project-detail-gallery-column,
+  .project-hero-stack,
+  .projects-right,
+  .projects-top,
+  .projects-top--list-preview,
+  .project-gallery,
+  .project-detail-gallery,
+  .editorial-gallery-grid{
+    isolation:auto !important;
+  }
+
+  .broadcast-header,
+  .side-nav,
+  .projects-side,
+  .featured-list,
+  .featured-item,
+  .project-info,
+  .project-info--sticky,
+  .project-detail-info-column,
+  .project-preview-title,
+  .info-line,
+  .teletext-open-button,
+  .footer-controls,
+  .footer-link,
+  .nav-link,
+  .category-band,
+  .legal-nav,
+  .legal-section,
+  .booking-strip,
+  .phone-strip,
+  .menu-item,
+  .menu-cat,
+  .menu-dots,
+  .menu-page,
+  .about-copy,
+  .contact-panel{
+    position:relative !important;
+    z-index:10 !important;
+  }
+
+  .image-frame,
+  .gallery-frame,
+  .project-preview-image-wrap,
+  .project-preview-image-wrap .image-frame,
+  .project-gallery-item,
+  .project-gallery-item .image-frame,
+  .project-detail-gallery .image-frame,
+  .editorial-gallery-item,
+  .editorial-gallery-item .image-frame,
+  .contact-image,
+  .contact-image .image-frame,
+  .about-image,
+  .about-image .image-frame,
+  .asset-frame,
+  .media-slot,
+  .mobile-inline-image-frame,
+  img,
+  video,
+  picture,
+  canvas{
+    position:relative !important;
+    z-index:2000 !important;
+    isolation:isolate !important;
+  }
+}
