@@ -4206,3 +4206,74 @@ video.photo-slot,
   text-shadow:none !important;
   box-shadow:none !important;
 }
+
+
+/* ---------------------------------------------------------- */
+/* GLOBAL: SCANLINES REMOVED TEST                             */
+/* ---------------------------------------------------------- */
+/* Test mode: remove the visible TV scanlines everywhere without changing layout. */
+
+/* Disable global screen overlays. */
+.teletext-screen::before,
+.teletext-screen::after,
+.teletext-screen.scanlines-original::before,
+.teletext-screen.scanlines-original::after,
+.projects-screen-clean-images::before,
+.projects-screen-clean-images::after,
+.project-detail-screen::before,
+.project-detail-screen::after,
+.project-detail-screen.scanlines-original::before,
+.project-detail-screen.scanlines-original::after{
+  content:none !important;
+  display:none !important;
+  background:none !important;
+  background-image:none !important;
+  opacity:0 !important;
+}
+
+/* Remove scanline backgrounds from screen/page wrappers only. */
+.teletext-screen,
+.projects-screen-clean-images,
+.project-detail-screen,
+.project-detail-screen .project-detail-split,
+.project-detail-screen .project-detail-gallery-column,
+.project-detail-screen .project-editorial-gallery,
+.project-detail-screen .editorial-gallery-columns,
+.project-detail-screen .editorial-gallery-column,
+.project-detail-screen .editorial-gallery-mobile{
+  background-image:none !important;
+}
+
+/* Remove local UI scanline overlays on project pages. */
+.project-detail-screen .broadcast-header::after,
+.project-detail-screen .category-bar::after,
+.project-detail-screen .project-detail-info-column::after,
+.project-detail-screen .project-info::after,
+.project-detail-screen .project-info--sticky::after,
+.project-detail-screen .project-side-nav::after,
+.project-detail-screen .project-gallery-nav::after,
+.project-detail-screen .footer-controls::after{
+  content:none !important;
+  display:none !important;
+  background:none !important;
+  background-image:none !important;
+  opacity:0 !important;
+}
+
+/* Remove scanline/noise overlays from media frames if any are still active. */
+.image-frame::before,
+.image-frame::after,
+.image-frame *::before,
+.image-frame *::after,
+.photo-slot::before,
+.photo-slot::after,
+.editorial-gallery-item::before,
+.editorial-gallery-item::after,
+.project-preview-image-wrap::before,
+.project-preview-image-wrap::after{
+  content:none !important;
+  display:none !important;
+  background:none !important;
+  background-image:none !important;
+  opacity:0 !important;
+}
