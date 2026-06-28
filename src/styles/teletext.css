@@ -3060,8 +3060,7 @@ video.photo-slot,
 }
 
 
-/* ---------------------------------------------------------- */
-/* PROJECT DETAIL: FASHION WEEK SCANLINE MODEL FOR ALL        */
+
 /* ---------------------------------------------------------- */
 /*
   Apply the working Fashion-Week behavior to every project detail page:
@@ -3183,6 +3182,323 @@ video.photo-slot,
 .project-detail-screen .category-bar,
 .project-detail-screen .project-detail-info-column,
 .project-detail-screen .project-info,
+.project-detail-screen .footer-controls{
+  z-index:10 !important;
+}
+
+
+
+/* ---------------------------------------------------------- */
+/*
+  Fashion Week project pages already render correctly.
+  This adds the same visible scanline treatment directly to the UI/text areas
+  of Fashion, Lifestyle and Events project pages without touching images/videos.
+*/
+.project-detail-screen:not(.category-theme-fashion-week) .category-bar,
+.project-detail-screen:not(.category-theme-fashion-week) .project-detail-info-column,
+.project-detail-screen:not(.category-theme-fashion-week) .project-info,
+.project-detail-screen:not(.category-theme-fashion-week) .project-info--sticky,
+.project-detail-screen:not(.category-theme-fashion-week) .info-desc,
+.project-detail-screen:not(.category-theme-fashion-week) .footer-controls,
+.project-detail-screen:not(.category-theme-fashion-week) .broadcast-header{
+  position:relative !important;
+  isolation:isolate !important;
+}
+
+/* Local scanline overlay for UI blocks only. */
+.project-detail-screen:not(.category-theme-fashion-week) .category-bar::after,
+.project-detail-screen:not(.category-theme-fashion-week) .project-info--sticky::after,
+.project-detail-screen:not(.category-theme-fashion-week) .info-desc::after,
+.project-detail-screen:not(.category-theme-fashion-week) .footer-controls::after,
+.project-detail-screen:not(.category-theme-fashion-week) .broadcast-header::after{
+  content:"" !important;
+  position:absolute !important;
+  inset:0 !important;
+  z-index:999 !important;
+  pointer-events:none !important;
+  display:block !important;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.055) 0px,
+      rgba(255,255,255,0.055) 1px,
+      rgba(0,0,0,0.30) 2px,
+      rgba(0,0,0,0.30) 4px
+    ) !important;
+}
+
+/* Keep UI content below its local scanline overlay. */
+.project-detail-screen:not(.category-theme-fashion-week) .category-bar > *,
+.project-detail-screen:not(.category-theme-fashion-week) .project-info--sticky > *,
+.project-detail-screen:not(.category-theme-fashion-week) .info-desc > *,
+.project-detail-screen:not(.category-theme-fashion-week) .footer-controls > *,
+.project-detail-screen:not(.category-theme-fashion-week) .broadcast-header > *{
+  position:relative !important;
+  z-index:1 !important;
+}
+
+/* Ensure project media is not affected by the UI scanline overlays. */
+.project-detail-screen:not(.category-theme-fashion-week) .project-detail-gallery-column,
+.project-detail-screen:not(.category-theme-fashion-week) .project-detail-gallery-column *,
+.project-detail-screen:not(.category-theme-fashion-week) .editorial-gallery-item,
+.project-detail-screen:not(.category-theme-fashion-week) .image-frame,
+.project-detail-screen:not(.category-theme-fashion-week) .photo-slot,
+.project-detail-screen:not(.category-theme-fashion-week) img,
+.project-detail-screen:not(.category-theme-fashion-week) video{
+  isolation:isolate !important;
+}
+
+
+
+/* ---------------------------------------------------------- */
+/*
+  Same scanline model for ALL project detail pages:
+  Fashion, Lifestyle, Fashion Week, Events.
+
+  Important:
+  - Disable the full-screen project-detail scanline overlay.
+  - Add scanlines only to UI/text zones.
+  - Never put scanlines over images/videos.
+*/
+.project-detail-screen::after,
+.project-detail-screen.scanlines-original::after{
+  content:none !important;
+  display:none !important;
+  background:none !important;
+}
+
+/* UI/text zones receive their own local scanline layer. */
+.project-detail-screen .broadcast-header,
+.project-detail-screen .category-bar,
+.project-detail-screen .project-info--sticky,
+.project-detail-screen .project-side-nav,
+.project-detail-screen .project-gallery-nav,
+.project-detail-screen .footer-controls{
+  position:relative !important;
+  isolation:isolate !important;
+  z-index:auto !important;
+}
+
+.project-detail-screen .broadcast-header::after,
+.project-detail-screen .category-bar::after,
+.project-detail-screen .project-info--sticky::after,
+.project-detail-screen .project-side-nav::after,
+.project-detail-screen .project-gallery-nav::after,
+.project-detail-screen .footer-controls::after{
+  content:"" !important;
+  position:absolute !important;
+  inset:0 !important;
+  z-index:100 !important;
+  display:block !important;
+  pointer-events:none !important;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.055) 0px,
+      rgba(255,255,255,0.055) 1px,
+      rgba(0,0,0,0.30) 2px,
+      rgba(0,0,0,0.30) 4px
+    ) !important;
+}
+
+/* Keep UI content below local scanlines. */
+.project-detail-screen .broadcast-header > *,
+.project-detail-screen .category-bar > *,
+.project-detail-screen .project-info--sticky > *,
+.project-detail-screen .project-side-nav > *,
+.project-detail-screen .project-gallery-nav > *,
+.project-detail-screen .footer-controls > *{
+  position:relative !important;
+  z-index:1 !important;
+}
+
+/* The gallery/media side must stay clean and never get pseudo scanlines. */
+.project-detail-screen .project-detail-gallery-column,
+.project-detail-screen .project-editorial-gallery,
+.project-detail-screen .editorial-gallery-columns,
+.project-detail-screen .editorial-gallery-column,
+.project-detail-screen .editorial-gallery-mobile,
+.project-detail-screen .editorial-gallery-item,
+.project-detail-screen .image-frame,
+.project-detail-screen .image-frame--editorial,
+.project-detail-screen .photo-slot{
+  position:relative !important;
+  z-index:auto !important;
+  isolation:isolate !important;
+}
+
+.project-detail-screen .project-detail-gallery-column::before,
+.project-detail-screen .project-detail-gallery-column::after,
+.project-detail-screen .project-editorial-gallery::before,
+.project-detail-screen .project-editorial-gallery::after,
+.project-detail-screen .editorial-gallery-columns::before,
+.project-detail-screen .editorial-gallery-columns::after,
+.project-detail-screen .editorial-gallery-column::before,
+.project-detail-screen .editorial-gallery-column::after,
+.project-detail-screen .editorial-gallery-mobile::before,
+.project-detail-screen .editorial-gallery-mobile::after,
+.project-detail-screen .editorial-gallery-item::before,
+.project-detail-screen .editorial-gallery-item::after,
+.project-detail-screen .image-frame::before,
+.project-detail-screen .image-frame::after,
+.project-detail-screen .image-frame *::before,
+.project-detail-screen .image-frame *::after,
+.project-detail-screen .photo-slot::before,
+.project-detail-screen .photo-slot::after{
+  content:none !important;
+  display:none !important;
+  background:none !important;
+  background-image:none !important;
+  box-shadow:none !important;
+  opacity:0 !important;
+}
+
+/* Actual media stays untouched. */
+.project-detail-screen .project-detail-gallery-column img,
+.project-detail-screen .project-detail-gallery-column video,
+.project-detail-screen .photo-slot{
+  position:relative !important;
+  z-index:auto !important;
+  filter:none !important;
+  mix-blend-mode:normal !important;
+  opacity:1 !important;
+  text-shadow:none !important;
+}
+
+
+/* ---------------------------------------------------------- */
+/* PROJECT DETAIL: GLOBAL BACKGROUND SCANLINES CLEAN MEDIA    */
+/* ---------------------------------------------------------- */
+/*
+  Project pages should feel like one TV screen:
+  - scanlines across the whole black background and UI/text
+  - no scanlines on real images/videos/galleries
+  - same behavior for Fashion, Lifestyle, Fashion Week and Events
+*/
+.project-detail-screen{
+  position:relative !important;
+  isolation:isolate !important;
+  overflow-x:hidden !important;
+}
+
+/* Full-screen scanline layer for background + UI. */
+.project-detail-screen::after,
+.project-detail-screen.scanlines-original::after{
+  content:"" !important;
+  position:absolute !important;
+  inset:0 !important;
+  z-index:5000 !important;
+  display:block !important;
+  pointer-events:none !important;
+  opacity:1 !important;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.055) 0px,
+      rgba(255,255,255,0.055) 1px,
+      rgba(0,0,0,0.30) 2px,
+      rgba(0,0,0,0.30) 4px
+    ) !important;
+  mix-blend-mode:normal !important;
+}
+
+/* Do not let category/layout wrappers create different behavior. */
+.project-detail-screen.category-theme,
+.project-detail-screen.category-theme-fashion,
+.project-detail-screen.category-theme-lifestyle,
+.project-detail-screen.category-theme-fashion-week,
+.project-detail-screen.category-theme-events,
+.project-detail-screen .project-detail-split,
+.project-detail-screen .project-detail-info-column,
+.project-detail-screen .project-info,
+.project-detail-screen .project-info--sticky,
+.project-detail-screen .project-detail-gallery-column,
+.project-detail-screen .project-editorial-gallery,
+.project-detail-screen .editorial-gallery-columns,
+.project-detail-screen .editorial-gallery-column,
+.project-detail-screen .editorial-gallery-mobile{
+  isolation:auto !important;
+}
+
+/* UI/text/buttons stay below the full-screen scanline layer. */
+.project-detail-screen .broadcast-header,
+.project-detail-screen .category-bar,
+.project-detail-screen .project-detail-info-column,
+.project-detail-screen .project-info,
+.project-detail-screen .project-info--sticky,
+.project-detail-screen .section-kicker,
+.project-detail-screen .info-title,
+.project-detail-screen .detail-meta-list,
+.project-detail-screen .info-line,
+.project-detail-screen .teletext-divider,
+.project-detail-screen .info-desc,
+.project-detail-screen .project-side-nav,
+.project-detail-screen .project-gallery-nav,
+.project-detail-screen .nav-link,
+.project-detail-screen .footer-controls,
+.project-detail-screen .footer-link{
+  position:relative !important;
+  z-index:10 !important;
+}
+
+/* True media containers are above the scanline layer. */
+.project-detail-screen .project-detail-gallery-column,
+.project-detail-screen .project-editorial-gallery,
+.project-detail-screen .editorial-gallery-columns,
+.project-detail-screen .editorial-gallery-column,
+.project-detail-screen .editorial-gallery-mobile,
+.project-detail-screen .editorial-gallery-item,
+.project-detail-screen .image-frame,
+.project-detail-screen .image-frame--editorial,
+.project-detail-screen .photo-slot{
+  position:relative !important;
+  z-index:7000 !important;
+  isolation:isolate !important;
+}
+
+/* Remove local pseudo overlays from media frames so they don't draw their own scanlines. */
+.project-detail-screen .project-detail-gallery-column::before,
+.project-detail-screen .project-detail-gallery-column::after,
+.project-detail-screen .project-editorial-gallery::before,
+.project-detail-screen .project-editorial-gallery::after,
+.project-detail-screen .editorial-gallery-columns::before,
+.project-detail-screen .editorial-gallery-columns::after,
+.project-detail-screen .editorial-gallery-column::before,
+.project-detail-screen .editorial-gallery-column::after,
+.project-detail-screen .editorial-gallery-mobile::before,
+.project-detail-screen .editorial-gallery-mobile::after,
+.project-detail-screen .editorial-gallery-item::before,
+.project-detail-screen .editorial-gallery-item::after,
+.project-detail-screen .image-frame::before,
+.project-detail-screen .image-frame::after,
+.project-detail-screen .image-frame *::before,
+.project-detail-screen .image-frame *::after,
+.project-detail-screen .photo-slot::before,
+.project-detail-screen .photo-slot::after{
+  content:none !important;
+  display:none !important;
+  background:none !important;
+  background-image:none !important;
+  box-shadow:none !important;
+  opacity:0 !important;
+}
+
+/* Actual media pixels stay clean and above scanlines. */
+.project-detail-screen .project-detail-gallery-column img,
+.project-detail-screen .project-detail-gallery-column video,
+.project-detail-screen .project-detail-gallery-column picture,
+.project-detail-screen .photo-slot{
+  position:relative !important;
+  z-index:7001 !important;
+  filter:none !important;
+  mix-blend-mode:normal !important;
+  opacity:1 !important;
+  text-shadow:none !important;
+}
+
+/* Safety: UI directly after/near media stays below scanlines. */
+.project-detail-screen .project-detail-info-column,
+.project-detail-screen .project-info--sticky,
 .project-detail-screen .footer-controls{
   z-index:10 !important;
 }
