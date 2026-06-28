@@ -22,4 +22,10 @@ const { project, index = 0, active = false, previewImage = `/images/previews/${p
     <div class="feat-sub">{project.location} / {project.year}</div>
   </div>
   <span class="feat-code c-yellow">{project.pageNumber}</span>
+  <div class="mobile-inline-preview" aria-hidden="true">
+    <div class="mobile-inline-image-frame">
+      <img src={previewImage} alt={project.heroAlt || project.title} loading="lazy" />
+    </div>
+    <span class="mobile-inline-open">OPEN PROJECT</span>
+  </div>
 </a>

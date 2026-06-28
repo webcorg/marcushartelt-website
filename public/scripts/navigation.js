@@ -273,6 +273,10 @@ function setupProjectsCategorySwitching() {
 document.addEventListener('click', (event) => {
   const categoryButton = event.target.closest('[data-category-filter]');
   if (categoryButton) {
+    const mobileInlinePreviewTest = window.matchMedia('(max-width: 640px)').matches;
+    if (mobileInlinePreviewTest && event.target?.closest?.('.mobile-inline-open')) {
+      return;
+    }
     event.preventDefault();
     setProjectsCategory(categoryButton.getAttribute('data-category-filter'), true);
     return;

@@ -2609,3 +2609,11 @@ video.photo-slot,
   position:relative !important;
   z-index:10 !important;
 }
+
+
+/* ---------------------------------------------------------- */
+/* MOBILE INLINE PROJECT PREVIEW TEST                         */
+/* ---------------------------------------------------------- */
+.mobile-inline-preview{
+  display:none;
+}
