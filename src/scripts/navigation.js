@@ -277,6 +277,12 @@ document.addEventListener('click', (event) => {
     if (mobileInlinePreviewTest && event.target?.closest?.('.mobile-inline-open')) {
       return;
     }
+    const mobileCategoriesListOnly = window.matchMedia('(max-width: 640px)').matches;
+    if (mobileCategoriesListOnly) {
+      window.location.href = projectLink.href;
+      return;
+    }
+
     event.preventDefault();
     setProjectsCategory(categoryButton.getAttribute('data-category-filter'), true);
     return;

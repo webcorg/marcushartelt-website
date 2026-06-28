@@ -1090,8 +1090,7 @@
 }
 
 
-/* ---------------------------------------------------------- */
-/* MOBILE INLINE PROJECT PREVIEW TEST                         */
+
 /* ---------------------------------------------------------- */
 @media (max-width:640px){
   .projects-screen-clean-images .project-hero-stack{
@@ -1149,5 +1148,54 @@
     line-height:1;
     position:relative;
     z-index:10;
+  }
+}
+
+
+
+/* ---------------------------------------------------------- */
+/* The mobile categories inline preview is a real asset frame.
+   It must sit above the global scanline layer, while its OPEN PROJECT button
+   stays below scanlines. */
+@media (max-width:640px){
+  .projects-screen-clean-images .mobile-inline-preview{
+    position:relative !important;
+    z-index:1 !important;
+  }
+
+  .projects-screen-clean-images .mobile-inline-image-frame,
+  .projects-screen-clean-images .mobile-inline-image-frame img{
+    position:relative !important;
+    z-index:20000 !important;
+    isolation:isolate !important;
+  }
+
+  .projects-screen-clean-images .mobile-inline-image-frame::before,
+  .projects-screen-clean-images .mobile-inline-image-frame::after{
+    content:none !important;
+    display:none !important;
+    background:none !important;
+    opacity:0 !important;
+  }
+
+  .projects-screen-clean-images .mobile-inline-open{
+    position:relative !important;
+    z-index:1 !important;
+  }
+}
+
+
+/* ---------------------------------------------------------- */
+/* MOBILE CATEGORIES: LIST ONLY                               */
+/* ---------------------------------------------------------- */
+/* Mobile categories use a clean list. Tapping a project opens its detail page.
+   Desktop/tablet preview layout remains unchanged. */
+@media (max-width:640px){
+  .projects-screen-clean-images .project-hero-stack{
+    display:none !important;
+  }
+
+  .projects-screen-clean-images .featured-item{
+    cursor:pointer;
   }
 }
