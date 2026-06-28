@@ -277,13 +277,7 @@ document.addEventListener('click', (event) => {
     if (mobileInlinePreviewTest && event.target?.closest?.('.mobile-inline-open')) {
       return;
     }
-    const mobileCategoriesListOnly = window.matchMedia('(max-width: 640px)').matches;
-    if (mobileCategoriesListOnly) {
-      window.location.href = projectLink.href;
-      return;
-    }
-
-    event.preventDefault();
+event.preventDefault();
     setProjectsCategory(categoryButton.getAttribute('data-category-filter'), true);
     return;
   }
@@ -392,3 +386,52 @@ if (document.fonts && document.fonts.ready) {
   document.fonts.ready.then(updateMenuDotLeaders);
 }
 
+
+// MOBILE CATEGORIES PREVIEW CONTROLS PATCH START
+(() => {
+  function getVisibleProjectCards() {
+    return Array.from(document.querySelectorAll('[data-featured-project]'))
+      .filter((item) => !item.classList.contains('is-hidden') && !item.hidden);
+  }
+
+  function getActiveIndex(cards) {
+    const index = cards.findIndex((item) => item.classList.contains('featured-item--active'));
+    return index >= 0 ? index : 0;
+  }
+
+  function activateByDirection(direction) {
+    const cards = getVisibleProjectCards();
+    if (!cards.length) return;
+
+    const currentIndex = getActiveIndex(cards);
+    const nextIndex = (currentIndex + direction + cards.length) % cards.length;
+    const nextCard = cards[nextIndex];
+
+    if (typeof selectProjectFromElement === 'function') {
+      selectProjectFromElement(nextCard);
+    } else if (typeof setActiveProjectPreview === 'function') {
+      setActiveProjectPreview(nextCard.getAttribute('data-project-slug'));
+    } else {
+      nextCard.classList.add('featured-item--active');
+    }
+  }
+
+  document.addEventListener('click', (event) => {
+    const prevButton = event.target.closest('[data-mobile-project-prev]');
+    if (prevButton) {
+      event.preventDefault();
+      event.stopPropagation();
+      activateByDirection(-1);
+      return;
+    }
+
+    const nextButton = event.target.closest('[data-mobile-project-next]');
+    if (nextButton) {
+      event.preventDefault();
+      event.stopPropagation();
+      activateByDirection(1);
+      return;
+    }
+  });
+})();
+// MOBILE CATEGORIES PREVIEW CONTROLS PATCH END

@@ -1185,8 +1185,7 @@
 }
 
 
-/* ---------------------------------------------------------- */
-/* MOBILE CATEGORIES: LIST ONLY                               */
+
 /* ---------------------------------------------------------- */
 /* Mobile categories use a clean list. Tapping a project opens its detail page.
    Desktop/tablet preview layout remains unchanged. */
@@ -1197,5 +1196,148 @@
 
   .projects-screen-clean-images .featured-item{
     cursor:pointer;
+  }
+}
+
+
+
+/* ---------------------------------------------------------- */
+/* Mobile keeps the preview visible and uses prev/next controls.
+   Project cards and category buttons remain clickable. */
+.mobile-project-controls{
+  display:none;
+}
+
+@media (max-width:640px){
+  .projects-screen-clean-images .project-hero-stack{
+    display:block !important;
+  }
+
+  .projects-screen-clean-images .mobile-project-controls{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    margin-top:10px;
+  }
+
+  .projects-screen-clean-images .mobile-project-button{
+    appearance:none;
+    border:var(--tt-line) solid currentColor;
+    background:var(--tt-black);
+    color:var(--theme-accent, var(--tt-yellow));
+    font:inherit;
+    line-height:1;
+    padding:8px 8px;
+    text-align:center;
+    cursor:pointer;
+    position:relative;
+    z-index:1;
+  }
+
+  .projects-screen-clean-images .mobile-project-button:active,
+  .projects-screen-clean-images .mobile-project-button:focus-visible{
+    background:var(--theme-accent, var(--tt-yellow));
+    color:var(--theme-on-accent, var(--tt-black));
+  }
+
+  .projects-screen-clean-images .featured-item{
+    cursor:pointer;
+  }
+}
+
+
+/* ---------------------------------------------------------- */
+/* MOBILE CATEGORIES: COMPACT PREVIEW WITH WORKING ARROWS     */
+/* ---------------------------------------------------------- */
+/* Mobile keeps one compact preview and uses prev/next controls.
+   It does not change desktop/tablet layout. */
+.mobile-project-controls{
+  display:none;
+}
+
+@media (max-width:640px){
+  .projects-screen-clean-images .project-hero-stack{
+    display:block !important;
+  }
+
+  .projects-screen-clean-images .project-preview-image-wrap{
+    width:min(72vw, 280px) !important;
+    max-width:280px !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+  }
+
+  .projects-screen-clean-images .project-preview-image-wrap .image-frame--portrait{
+    aspect-ratio:4 / 5 !important;
+    max-height:350px !important;
+  }
+
+  .projects-screen-clean-images .project-preview-image-wrap .photo-slot{
+    object-fit:cover !important;
+  }
+
+  .projects-screen-clean-images .project-preview-title{
+    margin-top:10px !important;
+    text-align:left !important;
+  }
+
+  .projects-screen-clean-images .mobile-project-controls{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    margin-top:10px;
+  }
+
+  .projects-screen-clean-images .mobile-project-button{
+    appearance:none;
+    border:var(--tt-line) solid currentColor;
+    background:var(--tt-black);
+    color:var(--theme-accent, var(--tt-yellow));
+    font:inherit;
+    line-height:1;
+    padding:8px 8px;
+    text-align:center;
+    cursor:pointer;
+    position:relative;
+    z-index:1;
+  }
+
+  .projects-screen-clean-images .mobile-project-button:active,
+  .projects-screen-clean-images .mobile-project-button:focus-visible{
+    background:var(--theme-accent, var(--tt-yellow));
+    color:var(--theme-on-accent, var(--tt-black));
+  }
+}
+
+
+/* ---------------------------------------------------------- */
+/* MOBILE CATEGORIES: SQUARE PREVIEW TOP CROP                 */
+/* ---------------------------------------------------------- */
+/* Mobile only:
+   - preview uses a square 1:1 frame
+   - image is anchored to the top
+   - cropping happens at the bottom
+   - less side margin than the previous centered portrait preview */
+@media (max-width:640px){
+  .projects-screen-clean-images .project-preview-image-wrap{
+    width:100% !important;
+    max-width:none !important;
+    margin-left:0 !important;
+    margin-right:0 !important;
+  }
+
+  .projects-screen-clean-images .project-preview-image-wrap .image-frame,
+  .projects-screen-clean-images .project-preview-image-wrap .image-frame--portrait{
+    width:100% !important;
+    aspect-ratio:1 / 1 !important;
+    max-height:none !important;
+  }
+
+  .projects-screen-clean-images .project-preview-image-wrap img,
+  .projects-screen-clean-images .project-preview-image-wrap .photo-slot{
+    width:100% !important;
+    height:100% !important;
+    object-fit:cover !important;
+    object-position:top center !important;
   }
 }
