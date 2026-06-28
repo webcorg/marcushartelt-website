@@ -38,7 +38,7 @@
   isolation:isolate;
   font-family:var(--tt-font);
   --scanline-opacity:.4;
-  --scanline-gap:2px;
+  --scanline-gap:3px;
   max-width:var(--tt-screen-max);
   min-height:100svh;
   margin:0 auto;
@@ -143,7 +143,7 @@
 /* Claude/exact variant: 2px transparent + 1px black at 0.4 alpha. */
 .teletext-screen.scanlines-claude{
   --scanline-opacity:.4;
-  --scanline-gap:2px;
+  --scanline-gap:3px;
 }
 
 /* Originaler TV/Teletext variant: softer, less LCD-striped, closer to CRT. */
@@ -2629,7 +2629,7 @@ video.photo-slot,
     background carries the pattern
 */
 .project-detail-screen{
-  --project-detail-scanline-gap:4px;
+  --project-detail-scanline-gap:3px;
   --project-detail-scanline-light:rgba(255,255,255,.055);
   --project-detail-scanline-dark:rgba(0,0,0,.30);
   position:relative !important;
@@ -2643,7 +2643,7 @@ video.photo-slot,
       transparent 1px,
       transparent 2px,
       var(--project-detail-scanline-dark) 2px,
-      var(--project-detail-scanline-dark) var(--project-detail-scanline-gap)
+      var(--project-detail-scanline-dark) var(--scanline-gap)
     ) !important;
   background-repeat:repeat !important;
 }
@@ -2760,7 +2760,7 @@ video.photo-slot,
       transparent 1px,
       transparent 2px,
       var(--project-detail-scanline-dark) 2px,
-      var(--project-detail-scanline-dark) var(--project-detail-scanline-gap)
+      var(--project-detail-scanline-dark) var(--scanline-gap)
     ) !important;
   mix-blend-mode:normal !important;
 }
@@ -2775,8 +2775,29 @@ video.photo-slot,
 /* On small screens the same method stays active, just slightly softer. */
 @media (max-width:640px){
   .project-detail-screen{
-    --project-detail-scanline-gap:4px;
+    --project-detail-scanline-gap:3px;
     --project-detail-scanline-light:rgba(255,255,255,.045);
     --project-detail-scanline-dark:rgba(0,0,0,.26);
   }
+}
+
+
+/* ---------------------------------------------------------- */
+/* GLOBAL: UNIFIED SCANLINE SIZE AND ZOOM SAFETY              */
+/* ---------------------------------------------------------- */
+/* One shared scanline rhythm for all pages and all breakpoints. */
+:root,
+html,
+body,
+.teletext-screen,
+.projects-screen-clean-images,
+.project-detail-screen{
+  --scanline-gap:3px !important;
+  --project-detail-scanline-gap:3px !important;
+}
+
+/* Keep pinch zoom enabled. */
+html,
+body{
+  touch-action:auto !important;
 }
