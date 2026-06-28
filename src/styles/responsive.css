@@ -599,3 +599,458 @@
     overflow:visible !important;
   }
 }
+
+
+
+/* ---------------------------------------------------------- */
+/* Desktop already works. This only prevents breakpoint rules from reshaping
+   the category project cards on tablet/mobile. */
+.projects-screen-clean-images .feat-num{
+  display:none !important;
+}
+
+@media (max-width:920px){
+  .projects-screen-clean-images .featured-item{
+    display:grid !important;
+    grid-template-columns:minmax(0, 1fr) auto !important;
+    gap:12px !important;
+    align-items:center !important;
+    justify-items:stretch !important;
+    text-align:left !important;
+  }
+
+  .projects-screen-clean-images .feat-num{
+    display:none !important;
+  }
+
+  .projects-screen-clean-images .feat-copy{
+    min-width:0 !important;
+    width:100% !important;
+    display:block !important;
+    text-align:left !important;
+  }
+
+  .projects-screen-clean-images .feat-title,
+  .projects-screen-clean-images .feat-sub{
+    text-align:left !important;
+  }
+
+  .projects-screen-clean-images .feat-code{
+    justify-self:end !important;
+    align-self:center !important;
+    text-align:right !important;
+    white-space:nowrap !important;
+  }
+}
+
+
+/* ---------------------------------------------------------- */
+/* MOBILE: CATEGORY PAGE NUMBER ON TITLE LINE                 */
+/* ---------------------------------------------------------- */
+/* Desktop/tablet already fits. This only fixes mobile overrides. */
+@media (max-width:640px){
+  .projects-screen-clean-images .featured-item{
+    align-items:start !important;
+  }
+
+  .projects-screen-clean-images .feat-code{
+    grid-row:1 !important;
+    align-self:start !important;
+    justify-self:end !important;
+    line-height:1.15 !important;
+    padding-top:0 !important;
+    margin-top:0 !important;
+    transform:none !important;
+  }
+
+  .projects-screen-clean-images .feat-copy{
+    grid-row:1 !important;
+    align-self:start !important;
+  }
+}
+
+
+
+/* ---------------------------------------------------------- */
+/* Some mobile browser layers render pseudo overlays inconsistently.
+   This keeps the same scanline layer active on narrow screens too. */
+@media (max-width:640px){
+  .teletext-screen{
+    position:relative !important;
+    isolation:isolate !important;
+  }
+
+  .teletext-screen::after{
+    display:block !important;
+    position:absolute !important;
+    inset:0 !important;
+    z-index:9000 !important;
+    pointer-events:none !important;
+  }
+
+  .image-frame,
+  .project-preview-image-wrap,
+  .project-hero-stack,
+  .project-gallery,
+  .project-gallery-item,
+  .project-gallery-image,
+  .gallery-frame,
+  .photo-slot,
+  img{
+    position:relative;
+    z-index:9100;
+  }
+}
+
+
+
+/* ---------------------------------------------------------- */
+@media (max-width:640px){
+  .teletext-screen{
+    position:relative !important;
+    isolation:isolate !important;
+  }
+
+  .teletext-screen::after{
+    display:block !important;
+    position:absolute !important;
+    inset:0 !important;
+    z-index:50 !important;
+    pointer-events:none !important;
+  }
+
+  .image-frame,
+  .gallery-frame,
+  .project-preview-image-wrap,
+  .project-preview-image-wrap .image-frame,
+  .project-hero-stack .image-frame,
+  .project-gallery,
+  .project-gallery-item,
+  .project-gallery-item .image-frame,
+  .project-gallery-image,
+  .project-detail-gallery,
+  .project-detail-gallery .image-frame,
+  .photo-slot,
+  img.photo-slot,
+  img.project-gallery-image{
+    position:relative !important;
+    z-index:100 !important;
+    isolation:isolate !important;
+  }
+
+  .image-frame img,
+  .gallery-frame img,
+  .project-preview-image-wrap img,
+  .project-hero-stack img,
+  .project-gallery img,
+  .project-gallery-item img,
+  .project-detail-gallery img,
+  .photo-slot{
+    position:relative !important;
+    z-index:101 !important;
+  }
+}
+
+
+
+/* ---------------------------------------------------------- */
+@media (max-width:640px){
+  .teletext-screen{
+    position:relative !important;
+    isolation:isolate !important;
+  }
+
+  .teletext-screen::after{
+    display:block !important;
+    position:absolute !important;
+    inset:0 !important;
+    z-index:10000 !important;
+    pointer-events:none !important;
+  }
+
+  .broadcast-header,
+  .side-nav,
+  .projects-side,
+  .featured-list,
+  .featured-item,
+  .project-info,
+  .project-info--sticky,
+  .project-preview-title,
+  .info-line,
+  .teletext-open-button,
+  .footer-controls,
+  .footer-link,
+  .nav-link,
+  .category-band,
+  .legal-nav,
+  .legal-section,
+  .about-layout,
+  .contact-layout,
+  .project-detail-info-column{
+    position:relative;
+    z-index:10;
+  }
+
+  img,
+  video,
+  picture,
+  canvas,
+  svg.asset,
+  .image-frame,
+  .image-frame img,
+  .gallery-frame,
+  .gallery-frame img,
+  .project-preview-image-wrap,
+  .project-preview-image-wrap img,
+  .project-gallery,
+  .project-gallery-item,
+  .project-gallery-item img,
+  .project-gallery-image,
+  .project-detail-gallery,
+  .project-detail-gallery img,
+  .photo-slot,
+  img.photo-slot,
+  video.photo-slot,
+  .media-slot,
+  .asset-frame,
+  .asset-frame img,
+  .asset-frame video{
+    position:relative !important;
+    z-index:11000 !important;
+    isolation:isolate !important;
+  }
+
+  .project-hero-stack .project-preview-title,
+  .project-hero-stack .info-line,
+  .project-hero-stack .teletext-open-button,
+  .project-preview-title,
+  .teletext-open-button{
+    position:relative !important;
+    z-index:10 !important;
+  }
+}
+
+
+
+/* ---------------------------------------------------------- */
+@media (max-width:640px){
+  .teletext-screen{
+    position:relative !important;
+    isolation:isolate !important;
+  }
+
+  .teletext-screen::after,
+  .teletext-screen.scanlines-original::after{
+    content:"" !important;
+    position:absolute !important;
+    inset:0 !important;
+    z-index:10000 !important;
+    pointer-events:none !important;
+    display:block !important;
+  }
+
+  .project-hero-stack,
+  .project-hero,
+  .projects-right,
+  .projects-top,
+  .projects-top--list-preview,
+  .project-detail-split,
+  .project-detail-gallery-column,
+  .project-editorial-gallery,
+  .editorial-gallery-grid,
+  .project-gallery,
+  .project-detail-gallery,
+  .about-layout,
+  .contact-layout,
+  .contact-panel{
+    z-index:auto !important;
+    isolation:auto !important;
+  }
+
+  .broadcast-header,
+  .side-nav,
+  .projects-side,
+  .featured-list,
+  .featured-item,
+  .project-info,
+  .project-info--sticky,
+  .project-detail-info-column,
+  .project-preview-title,
+  .info-line,
+  .teletext-open-button,
+  .footer-controls,
+  .footer-link,
+  .nav-link,
+  .category-band,
+  .legal-nav,
+  .legal-section,
+  .booking-strip,
+  .phone-strip,
+  .menu-item,
+  .menu-cat,
+  .menu-dots,
+  .menu-page{
+    position:relative !important;
+    z-index:1 !important;
+  }
+
+  .image-frame,
+  .gallery-frame,
+  .editorial-gallery-item,
+  .project-gallery-item,
+  .project-preview-image-wrap,
+  .asset-frame,
+  .media-slot,
+  .photo-slot,
+  img,
+  video,
+  picture,
+  canvas{
+    position:relative !important;
+    z-index:20000 !important;
+    isolation:isolate !important;
+  }
+
+  .image-frame > img,
+  .image-frame > video,
+  .gallery-frame > img,
+  .gallery-frame > video,
+  .project-preview-image-wrap img,
+  .project-preview-image-wrap video,
+  .editorial-gallery-item img,
+  .editorial-gallery-item video,
+  .project-gallery-item img,
+  .project-gallery-item video,
+  .asset-frame img,
+  .asset-frame video{
+    position:relative !important;
+    z-index:20001 !important;
+  }
+
+  .project-hero-stack .project-preview-title,
+  .project-hero-stack .info-line,
+  .project-hero-stack .teletext-open-button,
+  .project-preview-title,
+  .info-line,
+  .teletext-open-button{
+    position:relative !important;
+    z-index:1 !important;
+  }
+}
+
+
+/* ---------------------------------------------------------- */
+/* MOBILE: ASSET FRAMES WITHOUT SCANLINES                     */
+/* ---------------------------------------------------------- */
+@media (max-width:640px){
+  .teletext-screen{
+    position:relative !important;
+    isolation:isolate !important;
+  }
+
+  .teletext-screen::after,
+  .teletext-screen.scanlines-original::after{
+    position:absolute !important;
+    inset:0 !important;
+    z-index:1000 !important;
+    pointer-events:none !important;
+    display:block !important;
+  }
+
+  .image-frame,
+  .gallery-frame,
+  .project-preview-image-wrap,
+  .project-preview-image-wrap .image-frame,
+  .project-hero-stack .image-frame,
+  .project-gallery-item,
+  .project-gallery-item .image-frame,
+  .project-detail-gallery .image-frame,
+  .editorial-gallery-item,
+  .editorial-gallery-item .image-frame,
+  .contact-image,
+  .contact-image .image-frame,
+  .about-image,
+  .about-image .image-frame,
+  .asset-frame,
+  .media-slot{
+    position:relative !important;
+    z-index:2000 !important;
+    isolation:isolate !important;
+    overflow:hidden;
+  }
+
+  .image-frame::before,
+  .image-frame::after,
+  .gallery-frame::before,
+  .gallery-frame::after,
+  .project-preview-image-wrap::before,
+  .project-preview-image-wrap::after,
+  .project-preview-image-wrap .image-frame::before,
+  .project-preview-image-wrap .image-frame::after,
+  .project-hero-stack .image-frame::before,
+  .project-hero-stack .image-frame::after,
+  .project-gallery-item::before,
+  .project-gallery-item::after,
+  .project-gallery-item .image-frame::before,
+  .project-gallery-item .image-frame::after,
+  .project-detail-gallery .image-frame::before,
+  .project-detail-gallery .image-frame::after,
+  .editorial-gallery-item::before,
+  .editorial-gallery-item::after,
+  .editorial-gallery-item .image-frame::before,
+  .editorial-gallery-item .image-frame::after,
+  .contact-image::before,
+  .contact-image::after,
+  .contact-image .image-frame::before,
+  .contact-image .image-frame::after,
+  .about-image::before,
+  .about-image::after,
+  .about-image .image-frame::before,
+  .about-image .image-frame::after,
+  .asset-frame::before,
+  .asset-frame::after,
+  .media-slot::before,
+  .media-slot::after{
+    content:none !important;
+    display:none !important;
+    background:none !important;
+    opacity:0 !important;
+  }
+
+  .image-frame img,
+  .image-frame video,
+  .gallery-frame img,
+  .gallery-frame video,
+  .project-preview-image-wrap img,
+  .project-preview-image-wrap video,
+  .project-gallery-item img,
+  .project-gallery-item video,
+  .project-detail-gallery img,
+  .project-detail-gallery video,
+  .editorial-gallery-item img,
+  .editorial-gallery-item video,
+  .contact-image img,
+  .contact-image video,
+  .about-image img,
+  .about-image video,
+  .asset-frame img,
+  .asset-frame video,
+  .media-slot img,
+  .media-slot video,
+  img.photo-slot,
+  video.photo-slot,
+  .photo-slot{
+    position:relative !important;
+    z-index:2001 !important;
+  }
+
+  .project-hero-stack .project-preview-title,
+  .project-hero-stack .info-line,
+  .project-hero-stack .teletext-open-button,
+  .project-preview-title,
+  .info-line,
+  .teletext-open-button{
+    position:relative !important;
+    z-index:10 !important;
+  }
+}

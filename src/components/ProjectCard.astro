@@ -1,6 +1,5 @@
 ---
 const { project, index = 0, active = false, previewImage = `/images/previews/${project.slug}-work-preview.webp` } = Astro.props;
-const twoDigit = String(index + 1).padStart(2, '0');
 ---
 <a
   class:list={["featured-item", active && "featured-item--active"]}
@@ -18,7 +17,6 @@ const twoDigit = String(index + 1).padStart(2, '0');
   data-project-page={project.pageNumber}
   data-selectable
 >
-  <span class="feat-num">{twoDigit}</span>
   <div class="feat-copy">
     <div class="feat-title">{project.title}</div>
     <div class="feat-sub">{project.location} / {project.year}</div>

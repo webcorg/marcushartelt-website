@@ -1923,8 +1923,7 @@ img,
 }
 
 
-/* ---------------------------------------------------------- */
-/* PROJECT CARDS: HIDE DUPLICATE CATEGORY LINE                */
+
 /* ---------------------------------------------------------- */
 /* Category is already shown by the selected category/context.
    Cards only show title, location/year and page number to avoid height jumps. */
@@ -1953,4 +1952,660 @@ img,
 /* The active category is already clear from the page context. */
 .projects-screen-clean-images [data-preview-category]{
   display:none !important;
+}
+
+
+
+/* ---------------------------------------------------------- */
+/* The project page number on the right is enough.
+   Removing the left 01/02/03 column keeps the list calmer on all breakpoints. */
+.projects-screen-clean-images .featured-item{
+  grid-template-columns:minmax(0, 1fr) auto !important;
+  text-align:left !important;
+}
+
+.projects-screen-clean-images .feat-num{
+  display:none !important;
+}
+
+.projects-screen-clean-images .feat-copy{
+  text-align:left !important;
+  align-items:flex-start !important;
+}
+
+.projects-screen-clean-images .feat-title,
+.projects-screen-clean-images .feat-sub{
+  text-align:left !important;
+}
+
+@media (max-width:920px){
+  .projects-screen-clean-images .featured-item{
+    grid-template-columns:minmax(0, 1fr) auto !important;
+    text-align:left !important;
+    justify-items:stretch !important;
+  }
+
+  .projects-screen-clean-images .feat-copy{
+    width:100%;
+    text-align:left !important;
+    align-items:flex-start !important;
+  }
+
+  .projects-screen-clean-images .feat-title,
+  .projects-screen-clean-images .feat-sub{
+    text-align:left !important;
+  }
+
+  .projects-screen-clean-images .feat-code{
+    justify-self:end !important;
+    text-align:right !important;
+  }
+}
+
+
+/* ---------------------------------------------------------- */
+/* CATEGORIES: CLEAN TITLE LEFT NUMBER RIGHT                  */
+/* ---------------------------------------------------------- */
+/* Final card layout:
+   - no local 01/02/03 numbering
+   - project copy starts left
+   - real project page number stays right
+   - same structure for desktop, tablet and mobile */
+.projects-screen-clean-images .featured-item{
+  display:grid !important;
+  grid-template-columns:minmax(0, 1fr) auto !important;
+  column-gap:16px !important;
+  row-gap:0 !important;
+  align-items:center !important;
+  justify-items:stretch !important;
+  text-align:left !important;
+}
+
+.projects-screen-clean-images .feat-num{
+  display:none !important;
+}
+
+.projects-screen-clean-images .feat-copy{
+  grid-column:1 !important;
+  grid-row:1 !important;
+  min-width:0 !important;
+  width:100% !important;
+  display:block !important;
+  text-align:left !important;
+  justify-self:start !important;
+}
+
+.projects-screen-clean-images .feat-title,
+.projects-screen-clean-images .feat-sub{
+  display:block !important;
+  width:100% !important;
+  max-width:100% !important;
+  text-align:left !important;
+  overflow-wrap:normal !important;
+  word-break:normal !important;
+  hyphens:none !important;
+}
+
+.projects-screen-clean-images .feat-code{
+  grid-column:2 !important;
+  grid-row:1 !important;
+  justify-self:end !important;
+  align-self:center !important;
+  text-align:right !important;
+  white-space:nowrap !important;
+}
+
+@media (max-width:920px){
+  .projects-screen-clean-images .featured-item{
+    grid-template-columns:minmax(0, 1fr) auto !important;
+    column-gap:12px !important;
+  }
+
+  .projects-screen-clean-images .feat-copy{
+    grid-column:1 !important;
+    justify-self:start !important;
+    text-align:left !important;
+  }
+
+  .projects-screen-clean-images .feat-code{
+    grid-column:2 !important;
+    justify-self:end !important;
+    text-align:right !important;
+  }
+}
+
+
+
+/* ---------------------------------------------------------- */
+.projects-screen-clean-images [data-featured-project][hidden]{
+  display:none !important;
+}
+
+
+/* ---------------------------------------------------------- */
+/* CATEGORIES: FILTERED CARDS STAY HIDDEN                     */
+/* ---------------------------------------------------------- */
+.projects-screen-clean-images .featured-item.is-hidden,
+.projects-screen-clean-images [data-featured-project].is-hidden{
+  display:none !important;
+}
+
+
+/* ---------------------------------------------------------- */
+/* CATEGORIES: PAGE NUMBER ALIGNS TO TITLE LINE               */
+/* ---------------------------------------------------------- */
+/* Project page number sits on the height of the first text line,
+   not vertically centered across title + location. */
+.projects-screen-clean-images .featured-item{
+  align-items:start !important;
+}
+
+.projects-screen-clean-images .feat-code{
+  align-self:start !important;
+  justify-self:end !important;
+  text-align:right !important;
+  white-space:nowrap !important;
+  line-height:1.15 !important;
+  padding-top:0 !important;
+  margin-top:0 !important;
+}
+
+
+
+/* ---------------------------------------------------------- */
+/* One consistent scanline overlay for every page and breakpoint.
+   It sits above all text/UI, but real photos are lifted above it so images stay clean. */
+.teletext-screen{
+  position:relative !important;
+  isolation:isolate !important;
+}
+
+.teletext-screen::after{
+  content:"" !important;
+  position:absolute !important;
+  inset:0 !important;
+  z-index:9000 !important;
+  pointer-events:none !important;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.055) 0px,
+      rgba(255,255,255,0.055) 1px,
+      rgba(0,0,0,0.28) 2px,
+      rgba(0,0,0,0.28) 4px
+    ) !important;
+  mix-blend-mode:normal !important;
+}
+
+
+
+/* Photos must stay clean: they sit above the scanline layer. */
+.image-frame,
+.project-preview-image-wrap,
+.project-hero-stack,
+.project-gallery,
+.project-gallery-item,
+.project-gallery-image,
+.gallery-frame,
+.photo-slot,
+img{
+  position:relative;
+  z-index:9100;
+}
+
+
+/* ---------------------------------------------------------- */
+/* The scanline layer sits above normal UI/text.
+   Photo containers are lifted above it, so images stay clean everywhere. */
+.teletext-screen{
+  position:relative !important;
+  isolation:isolate !important;
+}
+
+/* Global scanline overlay across the complete teletext screen. */
+.teletext-screen::after{
+  content:"" !important;
+  position:absolute !important;
+  inset:0 !important;
+  z-index:50 !important;
+  pointer-events:none !important;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.055) 0px,
+      rgba(255,255,255,0.055) 1px,
+      rgba(0,0,0,0.30) 2px,
+      rgba(0,0,0,0.30) 4px
+    ) !important;
+  mix-blend-mode:normal !important;
+}
+
+/* Do not force all page children into their own z-index layer.
+   Text/UI stays naturally below ::after. */
+
+/* Every real photo/image frame is above scanlines. */
+.image-frame,
+.gallery-frame,
+.project-preview-image-wrap,
+.project-preview-image-wrap .image-frame,
+.project-hero-stack .image-frame,
+.project-gallery,
+.project-gallery-item,
+.project-gallery-item .image-frame,
+.project-gallery-image,
+.project-detail-gallery,
+.project-detail-gallery .image-frame,
+.photo-slot,
+img.photo-slot,
+img.project-gallery-image{
+  position:relative !important;
+  z-index:100 !important;
+  isolation:isolate !important;
+}
+
+/* Make the actual image pixels clean too. */
+.image-frame img,
+.gallery-frame img,
+.project-preview-image-wrap img,
+.project-hero-stack img,
+.project-gallery img,
+.project-gallery-item img,
+.project-detail-gallery img,
+.photo-slot{
+  position:relative !important;
+  z-index:101 !important;
+}
+
+/* Keep captions/controls outside image blocks normal unless they are inside a lifted frame. */
+
+
+
+/* ---------------------------------------------------------- */
+/* Global overlay:
+   - above all UI/text/buttons/color fields
+   - below real media assets only */
+.teletext-screen{
+  position:relative !important;
+  isolation:isolate !important;
+}
+
+/* Scanlines across the whole page. High z-index so buttons and color blocks are covered too. */
+.teletext-screen::after{
+  content:"" !important;
+  position:absolute !important;
+  inset:0 !important;
+  z-index:10000 !important;
+  pointer-events:none !important;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.055) 0px,
+      rgba(255,255,255,0.055) 1px,
+      rgba(0,0,0,0.30) 2px,
+      rgba(0,0,0,0.30) 4px
+    ) !important;
+  mix-blend-mode:normal !important;
+}
+
+/* Keep common UI explicitly below the scanline layer. */
+.broadcast-header,
+.side-nav,
+.projects-side,
+.featured-list,
+.featured-item,
+.project-info,
+.project-info--sticky,
+.project-preview-title,
+.info-line,
+.teletext-open-button,
+.footer-controls,
+.footer-link,
+.nav-link,
+.category-band,
+.legal-nav,
+.legal-section,
+.about-layout,
+.contact-layout,
+.project-detail-info-column{
+  position:relative;
+  z-index:10;
+}
+
+/* Only real assets are lifted above scanlines. */
+img,
+video,
+picture,
+canvas,
+svg.asset,
+.image-frame,
+.image-frame img,
+.gallery-frame,
+.gallery-frame img,
+.project-preview-image-wrap,
+.project-preview-image-wrap img,
+.project-gallery,
+.project-gallery-item,
+.project-gallery-item img,
+.project-gallery-image,
+.project-detail-gallery,
+.project-detail-gallery img,
+.photo-slot,
+img.photo-slot,
+video.photo-slot,
+.media-slot,
+.asset-frame,
+.asset-frame img,
+.asset-frame video{
+  position:relative !important;
+  z-index:11000 !important;
+  isolation:isolate !important;
+}
+
+/* Important: text/buttons near images stay below scanlines. */
+.project-hero-stack .project-preview-title,
+.project-hero-stack .info-line,
+.project-hero-stack .teletext-open-button,
+.project-preview-title,
+.teletext-open-button{
+  position:relative !important;
+  z-index:10 !important;
+}
+
+
+
+/* ---------------------------------------------------------- */
+/*
+  Goal:
+  - Scanlines over ALL UI: text, buttons, bars, navigation, footer, headers.
+  - No scanlines over true media assets: img/video/canvas/picture and their image frames.
+
+  Important:
+  Do NOT lift whole sections like .project-hero-stack above scanlines,
+  because their buttons/text would also escape the scanline layer.
+*/
+.teletext-screen{
+  position:relative !important;
+  isolation:isolate !important;
+}
+
+/* The one global scanline layer. */
+.teletext-screen::after,
+.teletext-screen.scanlines-original::after{
+  content:"" !important;
+  position:absolute !important;
+  inset:0 !important;
+  z-index:10000 !important;
+  pointer-events:none !important;
+  display:block !important;
+  opacity:1 !important;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.055) 0px,
+      rgba(255,255,255,0.055) 1px,
+      rgba(0,0,0,0.30) 2px,
+      rgba(0,0,0,0.30) 4px
+    ) !important;
+  mix-blend-mode:normal !important;
+}
+
+/* These are layout containers, not assets.
+   They must NOT sit above the scanline layer. */
+.project-hero-stack,
+.project-hero,
+.projects-right,
+.projects-top,
+.projects-top--list-preview,
+.project-detail-split,
+.project-detail-gallery-column,
+.project-editorial-gallery,
+.editorial-gallery-grid,
+.project-gallery,
+.project-detail-gallery,
+.about-layout,
+.contact-layout,
+.contact-panel{
+  z-index:auto !important;
+  isolation:auto !important;
+}
+
+/* UI explicitly stays below scanlines. */
+.broadcast-header,
+.side-nav,
+.projects-side,
+.featured-list,
+.featured-item,
+.project-info,
+.project-info--sticky,
+.project-detail-info-column,
+.project-preview-title,
+.info-line,
+.teletext-open-button,
+.footer-controls,
+.footer-link,
+.nav-link,
+.category-band,
+.legal-nav,
+.legal-section,
+.booking-strip,
+.phone-strip,
+.menu-item,
+.menu-cat,
+.menu-dots,
+.menu-page{
+  position:relative !important;
+  z-index:1 !important;
+}
+
+/* Only real media / asset frames are above scanlines. */
+.image-frame,
+.gallery-frame,
+.editorial-gallery-item,
+.project-gallery-item,
+.project-preview-image-wrap,
+.asset-frame,
+.media-slot,
+.photo-slot,
+img,
+video,
+picture,
+canvas{
+  position:relative !important;
+  z-index:20000 !important;
+  isolation:isolate !important;
+}
+
+/* Media pixels stay above too. */
+.image-frame > img,
+.image-frame > video,
+.gallery-frame > img,
+.gallery-frame > video,
+.project-preview-image-wrap img,
+.project-preview-image-wrap video,
+.editorial-gallery-item img,
+.editorial-gallery-item video,
+.project-gallery-item img,
+.project-gallery-item video,
+.asset-frame img,
+.asset-frame video{
+  position:relative !important;
+  z-index:20001 !important;
+}
+
+/* If UI sits directly next to / below image blocks, force it back under scanlines. */
+.project-hero-stack .project-preview-title,
+.project-hero-stack .info-line,
+.project-hero-stack .teletext-open-button,
+.project-preview-title,
+.info-line,
+.teletext-open-button{
+  position:relative !important;
+  z-index:1 !important;
+}
+
+
+/* ---------------------------------------------------------- */
+/* ASSET FRAMES: REMOVE LOCAL SCANLINES                       */
+/* ---------------------------------------------------------- */
+/*
+  Categories already works.
+  Project/About/Contact images had scanlines because some image/frame layers
+  still carried their own pseudo-overlay or sat below the global overlay.
+  This removes scanline overlays from true asset frames only.
+*/
+.teletext-screen{
+  position:relative !important;
+  isolation:isolate !important;
+}
+
+/* Global scanlines stay over UI/text/buttons. */
+.teletext-screen::after,
+.teletext-screen.scanlines-original::after{
+  content:"" !important;
+  position:absolute !important;
+  inset:0 !important;
+  z-index:1000 !important;
+  pointer-events:none !important;
+  display:block !important;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.055) 0px,
+      rgba(255,255,255,0.055) 1px,
+      rgba(0,0,0,0.30) 2px,
+      rgba(0,0,0,0.30) 4px
+    ) !important;
+  mix-blend-mode:normal !important;
+}
+
+/* UI stays below scanlines. */
+.broadcast-header,
+.side-nav,
+.projects-side,
+.featured-list,
+.featured-item,
+.project-info,
+.project-info--sticky,
+.project-detail-info-column,
+.project-preview-title,
+.info-line,
+.teletext-open-button,
+.footer-controls,
+.footer-link,
+.nav-link,
+.category-band,
+.legal-nav,
+.legal-section,
+.booking-strip,
+.phone-strip,
+.menu-item,
+.menu-cat,
+.menu-dots,
+.menu-page,
+.contact-panel,
+.about-copy,
+.about-layout{
+  position:relative !important;
+  z-index:10 !important;
+}
+
+/* True asset wrappers above global scanlines. */
+.image-frame,
+.gallery-frame,
+.project-preview-image-wrap,
+.project-preview-image-wrap .image-frame,
+.project-hero-stack .image-frame,
+.project-gallery-item,
+.project-gallery-item .image-frame,
+.project-detail-gallery .image-frame,
+.editorial-gallery-item,
+.editorial-gallery-item .image-frame,
+.contact-image,
+.contact-image .image-frame,
+.about-image,
+.about-image .image-frame,
+.asset-frame,
+.media-slot{
+  position:relative !important;
+  z-index:2000 !important;
+  isolation:isolate !important;
+  overflow:hidden;
+}
+
+/* Remove any local scanline/noise pseudo overlays from asset frames. */
+.image-frame::before,
+.image-frame::after,
+.gallery-frame::before,
+.gallery-frame::after,
+.project-preview-image-wrap::before,
+.project-preview-image-wrap::after,
+.project-preview-image-wrap .image-frame::before,
+.project-preview-image-wrap .image-frame::after,
+.project-hero-stack .image-frame::before,
+.project-hero-stack .image-frame::after,
+.project-gallery-item::before,
+.project-gallery-item::after,
+.project-gallery-item .image-frame::before,
+.project-gallery-item .image-frame::after,
+.project-detail-gallery .image-frame::before,
+.project-detail-gallery .image-frame::after,
+.editorial-gallery-item::before,
+.editorial-gallery-item::after,
+.editorial-gallery-item .image-frame::before,
+.editorial-gallery-item .image-frame::after,
+.contact-image::before,
+.contact-image::after,
+.contact-image .image-frame::before,
+.contact-image .image-frame::after,
+.about-image::before,
+.about-image::after,
+.about-image .image-frame::before,
+.about-image .image-frame::after,
+.asset-frame::before,
+.asset-frame::after,
+.media-slot::before,
+.media-slot::after{
+  content:none !important;
+  display:none !important;
+  background:none !important;
+  opacity:0 !important;
+}
+
+/* Actual media pixels above everything scanline-related. */
+.image-frame img,
+.image-frame video,
+.gallery-frame img,
+.gallery-frame video,
+.project-preview-image-wrap img,
+.project-preview-image-wrap video,
+.project-gallery-item img,
+.project-gallery-item video,
+.project-detail-gallery img,
+.project-detail-gallery video,
+.editorial-gallery-item img,
+.editorial-gallery-item video,
+.contact-image img,
+.contact-image video,
+.about-image img,
+.about-image video,
+.asset-frame img,
+.asset-frame video,
+.media-slot img,
+.media-slot video,
+img.photo-slot,
+video.photo-slot,
+.photo-slot{
+  position:relative !important;
+  z-index:2001 !important;
+}
+
+/* UI inside/near hero stacks must not be lifted with the image. */
+.project-hero-stack .project-preview-title,
+.project-hero-stack .info-line,
+.project-hero-stack .teletext-open-button,
+.project-preview-title,
+.info-line,
+.teletext-open-button{
+  position:relative !important;
+  z-index:10 !important;
 }

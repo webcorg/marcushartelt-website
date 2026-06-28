@@ -223,13 +223,13 @@ function setProjectsCategory(category, updateUrl = false) {
     const match = normalizeCategoryValue(project.getAttribute('data-project-category')) === normalizedCategory;
     project.classList.toggle('is-hidden', !match);
     project.classList.remove('featured-item--active');
+    if (match) visibleCount += 1;
     if (match && !firstVisibleSlug) firstVisibleSlug = project.getAttribute('data-project-slug') || '';
   });
 
   tableProjects.forEach((project) => {
     const match = normalizeCategoryValue(project.getAttribute('data-project-category')) === normalizedCategory;
     project.classList.toggle('is-hidden', !match);
-    if (match) visibleCount += 1;
     if (match && !firstVisibleSlug) firstVisibleSlug = project.getAttribute('data-project-slug') || '';
   });
 

@@ -5,11 +5,12 @@ import FooterControls from '@components/FooterControls.astro';
 import SideNav from '@components/SideNav.astro';
 import ProjectPreview from '@components/ProjectPreview.astro';
 import ProjectCard from '@components/ProjectCard.astro';
-import { featuredProjects, projectsForArchive } from '@data/projects';
+import { projectsForArchive } from '@data/projects';
 import { getCategoryByName } from '@data/navigation';
 
 const firstCategory = 'Fashion';
 const firstProjectInCategory = projectsForArchive.find((project) => project.category === firstCategory) ?? projectsForArchive[0];
+const visibleProjects = projectsForArchive;
 const firstCategoryTheme = getCategoryByName(firstCategory)?.theme ?? 'fashion';
 
 function getProjectPreviewImage(project) {
@@ -34,7 +35,7 @@ function getProjectPreviewImage(project) {
         <aside class="featured-list" data-group data-active="featured-item--active">
           <div class="side-nav-heading" data-category-heading>{firstCategory.toUpperCase()} PROJECTS</div>
           <div class="teletext-divider teletext-divider--dotted-blue"></div>
-          {featuredProjects.map((project, index) => <ProjectCard project={project} index={index} active={project.slug === firstProjectInCategory.slug} previewImage={getProjectPreviewImage(project)} />)}
+          {visibleProjects.map((project, index) => <ProjectCard project={project} index={index} active={project.slug === firstProjectInCategory.slug} previewImage={getProjectPreviewImage(project)} />)}
           <div class="empty-category-message is-hidden" data-empty-category>
             NO PROJECTS IN THIS CATEGORY YET
           </div>
