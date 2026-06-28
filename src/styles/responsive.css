@@ -939,8 +939,7 @@
 }
 
 
-/* ---------------------------------------------------------- */
-/* MOBILE: ASSET FRAMES WITHOUT SCANLINES                     */
+
 /* ---------------------------------------------------------- */
 @media (max-width:640px){
   .teletext-screen{
@@ -1343,8 +1342,7 @@
 }
 
 
-/* ---------------------------------------------------------- */
-/* MOBILE FIX: CONSISTENT PROJECT SCANLINES AND NO ZOOM       */
+
 /* ---------------------------------------------------------- */
 @media (max-width:640px){
   html,
@@ -1377,19 +1375,6 @@
     column-gap:8px !important;
   }
 
-  .teletext-screen--home .menu-dots{
-    display:block !important;
-    min-width:24px !important;
-    height:0.85em !important;
-    align-self:center !important;
-    opacity:1 !important;
-    visibility:visible !important;
-    background-image:radial-gradient(currentColor 2px, transparent 2px) !important;
-    background-size:8px 8px !important;
-    background-repeat:repeat-x !important;
-    background-position:left center !important;
-    color:inherit !important;
-  }
 
   .category-theme,
   .category-theme-fashion,
@@ -1458,6 +1443,62 @@
   video,
   picture,
   canvas{
+    position:relative !important;
+    z-index:2000 !important;
+    isolation:isolate !important;
+  }
+}
+
+
+/* ---------------------------------------------------------- */
+/* MOBILE VIEWPORT STABILITY FIX                              */
+/* ---------------------------------------------------------- */
+/* Allow normal zoom, but prevent horizontal layout drift where possible.
+   When user zooms back to 100%, layout snaps cleanly to viewport width. */
+@media (max-width:640px){
+  html,
+  body{
+    width:100%;
+    max-width:100%;
+    overflow-x:hidden !important;
+    overscroll-behavior-x:none;
+  }
+
+  .teletext-stage,
+  .teletext-screen{
+    width:100% !important;
+    max-width:100% !important;
+    overflow-x:hidden !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+  }
+
+  .teletext-screen::after,
+  .teletext-screen.scanlines-original::after{
+    content:"" !important;
+    position:absolute !important;
+    inset:0 !important;
+    z-index:1000 !important;
+    pointer-events:none !important;
+    display:block !important;
+  }
+
+
+  .image-frame,
+  .gallery-frame,
+  .project-preview-image-wrap,
+  .project-preview-image-wrap .image-frame,
+  .project-gallery-item,
+  .project-gallery-item .image-frame,
+  .project-detail-gallery .image-frame,
+  .editorial-gallery-item,
+  .editorial-gallery-item .image-frame,
+  .contact-image,
+  .contact-image .image-frame,
+  .about-image,
+  .about-image .image-frame,
+  .asset-frame,
+  .media-slot{
     position:relative !important;
     z-index:2000 !important;
     isolation:isolate !important;
