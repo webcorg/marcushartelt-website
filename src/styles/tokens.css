@@ -46,7 +46,7 @@
   font-display:block;
 }
 
-.c-red{color:var(--tt-red)} .c-green{color:var(--tt-green)} .c-yellow{color:var(--tt-yellow)} .c-blue{color:var(--tt-blue)}
-.c-magenta{color:var(--tt-magenta)} .c-cyan{color:var(--tt-cyan)} .c-black{color:var(--tt-black)} .c-white{color:var(--tt-white)}
-.bg-red{background:var(--tt-red)} .bg-green{background:var(--tt-green)} .bg-yellow{background:var(--tt-yellow)} .bg-blue{background:var(--tt-blue)}
-.bg-magenta{background:var(--tt-magenta)} .bg-cyan{background:var(--tt-cyan)} .bg-white{background:var(--tt-white)} .bg-black{background:var(--tt-black)}
+.c-red{color:var(--tt-red)}.c-red{color:var(--tt-red)} .c-green{color:var(--tt-green)}.c-red{color:var(--tt-red)} .c-green{color:var(--tt-green)} .c-yellow{color:var(--tt-yellow)}.c-red{color:var(--tt-red)} .c-green{color:var(--tt-green)} .c-yellow{color:var(--tt-yellow)} .c-blue{color:var(--tt-blue)}
+.c-magenta{color:var(--tt-magenta)}.c-magenta{color:var(--tt-magenta)} .c-cyan{color:var(--tt-cyan)}.c-magenta{color:var(--tt-magenta)} .c-cyan{color:var(--tt-cyan)} .c-black{color:var(--tt-black)}.c-magenta{color:var(--tt-magenta)} .c-cyan{color:var(--tt-cyan)} .c-black{color:var(--tt-black)} .c-white{color:var(--tt-white)}
+.bg-red{background:var(--tt-red)}.bg-red{background:var(--tt-red)} .bg-green{background:var(--tt-green)}.bg-red{background:var(--tt-red)} .bg-green{background:var(--tt-green)} .bg-yellow{background:var(--tt-yellow)}.bg-red{background:var(--tt-red)} .bg-green{background:var(--tt-green)} .bg-yellow{background:var(--tt-yellow)} .bg-blue{background:var(--tt-blue)}
+.bg-magenta{background:var(--tt-magenta)}.bg-magenta{background:var(--tt-magenta)} .bg-cyan{background:var(--tt-cyan)}.bg-magenta{background:var(--tt-magenta)} .bg-cyan{background:var(--tt-cyan)} .bg-white{background:var(--tt-white)}.bg-magenta{background:var(--tt-magenta)} .bg-cyan{background:var(--tt-cyan)} .bg-white{background:var(--tt-white)} .bg-black{background:var(--tt-black)}
