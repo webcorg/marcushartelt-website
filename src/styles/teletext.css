@@ -3366,8 +3366,7 @@ video.photo-slot,
 }
 
 
-/* ---------------------------------------------------------- */
-/* PROJECT DETAIL: GLOBAL BACKGROUND SCANLINES CLEAN MEDIA    */
+
 /* ---------------------------------------------------------- */
 /*
   Project pages should feel like one TV screen:
@@ -3501,4 +3500,134 @@ video.photo-slot,
 .project-detail-screen .project-info--sticky,
 .project-detail-screen .footer-controls{
   z-index:10 !important;
+}
+
+
+/* ---------------------------------------------------------- */
+/* PROJECT DETAIL: STABLE SCANLINES AFTER MEDIA LOAD          */
+/* ---------------------------------------------------------- */
+/*
+  Stable model for every project detail page:
+  - screen/background/UI/text get one scanline layer
+  - media is marked and lifted above that layer
+  - layout wrappers never get lifted above scanlines
+  - works the same after images lazy-load
+*/
+.project-detail-screen{
+  position:relative !important;
+  isolation:isolate !important;
+  overflow-x:hidden !important;
+}
+
+/* Single stable screen overlay. */
+.project-detail-screen::after,
+.project-detail-screen.scanlines-original::after{
+  content:"" !important;
+  position:absolute !important;
+  inset:0 !important;
+  z-index:100 !important;
+  display:block !important;
+  pointer-events:none !important;
+  opacity:1 !important;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.055) 0px,
+      rgba(255,255,255,0.055) 1px,
+      rgba(0,0,0,0.30) 2px,
+      rgba(0,0,0,0.30) 4px
+    ) !important;
+  mix-blend-mode:normal !important;
+}
+
+/* Keep all layout/content wrappers neutral so categories cannot behave differently. */
+.project-detail-screen.category-theme,
+.project-detail-screen.category-theme-fashion,
+.project-detail-screen.category-theme-lifestyle,
+.project-detail-screen.category-theme-fashion-week,
+.project-detail-screen.category-theme-events,
+.project-detail-screen .project-detail-split,
+.project-detail-screen .project-detail-info-column,
+.project-detail-screen .project-info,
+.project-detail-screen .project-info--sticky,
+.project-detail-screen .project-detail-gallery-column,
+.project-detail-screen .project-editorial-gallery,
+.project-detail-screen .editorial-gallery-columns,
+.project-detail-screen .editorial-gallery-column,
+.project-detail-screen .editorial-gallery-mobile{
+  isolation:auto !important;
+  transform:none !important;
+}
+
+/* UI stays below scanline layer. */
+.project-detail-screen .broadcast-header,
+.project-detail-screen .category-bar,
+.project-detail-screen .project-detail-info-column,
+.project-detail-screen .project-info,
+.project-detail-screen .project-info--sticky,
+.project-detail-screen .section-kicker,
+.project-detail-screen .info-title,
+.project-detail-screen .detail-meta-list,
+.project-detail-screen .info-line,
+.project-detail-screen .teletext-divider,
+.project-detail-screen .info-desc,
+.project-detail-screen .project-side-nav,
+.project-detail-screen .project-gallery-nav,
+.project-detail-screen .nav-link,
+.project-detail-screen .footer-controls,
+.project-detail-screen .footer-link{
+  position:relative !important;
+  z-index:10 !important;
+}
+
+/* Media wrappers are above scanlines. */
+.project-detail-screen .scanline-clean-asset,
+.project-detail-screen [data-scanline-clean-asset],
+.project-detail-screen .project-detail-gallery-column picture,
+.project-detail-screen .project-detail-gallery-column img,
+.project-detail-screen .project-detail-gallery-column video,
+.project-detail-screen .project-detail-gallery-column canvas,
+.project-detail-screen .project-detail-gallery-column .photo-slot,
+.project-detail-screen .project-detail-gallery-column .image-frame,
+.project-detail-screen .project-detail-gallery-column .image-frame--editorial,
+.project-detail-screen .project-detail-gallery-column .editorial-gallery-item{
+  position:relative !important;
+  z-index:200 !important;
+  isolation:isolate !important;
+  transform:translateZ(0);
+  backface-visibility:hidden;
+}
+
+/* Disable pseudo overlays on media only. */
+.project-detail-screen .scanline-clean-asset::before,
+.project-detail-screen .scanline-clean-asset::after,
+.project-detail-screen [data-scanline-clean-asset]::before,
+.project-detail-screen [data-scanline-clean-asset]::after,
+.project-detail-screen .project-detail-gallery-column picture::before,
+.project-detail-screen .project-detail-gallery-column picture::after,
+.project-detail-screen .project-detail-gallery-column img::before,
+.project-detail-screen .project-detail-gallery-column img::after,
+.project-detail-screen .project-detail-gallery-column video::before,
+.project-detail-screen .project-detail-gallery-column video::after,
+.project-detail-screen .project-detail-gallery-column .photo-slot::before,
+.project-detail-screen .project-detail-gallery-column .photo-slot::after,
+.project-detail-screen .project-detail-gallery-column .image-frame::before,
+.project-detail-screen .project-detail-gallery-column .image-frame::after,
+.project-detail-screen .project-detail-gallery-column .editorial-gallery-item::before,
+.project-detail-screen .project-detail-gallery-column .editorial-gallery-item::after{
+  content:none !important;
+  display:none !important;
+  background:none !important;
+  background-image:none !important;
+  box-shadow:none !important;
+  opacity:0 !important;
+}
+
+/* Media pixels remain normal. */
+.project-detail-screen .project-detail-gallery-column img,
+.project-detail-screen .project-detail-gallery-column video,
+.project-detail-screen .project-detail-gallery-column .photo-slot{
+  filter:none !important;
+  mix-blend-mode:normal !important;
+  opacity:1 !important;
 }
