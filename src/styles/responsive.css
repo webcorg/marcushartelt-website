@@ -1054,3 +1054,37 @@
     z-index:10 !important;
   }
 }
+
+
+/* ---------------------------------------------------------- */
+/* RESPONSIVE SCANLINE THICKNESS                              */
+/* ---------------------------------------------------------- */
+/* Desktop stays unchanged.
+   Smaller screens get slightly finer/subtler scanlines only. */
+@media (max-width:920px){
+  .teletext-screen::after,
+  .teletext-screen.scanlines-original::after{
+    background:
+      repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.045) 0px,
+        rgba(255,255,255,0.045) 1px,
+        rgba(0,0,0,0.24) 2px,
+        rgba(0,0,0,0.24) 3px
+      ) !important;
+  }
+}
+
+@media (max-width:640px){
+  .teletext-screen::after,
+  .teletext-screen.scanlines-original::after{
+    background:
+      repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.035) 0px,
+        rgba(255,255,255,0.035) 1px,
+        rgba(0,0,0,0.18) 2px,
+        rgba(0,0,0,0.18) 3px
+      ) !important;
+  }
+}
