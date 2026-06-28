@@ -939,8 +939,7 @@
 }
 
 
-/* ---------------------------------------------------------- */
-/* MOBILE: ASSET FRAMES WITHOUT SCANLINES                     */
+
 /* ---------------------------------------------------------- */
 @media (max-width:640px){
   .teletext-screen{
@@ -1052,5 +1051,1139 @@
   .teletext-open-button{
     position:relative !important;
     z-index:10 !important;
+  }
+}
+
+
+/* ---------------------------------------------------------- */
+/* RESPONSIVE SCANLINE THICKNESS                              */
+/* ---------------------------------------------------------- */
+/* Desktop stays unchanged.
+   Smaller screens get slightly finer/subtler scanlines only. */
+@media (max-width:920px){
+  .teletext-screen::after,
+  .teletext-screen.scanlines-original::after{
+    background:
+      repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.045) 0px,
+        rgba(255,255,255,0.045) 1px,
+        rgba(0,0,0,0.24) 2px,
+        rgba(0,0,0,0.24) 3px
+      ) !important;
+  }
+}
+
+@media (max-width:640px){
+  .teletext-screen::after,
+  .teletext-screen.scanlines-original::after{
+    background:
+      repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.035) 0px,
+        rgba(255,255,255,0.035) 1px,
+        rgba(0,0,0,0.18) 2px,
+        rgba(0,0,0,0.18) 3px
+      ) !important;
+  }
+}
+
+
+
+/* ---------------------------------------------------------- */
+@media (max-width:640px){
+  .projects-screen-clean-images .project-hero-stack{
+    display:none !important;
+  }
+
+  .projects-screen-clean-images .featured-item{
+    grid-template-columns:minmax(0, 1fr) auto !important;
+    align-items:start !important;
+  }
+
+  .projects-screen-clean-images .featured-item .mobile-inline-preview{
+    grid-column:1 / -1;
+    display:none;
+    margin-top:10px;
+    margin-bottom:6px;
+  }
+
+  .projects-screen-clean-images .featured-item.featured-item--active .mobile-inline-preview{
+    display:block;
+  }
+
+  .projects-screen-clean-images .mobile-inline-image-frame{
+    width:100%;
+    aspect-ratio:4 / 5;
+    overflow:hidden;
+    border:var(--tt-line) solid currentColor;
+    background:var(--tt-black);
+    position:relative;
+    z-index:2000;
+    isolation:isolate;
+  }
+
+  .projects-screen-clean-images .mobile-inline-image-frame::before,
+  .projects-screen-clean-images .mobile-inline-image-frame::after{
+    content:none !important;
+    display:none !important;
+  }
+
+  .projects-screen-clean-images .mobile-inline-image-frame img{
+    display:block;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    position:relative;
+    z-index:2001;
+  }
+
+  .projects-screen-clean-images .mobile-inline-open{
+    display:inline-block;
+    margin-top:8px;
+    padding:4px 8px;
+    background:var(--theme-accent, var(--tt-yellow));
+    color:var(--theme-on-accent, var(--tt-black));
+    line-height:1;
+    position:relative;
+    z-index:10;
+  }
+}
+
+
+
+/* ---------------------------------------------------------- */
+/* The mobile categories inline preview is a real asset frame.
+   It must sit above the global scanline layer, while its OPEN PROJECT button
+   stays below scanlines. */
+@media (max-width:640px){
+  .projects-screen-clean-images .mobile-inline-preview{
+    position:relative !important;
+    z-index:1 !important;
+  }
+
+  .projects-screen-clean-images .mobile-inline-image-frame,
+  .projects-screen-clean-images .mobile-inline-image-frame img{
+    position:relative !important;
+    z-index:20000 !important;
+    isolation:isolate !important;
+  }
+
+  .projects-screen-clean-images .mobile-inline-image-frame::before,
+  .projects-screen-clean-images .mobile-inline-image-frame::after{
+    content:none !important;
+    display:none !important;
+    background:none !important;
+    opacity:0 !important;
+  }
+
+  .projects-screen-clean-images .mobile-inline-open{
+    position:relative !important;
+    z-index:1 !important;
+  }
+}
+
+
+
+/* ---------------------------------------------------------- */
+/* Mobile categories use a clean list. Tapping a project opens its detail page.
+   Desktop/tablet preview layout remains unchanged. */
+@media (max-width:640px){
+  .projects-screen-clean-images .project-hero-stack{
+    display:none !important;
+  }
+
+  .projects-screen-clean-images .featured-item{
+    cursor:pointer;
+  }
+}
+
+
+
+/* ---------------------------------------------------------- */
+/* Mobile keeps the preview visible and uses prev/next controls.
+   Project cards and category buttons remain clickable. */
+.mobile-project-controls{
+  display:none;
+}
+
+@media (max-width:640px){
+  .projects-screen-clean-images .project-hero-stack{
+    display:block !important;
+  }
+
+  .projects-screen-clean-images .mobile-project-controls{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    margin-top:10px;
+  }
+
+  .projects-screen-clean-images .mobile-project-button{
+    appearance:none;
+    border:var(--tt-line) solid currentColor;
+    background:var(--tt-black);
+    color:var(--theme-accent, var(--tt-yellow));
+    font:inherit;
+    line-height:1;
+    padding:8px 8px;
+    text-align:center;
+    cursor:pointer;
+    position:relative;
+    z-index:1;
+  }
+
+  .projects-screen-clean-images .mobile-project-button:active,
+  .projects-screen-clean-images .mobile-project-button:focus-visible{
+    background:var(--theme-accent, var(--tt-yellow));
+    color:var(--theme-on-accent, var(--tt-black));
+  }
+
+  .projects-screen-clean-images .featured-item{
+    cursor:pointer;
+  }
+}
+
+
+/* ---------------------------------------------------------- */
+/* MOBILE CATEGORIES: COMPACT PREVIEW WITH WORKING ARROWS     */
+/* ---------------------------------------------------------- */
+/* Mobile keeps one compact preview and uses prev/next controls.
+   It does not change desktop/tablet layout. */
+.mobile-project-controls{
+  display:none;
+}
+
+@media (max-width:640px){
+  .projects-screen-clean-images .project-hero-stack{
+    display:block !important;
+  }
+
+  .projects-screen-clean-images .project-preview-image-wrap{
+    width:min(72vw, 280px) !important;
+    max-width:280px !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+  }
+
+  .projects-screen-clean-images .project-preview-image-wrap .image-frame--portrait{
+    aspect-ratio:4 / 5 !important;
+    max-height:350px !important;
+  }
+
+  .projects-screen-clean-images .project-preview-image-wrap .photo-slot{
+    object-fit:cover !important;
+  }
+
+  .projects-screen-clean-images .project-preview-title{
+    margin-top:10px !important;
+    text-align:left !important;
+  }
+
+  .projects-screen-clean-images .mobile-project-controls{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    margin-top:10px;
+  }
+
+  .projects-screen-clean-images .mobile-project-button{
+    appearance:none;
+    border:var(--tt-line) solid currentColor;
+    background:var(--tt-black);
+    color:var(--theme-accent, var(--tt-yellow));
+    font:inherit;
+    line-height:1;
+    padding:8px 8px;
+    text-align:center;
+    cursor:pointer;
+    position:relative;
+    z-index:1;
+  }
+
+  .projects-screen-clean-images .mobile-project-button:active,
+  .projects-screen-clean-images .mobile-project-button:focus-visible{
+    background:var(--theme-accent, var(--tt-yellow));
+    color:var(--theme-on-accent, var(--tt-black));
+  }
+}
+
+
+/* ---------------------------------------------------------- */
+/* MOBILE CATEGORIES: SQUARE PREVIEW TOP CROP                 */
+/* ---------------------------------------------------------- */
+/* Mobile only:
+   - preview uses a square 1:1 frame
+   - image is anchored to the top
+   - cropping happens at the bottom
+   - less side margin than the previous centered portrait preview */
+@media (max-width:640px){
+  .projects-screen-clean-images .project-preview-image-wrap{
+    width:100% !important;
+    max-width:none !important;
+    margin-left:0 !important;
+    margin-right:0 !important;
+  }
+
+  .projects-screen-clean-images .project-preview-image-wrap .image-frame,
+  .projects-screen-clean-images .project-preview-image-wrap .image-frame--portrait{
+    width:100% !important;
+    aspect-ratio:1 / 1 !important;
+    max-height:none !important;
+  }
+
+  .projects-screen-clean-images .project-preview-image-wrap img,
+  .projects-screen-clean-images .project-preview-image-wrap .photo-slot{
+    width:100% !important;
+    height:100% !important;
+    object-fit:cover !important;
+    object-position:top center !important;
+  }
+}
+
+
+
+/* ---------------------------------------------------------- */
+@media (max-width:640px){
+  html,
+  body{
+    overscroll-behavior-x:none;
+  }
+
+  .teletext-screen{
+    position:relative !important;
+    isolation:isolate !important;
+  }
+
+  .teletext-screen::after,
+  .teletext-screen.scanlines-original::after{
+    content:"" !important;
+    position:absolute !important;
+    inset:0 !important;
+    z-index:1000 !important;
+    display:block !important;
+    pointer-events:none !important;
+    opacity:1 !important;
+  }
+
+  .teletext-screen--home .menu-item{
+    display:grid !important;
+    grid-template-columns:auto minmax(24px, 1fr) auto !important;
+    align-items:baseline !important;
+    column-gap:8px !important;
+  }
+
+
+  .category-theme,
+  .category-theme-fashion,
+  .category-theme-lifestyle,
+  .category-theme-fashion-week,
+  .category-theme-events,
+  .project-detail-split,
+  .project-detail-info-column,
+  .project-detail-gallery-column,
+  .project-hero-stack,
+  .projects-right,
+  .projects-top,
+  .projects-top--list-preview,
+  .project-gallery,
+  .project-detail-gallery,
+  .editorial-gallery-grid{
+    isolation:auto !important;
+  }
+
+  .broadcast-header,
+  .side-nav,
+  .projects-side,
+  .featured-list,
+  .featured-item,
+  .project-info,
+  .project-info--sticky,
+  .project-detail-info-column,
+  .project-preview-title,
+  .info-line,
+  .teletext-open-button,
+  .footer-controls,
+  .footer-link,
+  .nav-link,
+  .category-band,
+  .legal-nav,
+  .legal-section,
+  .booking-strip,
+  .phone-strip,
+  .menu-item,
+  .menu-cat,
+  .menu-dots,
+  .menu-page,
+  .about-copy,
+  .contact-panel{
+    position:relative !important;
+    z-index:10 !important;
+  }
+
+  .image-frame,
+  .gallery-frame,
+  .project-preview-image-wrap,
+  .project-preview-image-wrap .image-frame,
+  .project-gallery-item,
+  .project-gallery-item .image-frame,
+  .project-detail-gallery .image-frame,
+  .editorial-gallery-item,
+  .editorial-gallery-item .image-frame,
+  .contact-image,
+  .contact-image .image-frame,
+  .about-image,
+  .about-image .image-frame,
+  .asset-frame,
+  .media-slot,
+  .mobile-inline-image-frame,
+  img,
+  video,
+  picture,
+  canvas{
+    position:relative !important;
+    z-index:2000 !important;
+    isolation:isolate !important;
+  }
+}
+
+
+/* ---------------------------------------------------------- */
+/* MOBILE VIEWPORT STABILITY FIX                              */
+/* ---------------------------------------------------------- */
+/* Allow normal zoom, but prevent horizontal layout drift where possible.
+   When user zooms back to 100%, layout snaps cleanly to viewport width. */
+@media (max-width:640px){
+  html,
+  body{
+    width:100%;
+    max-width:100%;
+    overflow-x:hidden !important;
+    overscroll-behavior-x:none;
+  }
+
+  .teletext-stage,
+  .teletext-screen{
+    width:100% !important;
+    max-width:100% !important;
+    overflow-x:hidden !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+  }
+
+  .teletext-screen::after,
+  .teletext-screen.scanlines-original::after{
+    content:"" !important;
+    position:absolute !important;
+    inset:0 !important;
+    z-index:1000 !important;
+    pointer-events:none !important;
+    display:block !important;
+  }
+
+
+  .image-frame,
+  .gallery-frame,
+  .project-preview-image-wrap,
+  .project-preview-image-wrap .image-frame,
+  .project-gallery-item,
+  .project-gallery-item .image-frame,
+  .project-detail-gallery .image-frame,
+  .editorial-gallery-item,
+  .editorial-gallery-item .image-frame,
+  .contact-image,
+  .contact-image .image-frame,
+  .about-image,
+  .about-image .image-frame,
+  .asset-frame,
+  .media-slot{
+    position:relative !important;
+    z-index:2000 !important;
+    isolation:isolate !important;
+  }
+}
+
+
+
+/* ---------------------------------------------------------- */
+@media (max-width:640px){
+  html,
+  body{
+    width:100%;
+    max-width:100%;
+    overflow-x:hidden !important;
+    overscroll-behavior-x:none;
+  }
+
+  .teletext-stage,
+  .teletext-screen{
+    max-width:100% !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+  }
+
+  .project-detail-screen{
+    position:relative !important;
+    isolation:isolate !important;
+    overflow-x:hidden !important;
+  }
+
+  .project-detail-screen::after,
+  .project-detail-screen.scanlines-original::after{
+    content:"" !important;
+    position:absolute !important;
+    inset:0 !important;
+    z-index:5000 !important;
+    display:block !important;
+    pointer-events:none !important;
+    opacity:1 !important;
+  }
+
+  .project-detail-screen .broadcast-header,
+  .project-detail-screen .category-bar,
+  .project-detail-screen .project-detail-info-column,
+  .project-detail-screen .project-info,
+  .project-detail-screen .project-info--sticky,
+  .project-detail-screen .section-kicker,
+  .project-detail-screen .info-title,
+  .project-detail-screen .detail-meta-list,
+  .project-detail-screen .info-line,
+  .project-detail-screen .teletext-divider,
+  .project-detail-screen .info-desc,
+  .project-detail-screen .project-side-nav,
+  .project-detail-screen .project-gallery-nav,
+  .project-detail-screen .nav-link,
+  .project-detail-screen .footer-controls,
+  .project-detail-screen .footer-link{
+    position:relative !important;
+    z-index:10 !important;
+  }
+
+  .project-detail-screen .project-detail-gallery-column .editorial-gallery-item,
+  .project-detail-screen .project-detail-gallery-column .image-frame,
+  .project-detail-screen .project-detail-gallery-column .image-frame--editorial,
+  .project-detail-screen .project-detail-gallery-column .photo-slot,
+  .project-detail-screen .project-detail-gallery-column img,
+  .project-detail-screen .project-detail-gallery-column video{
+    position:relative !important;
+    z-index:7000 !important;
+    isolation:isolate !important;
+  }
+}
+
+
+
+/* ---------------------------------------------------------- */
+@media (max-width:640px){
+  .project-detail-screen:not(.category-theme-fashion-week) .category-bar,
+  .project-detail-screen:not(.category-theme-fashion-week) .project-detail-info-column,
+  .project-detail-screen:not(.category-theme-fashion-week) .project-info,
+  .project-detail-screen:not(.category-theme-fashion-week) .project-info--sticky,
+  .project-detail-screen:not(.category-theme-fashion-week) .info-desc,
+  .project-detail-screen:not(.category-theme-fashion-week) .footer-controls,
+  .project-detail-screen:not(.category-theme-fashion-week) .broadcast-header{
+    position:relative !important;
+    isolation:isolate !important;
+  }
+
+  .project-detail-screen:not(.category-theme-fashion-week) .category-bar::after,
+  .project-detail-screen:not(.category-theme-fashion-week) .project-info--sticky::after,
+  .project-detail-screen:not(.category-theme-fashion-week) .info-desc::after,
+  .project-detail-screen:not(.category-theme-fashion-week) .footer-controls::after,
+  .project-detail-screen:not(.category-theme-fashion-week) .broadcast-header::after{
+    content:"" !important;
+    position:absolute !important;
+    inset:0 !important;
+    z-index:999 !important;
+    pointer-events:none !important;
+    display:block !important;
+    background:
+      repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.035) 0px,
+        rgba(255,255,255,0.035) 1px,
+        rgba(0,0,0,0.18) 2px,
+        rgba(0,0,0,0.18) 3px
+      ) !important;
+  }
+
+  .project-detail-screen:not(.category-theme-fashion-week) .category-bar > *,
+  .project-detail-screen:not(.category-theme-fashion-week) .project-info--sticky > *,
+  .project-detail-screen:not(.category-theme-fashion-week) .info-desc > *,
+  .project-detail-screen:not(.category-theme-fashion-week) .footer-controls > *,
+  .project-detail-screen:not(.category-theme-fashion-week) .broadcast-header > *{
+    position:relative !important;
+    z-index:1 !important;
+  }
+}
+
+
+
+/* ---------------------------------------------------------- */
+@media (max-width:640px){
+  .project-detail-screen::after,
+  .project-detail-screen.scanlines-original::after{
+    content:none !important;
+    display:none !important;
+    background:none !important;
+  }
+
+  .project-detail-screen .broadcast-header,
+  .project-detail-screen .category-bar,
+  .project-detail-screen .project-info--sticky,
+  .project-detail-screen .project-side-nav,
+  .project-detail-screen .project-gallery-nav,
+  .project-detail-screen .footer-controls{
+    position:relative !important;
+    isolation:isolate !important;
+    z-index:auto !important;
+  }
+
+  .project-detail-screen .broadcast-header::after,
+  .project-detail-screen .category-bar::after,
+  .project-detail-screen .project-info--sticky::after,
+  .project-detail-screen .project-side-nav::after,
+  .project-detail-screen .project-gallery-nav::after,
+  .project-detail-screen .footer-controls::after{
+    content:"" !important;
+    position:absolute !important;
+    inset:0 !important;
+    z-index:100 !important;
+    display:block !important;
+    pointer-events:none !important;
+    background:
+      repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.035) 0px,
+        rgba(255,255,255,0.035) 1px,
+        rgba(0,0,0,0.18) 2px,
+        rgba(0,0,0,0.18) 3px
+      ) !important;
+  }
+
+  .project-detail-screen .broadcast-header > *,
+  .project-detail-screen .category-bar > *,
+  .project-detail-screen .project-info--sticky > *,
+  .project-detail-screen .project-side-nav > *,
+  .project-detail-screen .project-gallery-nav > *,
+  .project-detail-screen .footer-controls > *{
+    position:relative !important;
+    z-index:1 !important;
+  }
+
+  .project-detail-screen .project-detail-gallery-column,
+  .project-detail-screen .project-editorial-gallery,
+  .project-detail-screen .editorial-gallery-columns,
+  .project-detail-screen .editorial-gallery-column,
+  .project-detail-screen .editorial-gallery-mobile,
+  .project-detail-screen .editorial-gallery-item,
+  .project-detail-screen .image-frame,
+  .project-detail-screen .image-frame--editorial,
+  .project-detail-screen .photo-slot{
+    position:relative !important;
+    z-index:auto !important;
+    isolation:isolate !important;
+  }
+}
+
+
+
+/* ---------------------------------------------------------- */
+@media (max-width:640px){
+  .project-detail-screen{
+    position:relative !important;
+    isolation:isolate !important;
+    overflow-x:hidden !important;
+  }
+
+  .project-detail-screen::after,
+  .project-detail-screen.scanlines-original::after{
+    content:"" !important;
+    position:absolute !important;
+    inset:0 !important;
+    z-index:5000 !important;
+    display:block !important;
+    pointer-events:none !important;
+    opacity:1 !important;
+    background:
+      repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.035) 0px,
+        rgba(255,255,255,0.035) 1px,
+        rgba(0,0,0,0.18) 2px,
+        rgba(0,0,0,0.18) 3px
+      ) !important;
+  }
+
+  .project-detail-screen .broadcast-header,
+  .project-detail-screen .category-bar,
+  .project-detail-screen .project-detail-info-column,
+  .project-detail-screen .project-info,
+  .project-detail-screen .project-info--sticky,
+  .project-detail-screen .section-kicker,
+  .project-detail-screen .info-title,
+  .project-detail-screen .detail-meta-list,
+  .project-detail-screen .info-line,
+  .project-detail-screen .teletext-divider,
+  .project-detail-screen .info-desc,
+  .project-detail-screen .project-side-nav,
+  .project-detail-screen .project-gallery-nav,
+  .project-detail-screen .nav-link,
+  .project-detail-screen .footer-controls,
+  .project-detail-screen .footer-link{
+    position:relative !important;
+    z-index:10 !important;
+  }
+
+  .project-detail-screen .project-detail-gallery-column,
+  .project-detail-screen .project-editorial-gallery,
+  .project-detail-screen .editorial-gallery-columns,
+  .project-detail-screen .editorial-gallery-column,
+  .project-detail-screen .editorial-gallery-mobile,
+  .project-detail-screen .editorial-gallery-item,
+  .project-detail-screen .image-frame,
+  .project-detail-screen .image-frame--editorial,
+  .project-detail-screen .photo-slot{
+    position:relative !important;
+    z-index:7000 !important;
+    isolation:isolate !important;
+  }
+
+  .project-detail-screen .project-detail-gallery-column img,
+  .project-detail-screen .project-detail-gallery-column video,
+  .project-detail-screen .project-detail-gallery-column picture,
+  .project-detail-screen .photo-slot{
+    position:relative !important;
+    z-index:7001 !important;
+  }
+}
+
+
+
+/* ---------------------------------------------------------- */
+@media (max-width:640px){
+  .project-detail-screen{
+    position:relative !important;
+    isolation:isolate !important;
+    overflow-x:hidden !important;
+  }
+
+  .project-detail-screen::after,
+  .project-detail-screen.scanlines-original::after{
+    content:"" !important;
+    position:absolute !important;
+    inset:0 !important;
+    z-index:100 !important;
+    display:block !important;
+    pointer-events:none !important;
+    opacity:1 !important;
+    background:
+      repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.035) 0px,
+        rgba(255,255,255,0.035) 1px,
+        rgba(0,0,0,0.18) 2px,
+        rgba(0,0,0,0.18) 3px
+      ) !important;
+  }
+
+  .project-detail-screen .broadcast-header,
+  .project-detail-screen .category-bar,
+  .project-detail-screen .project-detail-info-column,
+  .project-detail-screen .project-info,
+  .project-detail-screen .project-info--sticky,
+  .project-detail-screen .section-kicker,
+  .project-detail-screen .info-title,
+  .project-detail-screen .detail-meta-list,
+  .project-detail-screen .info-line,
+  .project-detail-screen .teletext-divider,
+  .project-detail-screen .info-desc,
+  .project-detail-screen .project-side-nav,
+  .project-detail-screen .project-gallery-nav,
+  .project-detail-screen .nav-link,
+  .project-detail-screen .footer-controls,
+  .project-detail-screen .footer-link{
+    position:relative !important;
+    z-index:10 !important;
+  }
+
+  .project-detail-screen .scanline-clean-asset,
+  .project-detail-screen [data-scanline-clean-asset],
+  .project-detail-screen .project-detail-gallery-column picture,
+  .project-detail-screen .project-detail-gallery-column img,
+  .project-detail-screen .project-detail-gallery-column video,
+  .project-detail-screen .project-detail-gallery-column canvas,
+  .project-detail-screen .project-detail-gallery-column .photo-slot,
+  .project-detail-screen .project-detail-gallery-column .image-frame,
+  .project-detail-screen .project-detail-gallery-column .image-frame--editorial,
+  .project-detail-screen .project-detail-gallery-column .editorial-gallery-item{
+    position:relative !important;
+    z-index:200 !important;
+    isolation:isolate !important;
+    transform:translateZ(0);
+    backface-visibility:hidden;
+  }
+}
+
+
+
+/* ---------------------------------------------------------- */
+@media (max-width:640px){
+  .project-detail-screen{
+    position:relative !important;
+    isolation:isolate !important;
+    overflow-x:hidden !important;
+  }
+
+  .project-detail-screen::after,
+  .project-detail-screen.scanlines-original::after{
+    content:"" !important;
+    position:absolute !important;
+    inset:0 !important;
+    z-index:1000 !important;
+    display:block !important;
+    pointer-events:none !important;
+    opacity:1 !important;
+    background:
+      repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.035) 0px,
+        rgba(255,255,255,0.035) 1px,
+        rgba(0,0,0,0.18) 2px,
+        rgba(0,0,0,0.18) 3px
+      ) !important;
+  }
+
+  .project-detail-screen .broadcast-header,
+  .project-detail-screen .category-bar,
+  .project-detail-screen .project-detail-info-column,
+  .project-detail-screen .project-info,
+  .project-detail-screen .project-info--sticky,
+  .project-detail-screen .section-kicker,
+  .project-detail-screen .info-title,
+  .project-detail-screen .detail-meta-list,
+  .project-detail-screen .info-line,
+  .project-detail-screen .teletext-divider,
+  .project-detail-screen .info-desc,
+  .project-detail-screen .project-side-nav,
+  .project-detail-screen .project-gallery-nav,
+  .project-detail-screen .nav-link,
+  .project-detail-screen .footer-controls,
+  .project-detail-screen .footer-link{
+    position:relative !important;
+    z-index:10 !important;
+  }
+
+  .project-detail-screen .project-detail-gallery-column,
+  .project-detail-screen .project-editorial-gallery,
+  .project-detail-screen .editorial-gallery-columns,
+  .project-detail-screen .editorial-gallery-column,
+  .project-detail-screen .editorial-gallery-mobile,
+  .project-detail-screen .editorial-gallery-item,
+  .project-detail-screen .image-frame,
+  .project-detail-screen .image-frame--editorial,
+  .project-detail-screen .photo-slot,
+  .project-detail-screen picture,
+  .project-detail-screen img,
+  .project-detail-screen video{
+    position:relative !important;
+    z-index:2000 !important;
+    isolation:isolate !important;
+  }
+}
+
+
+
+/* ---------------------------------------------------------- */
+@media (max-width:640px){
+  .project-detail-screen{
+    --scanline-opacity:.18;
+    --scanline-gap:3px;
+    position:relative !important;
+    isolation:isolate !important;
+    overflow-x:hidden !important;
+  }
+
+  .project-detail-screen::after,
+  .project-detail-screen.scanlines-original::after{
+    content:"" !important;
+    position:absolute !important;
+    inset:0 !important;
+    z-index:2000 !important;
+    pointer-events:none !important;
+    display:block !important;
+    opacity:1 !important;
+    background:
+      repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,.035) 0,
+        rgba(255,255,255,.035) 1px,
+        transparent 1px,
+        transparent var(--scanline-gap),
+        rgba(0,0,0,var(--scanline-opacity)) var(--scanline-gap),
+        rgba(0,0,0,var(--scanline-opacity)) calc(var(--scanline-gap) + 1px)
+      ) !important;
+  }
+
+  .project-detail-screen .broadcast-header,
+  .project-detail-screen .category-bar,
+  .project-detail-screen .project-detail-split,
+  .project-detail-screen .project-detail-info-column,
+  .project-detail-screen .project-info,
+  .project-detail-screen .project-info--sticky,
+  .project-detail-screen .section-kicker,
+  .project-detail-screen .info-title,
+  .project-detail-screen .detail-meta-list,
+  .project-detail-screen .info-line,
+  .project-detail-screen .teletext-divider,
+  .project-detail-screen .info-desc,
+  .project-detail-screen .project-side-nav,
+  .project-detail-screen .project-gallery-nav,
+  .project-detail-screen .nav-link,
+  .project-detail-screen .footer-controls,
+  .project-detail-screen .footer-link,
+  .project-detail-screen .project-detail-gallery-column,
+  .project-detail-screen .project-editorial-gallery,
+  .project-detail-screen .editorial-gallery-columns,
+  .project-detail-screen .editorial-gallery-column,
+  .project-detail-screen .editorial-gallery-mobile{
+    position:relative !important;
+    z-index:10 !important;
+    isolation:auto !important;
+    transform:none !important;
+  }
+
+  .project-detail-screen .editorial-gallery-item,
+  .project-detail-screen .image-frame,
+  .project-detail-screen .image-frame--editorial,
+  .project-detail-screen .photo-slot,
+  .project-detail-screen picture,
+  .project-detail-screen img,
+  .project-detail-screen video{
+    position:relative !important;
+    z-index:3000 !important;
+    isolation:isolate !important;
+    transform:none !important;
+  }
+}
+
+
+
+/* ---------------------------------------------------------- */
+@media (max-width:640px){
+  .project-detail-screen .project-detail-split,
+  .project-detail-screen .project-detail-gallery-column,
+  .project-detail-screen .project-editorial-gallery,
+  .project-detail-screen .editorial-gallery-columns,
+  .project-detail-screen .editorial-gallery-column,
+  .project-detail-screen .editorial-gallery-mobile{
+    position:relative !important;
+    z-index:auto !important;
+    isolation:auto !important;
+    transform:none !important;
+  }
+
+  .project-detail-screen .project-detail-info-column,
+  .project-detail-screen .project-info,
+  .project-detail-screen .project-info--sticky,
+  .project-detail-screen .broadcast-header,
+  .project-detail-screen .category-bar,
+  .project-detail-screen .footer-controls,
+  .project-detail-screen .project-side-nav,
+  .project-detail-screen .project-gallery-nav{
+    position:relative !important;
+    z-index:10 !important;
+  }
+
+  .project-detail-screen .editorial-gallery-item,
+  .project-detail-screen .image-frame,
+  .project-detail-screen .image-frame--editorial,
+  .project-detail-screen .photo-slot,
+  .project-detail-screen picture,
+  .project-detail-screen img,
+  .project-detail-screen video{
+    position:relative !important;
+    z-index:5000 !important;
+    isolation:isolate !important;
+  }
+}
+
+
+
+/* ---------------------------------------------------------- */
+@media (max-width:640px){
+  .project-detail-screen{
+    --project-scanline-opacity:.18;
+    --project-scanline-gap:3px;
+    position:relative !important;
+    isolation:isolate !important;
+    overflow-x:hidden !important;
+  }
+
+  .project-detail-screen::after,
+  .project-detail-screen.scanlines-original::after{
+    content:"" !important;
+    position:absolute !important;
+    inset:0 !important;
+    z-index:2000 !important;
+    display:block !important;
+    pointer-events:none !important;
+    opacity:1 !important;
+    background:
+      repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,.035) 0,
+        rgba(255,255,255,.035) 1px,
+        transparent 1px,
+        transparent var(--project-scanline-gap),
+        rgba(0,0,0,var(--project-scanline-opacity)) var(--project-scanline-gap),
+        rgba(0,0,0,var(--project-scanline-opacity)) calc(var(--project-scanline-gap) + 1px)
+      ) !important;
+  }
+
+  .project-detail-screen .broadcast-header,
+  .project-detail-screen .category-bar,
+  .project-detail-screen .project-detail-info-column,
+  .project-detail-screen .project-info,
+  .project-detail-screen .project-info--sticky,
+  .project-detail-screen .section-kicker,
+  .project-detail-screen .info-title,
+  .project-detail-screen .detail-meta-list,
+  .project-detail-screen .info-line,
+  .project-detail-screen .teletext-divider,
+  .project-detail-screen .info-desc,
+  .project-detail-screen .project-side-nav,
+  .project-detail-screen .project-gallery-nav,
+  .project-detail-screen .nav-link,
+  .project-detail-screen .footer-controls,
+  .project-detail-screen .footer-link{
+    position:relative !important;
+    z-index:10 !important;
+    isolation:auto !important;
+  }
+
+  .project-detail-screen .project-detail-gallery-column,
+  .project-detail-screen .project-editorial-gallery,
+  .project-detail-screen .editorial-gallery-columns,
+  .project-detail-screen .editorial-gallery-column,
+  .project-detail-screen .editorial-gallery-mobile{
+    position:relative !important;
+    z-index:3000 !important;
+    isolation:isolate !important;
+    transform:none !important;
+    background-color:var(--tt-black) !important;
+    background-image:
+      repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,.035) 0,
+        rgba(255,255,255,.035) 1px,
+        transparent 1px,
+        transparent var(--project-scanline-gap),
+        rgba(0,0,0,var(--project-scanline-opacity)) var(--project-scanline-gap),
+        rgba(0,0,0,var(--project-scanline-opacity)) calc(var(--project-scanline-gap) + 1px)
+      ) !important;
+    background-repeat:repeat !important;
+  }
+
+  .project-detail-screen .editorial-gallery-item,
+  .project-detail-screen .image-frame,
+  .project-detail-screen .image-frame--editorial,
+  .project-detail-screen .photo-slot,
+  .project-detail-screen picture,
+  .project-detail-screen img,
+  .project-detail-screen video{
+    position:relative !important;
+    z-index:3100 !important;
+    isolation:isolate !important;
+    transform:none !important;
+  }
+}
+
+
+/* ---------------------------------------------------------- */
+/* MOBILE PROJECT DETAIL: EXACT CATEGORIES LAYERING           */
+/* ---------------------------------------------------------- */
+@media (max-width:640px){
+  .project-detail-screen{
+    --project-detail-scanline-opacity:.18;
+    --project-detail-scanline-gap:3px;
+    position:relative !important;
+    isolation:isolate !important;
+    overflow-x:hidden !important;
+  }
+
+  .project-detail-screen::after,
+  .project-detail-screen.scanlines-original::after{
+    content:"" !important;
+    position:absolute !important;
+    inset:0 !important;
+    z-index:2000 !important;
+    pointer-events:none !important;
+    display:block !important;
+    opacity:1 !important;
+    background:
+      repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,.035) 0,
+        rgba(255,255,255,.035) 1px,
+        transparent 1px,
+        transparent var(--project-detail-scanline-gap),
+        rgba(0,0,0,var(--project-detail-scanline-opacity)) var(--project-detail-scanline-gap),
+        rgba(0,0,0,var(--project-detail-scanline-opacity)) calc(var(--project-detail-scanline-gap) + 1px)
+      ) !important;
+  }
+
+  .project-detail-screen .project-detail-split,
+  .project-detail-screen .project-detail-gallery-column,
+  .project-detail-screen .project-editorial-gallery,
+  .project-detail-screen .editorial-gallery-columns,
+  .project-detail-screen .editorial-gallery-column,
+  .project-detail-screen .editorial-gallery-mobile,
+  .project-detail-screen .project-detail-info-column,
+  .project-detail-screen .project-info,
+  .project-detail-screen .project-info--sticky{
+    position:relative !important;
+    z-index:auto !important;
+    isolation:auto !important;
+    transform:none !important;
+    background-image:none !important;
+  }
+
+  .project-detail-screen .broadcast-header,
+  .project-detail-screen .category-bar,
+  .project-detail-screen .project-detail-info-column,
+  .project-detail-screen .project-info,
+  .project-detail-screen .project-info--sticky,
+  .project-detail-screen .section-kicker,
+  .project-detail-screen .info-title,
+  .project-detail-screen .detail-meta-list,
+  .project-detail-screen .info-line,
+  .project-detail-screen .teletext-divider,
+  .project-detail-screen .info-desc,
+  .project-detail-screen .project-side-nav,
+  .project-detail-screen .project-gallery-nav,
+  .project-detail-screen .nav-link,
+  .project-detail-screen .footer-controls,
+  .project-detail-screen .footer-link{
+    position:relative !important;
+    z-index:10 !important;
+  }
+
+  .project-detail-screen .image-frame,
+  .project-detail-screen .image-frame--editorial,
+  .project-detail-screen .photo-slot,
+  .project-detail-screen picture,
+  .project-detail-screen img,
+  .project-detail-screen video{
+    position:relative !important;
+    z-index:3000 !important;
+    isolation:isolate !important;
+  }
+
+  .project-detail-screen .editorial-gallery-item{
+    position:relative !important;
+    z-index:auto !important;
+    isolation:auto !important;
+    transform:none !important;
   }
 }
