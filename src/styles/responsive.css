@@ -1347,14 +1347,12 @@
 @media (max-width:640px){
   html,
   body{
-    touch-action:pan-x pan-y !important;
     overscroll-behavior-x:none;
   }
 
   .teletext-screen{
     position:relative !important;
     isolation:isolate !important;
-    touch-action:pan-x pan-y !important;
   }
 
   .teletext-screen::after,
@@ -1501,6 +1499,75 @@
   .media-slot{
     position:relative !important;
     z-index:2000 !important;
+    isolation:isolate !important;
+  }
+}
+
+
+/* ---------------------------------------------------------- */
+/* MOBILE PROJECT DETAIL: FASHION WEEK SCANLINE MODEL FOR ALL */
+/* ---------------------------------------------------------- */
+@media (max-width:640px){
+  html,
+  body{
+    width:100%;
+    max-width:100%;
+    overflow-x:hidden !important;
+    overscroll-behavior-x:none;
+  }
+
+  .teletext-stage,
+  .teletext-screen{
+    max-width:100% !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+  }
+
+  .project-detail-screen{
+    position:relative !important;
+    isolation:isolate !important;
+    overflow-x:hidden !important;
+  }
+
+  .project-detail-screen::after,
+  .project-detail-screen.scanlines-original::after{
+    content:"" !important;
+    position:absolute !important;
+    inset:0 !important;
+    z-index:5000 !important;
+    display:block !important;
+    pointer-events:none !important;
+    opacity:1 !important;
+  }
+
+  .project-detail-screen .broadcast-header,
+  .project-detail-screen .category-bar,
+  .project-detail-screen .project-detail-info-column,
+  .project-detail-screen .project-info,
+  .project-detail-screen .project-info--sticky,
+  .project-detail-screen .section-kicker,
+  .project-detail-screen .info-title,
+  .project-detail-screen .detail-meta-list,
+  .project-detail-screen .info-line,
+  .project-detail-screen .teletext-divider,
+  .project-detail-screen .info-desc,
+  .project-detail-screen .project-side-nav,
+  .project-detail-screen .project-gallery-nav,
+  .project-detail-screen .nav-link,
+  .project-detail-screen .footer-controls,
+  .project-detail-screen .footer-link{
+    position:relative !important;
+    z-index:10 !important;
+  }
+
+  .project-detail-screen .project-detail-gallery-column .editorial-gallery-item,
+  .project-detail-screen .project-detail-gallery-column .image-frame,
+  .project-detail-screen .project-detail-gallery-column .image-frame--editorial,
+  .project-detail-screen .project-detail-gallery-column .photo-slot,
+  .project-detail-screen .project-detail-gallery-column img,
+  .project-detail-screen .project-detail-gallery-column video{
+    position:relative !important;
+    z-index:7000 !important;
     isolation:isolate !important;
   }
 }
