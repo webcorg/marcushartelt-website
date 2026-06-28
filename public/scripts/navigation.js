@@ -435,25 +435,3 @@ if (document.fonts && document.fonts.ready) {
   });
 })();
 // MOBILE CATEGORIES PREVIEW CONTROLS PATCH END
-
-// STABLE PROJECT SCANLINE ASSET LAYER PATCH START
-(() => {
-  function markProjectMediaAssets() {
-    document
-      .querySelectorAll('.project-detail-screen .project-detail-gallery-column img, .project-detail-screen .project-detail-gallery-column video, .project-detail-screen .project-detail-gallery-column picture, .project-detail-screen .project-detail-gallery-column .image-frame, .project-detail-screen .project-detail-gallery-column .editorial-gallery-item, .project-detail-screen .project-detail-gallery-column .photo-slot')
-      .forEach((element) => {
-        element.classList.add('scanline-clean-asset');
-        element.setAttribute('data-scanline-clean-asset', '');
-      });
-  }
-
-  document.addEventListener('DOMContentLoaded', markProjectMediaAssets);
-  window.addEventListener('load', markProjectMediaAssets);
-
-  const observer = new MutationObserver(markProjectMediaAssets);
-  document.addEventListener('DOMContentLoaded', () => {
-    const screen = document.querySelector('.project-detail-screen');
-    if (screen) observer.observe(screen, { childList: true, subtree: true, attributes: true, attributeFilter: ['src', 'class'] });
-  });
-})();
-// STABLE PROJECT SCANLINE ASSET LAYER PATCH END

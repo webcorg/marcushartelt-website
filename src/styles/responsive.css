@@ -1759,8 +1759,7 @@
 }
 
 
-/* ---------------------------------------------------------- */
-/* MOBILE PROJECT DETAIL: STABLE SCANLINES AFTER MEDIA LOAD   */
+
 /* ---------------------------------------------------------- */
 @media (max-width:640px){
   .project-detail-screen{
@@ -1823,5 +1822,73 @@
     isolation:isolate !important;
     transform:translateZ(0);
     backface-visibility:hidden;
+  }
+}
+
+
+/* ---------------------------------------------------------- */
+/* MOBILE PROJECT DETAIL: SAFE CSS SCANLINES NO OBSERVER      */
+/* ---------------------------------------------------------- */
+@media (max-width:640px){
+  .project-detail-screen{
+    position:relative !important;
+    isolation:isolate !important;
+    overflow-x:hidden !important;
+  }
+
+  .project-detail-screen::after,
+  .project-detail-screen.scanlines-original::after{
+    content:"" !important;
+    position:absolute !important;
+    inset:0 !important;
+    z-index:1000 !important;
+    display:block !important;
+    pointer-events:none !important;
+    opacity:1 !important;
+    background:
+      repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.035) 0px,
+        rgba(255,255,255,0.035) 1px,
+        rgba(0,0,0,0.18) 2px,
+        rgba(0,0,0,0.18) 3px
+      ) !important;
+  }
+
+  .project-detail-screen .broadcast-header,
+  .project-detail-screen .category-bar,
+  .project-detail-screen .project-detail-info-column,
+  .project-detail-screen .project-info,
+  .project-detail-screen .project-info--sticky,
+  .project-detail-screen .section-kicker,
+  .project-detail-screen .info-title,
+  .project-detail-screen .detail-meta-list,
+  .project-detail-screen .info-line,
+  .project-detail-screen .teletext-divider,
+  .project-detail-screen .info-desc,
+  .project-detail-screen .project-side-nav,
+  .project-detail-screen .project-gallery-nav,
+  .project-detail-screen .nav-link,
+  .project-detail-screen .footer-controls,
+  .project-detail-screen .footer-link{
+    position:relative !important;
+    z-index:10 !important;
+  }
+
+  .project-detail-screen .project-detail-gallery-column,
+  .project-detail-screen .project-editorial-gallery,
+  .project-detail-screen .editorial-gallery-columns,
+  .project-detail-screen .editorial-gallery-column,
+  .project-detail-screen .editorial-gallery-mobile,
+  .project-detail-screen .editorial-gallery-item,
+  .project-detail-screen .image-frame,
+  .project-detail-screen .image-frame--editorial,
+  .project-detail-screen .photo-slot,
+  .project-detail-screen picture,
+  .project-detail-screen img,
+  .project-detail-screen video{
+    position:relative !important;
+    z-index:2000 !important;
+    isolation:isolate !important;
   }
 }
