@@ -273,11 +273,7 @@ function setupProjectsCategorySwitching() {
 document.addEventListener('click', (event) => {
   const categoryButton = event.target.closest('[data-category-filter]');
   if (categoryButton) {
-    const mobileInlinePreviewTest = window.matchMedia('(max-width: 640px)').matches;
-    if (mobileInlinePreviewTest && event.target?.closest?.('.mobile-inline-open')) {
-      return;
-    }
-event.preventDefault();
+    event.preventDefault();
     setProjectsCategory(categoryButton.getAttribute('data-category-filter'), true);
     return;
   }
@@ -386,34 +382,37 @@ if (document.fonts && document.fonts.ready) {
   document.fonts.ready.then(updateMenuDotLeaders);
 }
 
-
-// MOBILE CATEGORIES PREVIEW CONTROLS PATCH START
+// MOBILE PROJECT PREVIEW PREV NEXT PATCH START
 (() => {
   function getVisibleProjectCards() {
     return Array.from(document.querySelectorAll('[data-featured-project]'))
       .filter((item) => !item.classList.contains('is-hidden') && !item.hidden);
   }
 
-  function getActiveIndex(cards) {
+  function getActiveProjectIndex(cards) {
     const index = cards.findIndex((item) => item.classList.contains('featured-item--active'));
     return index >= 0 ? index : 0;
   }
 
-  function activateByDirection(direction) {
+  function activateProjectByDirection(direction) {
     const cards = getVisibleProjectCards();
     if (!cards.length) return;
 
-    const currentIndex = getActiveIndex(cards);
+    const currentIndex = getActiveProjectIndex(cards);
     const nextIndex = (currentIndex + direction + cards.length) % cards.length;
     const nextCard = cards[nextIndex];
 
-    if (typeof selectProjectFromElement === 'function') {
-      selectProjectFromElement(nextCard);
-    } else if (typeof setActiveProjectPreview === 'function') {
-      setActiveProjectPreview(nextCard.getAttribute('data-project-slug'));
-    } else {
-      nextCard.classList.add('featured-item--active');
-    }
+    if (!nextCard) return;
+
+    /* Use the existing project-card click logic instead of calling internal
+       functions that may not be available globally. */
+    nextCard.dispatchEvent(
+      new MouseEvent('click', {
+        bubbles: true,
+        cancelable: true,
+        view: window
+      })
+    );
   }
 
   document.addEventListener('click', (event) => {
@@ -421,7 +420,7 @@ if (document.fonts && document.fonts.ready) {
     if (prevButton) {
       event.preventDefault();
       event.stopPropagation();
-      activateByDirection(-1);
+      activateProjectByDirection(-1);
       return;
     }
 
@@ -429,9 +428,8 @@ if (document.fonts && document.fonts.ready) {
     if (nextButton) {
       event.preventDefault();
       event.stopPropagation();
-      activateByDirection(1);
-      return;
+      activateProjectByDirection(1);
     }
   });
 })();
-// MOBILE CATEGORIES PREVIEW CONTROLS PATCH END
+// MOBILE PROJECT PREVIEW PREV NEXT PATCH END
