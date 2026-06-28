@@ -1,0 +1,65 @@
+---
+import ImageFrame from './ImageFrame.astro';
+
+const { project, images: providedImages = [] } = Astro.props;
+const galleryImages = providedImages.length ? providedImages : project.galleryImages;
+
+const images = galleryImages.map((src, index) => ({
+  src,
+  index,
+  number: String(index + 1).padStart(2, '0'),
+  alt: `${project.title} detail image ${index + 1}`
+}));
+
+const leftColumnImages = images.filter((_, index) => index % 2 === 0);
+const rightColumnImages = images.filter((_, index) => index % 2 === 1);
+---
+
+<section class="project-editorial-gallery" aria-label={`${project.title} detail image gallery`}>
+  {images.length ? (
+    <>
+      <div class="editorial-gallery-columns" aria-hidden="false">
+        <div class="editorial-gallery-column">
+          {leftColumnImages.map((image) => (
+            <figure class="editorial-gallery-item">
+              <ImageFrame
+                type="editorial"
+                src={image.src}
+                alt={image.alt}
+                showLabel={false}
+              />
+            </figure>
+          ))}
+        </div>
+
+        <div class="editorial-gallery-column">
+          {rightColumnImages.map((image) => (
+            <figure class="editorial-gallery-item">
+              <ImageFrame
+                type="editorial"
+                src={image.src}
+                alt={image.alt}
+                showLabel={false}
+              />
+            </figure>
+          ))}
+        </div>
+      </div>
+
+      <div class="editorial-gallery-mobile">
+        {images.map((image) => (
+          <figure class="editorial-gallery-item">
+            <ImageFrame
+              type="editorial"
+              src={image.src}
+              alt={image.alt}
+              showLabel={false}
+            />
+          </figure>
+        ))}
+      </div>
+    </>
+  ) : (
+    <div class="empty-category-message">NO DETAIL IMAGES YET</div>
+  )}
+</section>

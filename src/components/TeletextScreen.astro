@@ -1,0 +1,28 @@
+---
+import '@styles/global.css';
+const { title = 'Marcus Hartelt', home = false, screenClass = '' } = Astro.props;
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Marcus Hartelt photography portfolio in a teletext broadcast gallery design." />
+    <title>{title}</title>
+  </head>
+  <body id="top" class="teletext-page">
+    <div class="teletext-stage">
+      <main class:list={[
+        "teletext-screen",
+        "font-teletext50",
+        "scanlines-original",
+        "crt-glow-only",
+        home && "teletext-screen--home",
+        screenClass
+      ]}>
+        <slot />
+      </main>
+    </div>
+
+    <script type="module" src="/scripts/navigation.js"></script>
+  </body>
+</html>

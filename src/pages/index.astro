@@ -1,0 +1,25 @@
+---
+import TeletextScreen from '@components/TeletextScreen.astro';
+import BroadcastHeader from '@components/BroadcastHeader.astro';
+import FooterControls from '@components/FooterControls.astro';
+import { mainNavigation } from '@data/navigation';
+---
+<TeletextScreen title="MARCUS HARTELT — INDEX P100" home>
+  <BroadcastHeader pageCode="P100/01" center="LOCAL BROADCAST" />
+  <div class="teletext-divider"></div>
+  <h1 class="hero-title hero-title--full">MARCUS HARTELT</h1>
+  <div class="teletext-divider"></div>
+  <nav class="menu-list" aria-label="Main navigation">
+    {mainNavigation.map((item) => (
+      <a class="menu-item" href={item.href}>
+        <span class:list={["menu-cat", item.color && `c-${item.color}`]}>{item.label}</span>
+        <span class="menu-dots" aria-hidden="true"></span>
+        <span class="menu-page">{item.page}</span>
+      </a>
+    ))}
+  </nav>
+  <div class="teletext-divider"></div>
+  <div class="booking-strip">AVAILABLE FOR BOOKINGS</div>
+  <div class="phone-strip">HI@MARCUSHARTELT.COM</div>
+  <FooterControls />
+</TeletextScreen>

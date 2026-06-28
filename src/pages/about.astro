@@ -1,0 +1,39 @@
+---
+import TeletextScreen from '@components/TeletextScreen.astro';
+import BroadcastHeader from '@components/BroadcastHeader.astro';
+import FooterControls from '@components/FooterControls.astro';
+import ImageFrame from '@components/ImageFrame.astro';
+---
+<TeletextScreen title="MARCUS HARTELT — ABOUT P700">
+  <BroadcastHeader pageCode="P700/01" center="ABOUT / PROFILE" />
+  <div class="teletext-divider teletext-divider--blue"></div>
+  <h1 class="page-title">ABOUT / PROFILE</h1>
+  <div class="teletext-divider teletext-divider--dotted-magenta"></div>
+  <p class="status-line">P700 / PHOTOGRAPHER / BERLIN</p>
+  <div class="about-layout" style="margin-top:18px">
+    <div>
+      <div class="about-name">MARCUS HARTELT</div>
+      <div class="about-role">BERLIN-BASED PHOTOGRAPHER</div>
+      <div class="teletext-divider teletext-divider--dotted-magenta"></div>
+      <p class="about-text">Marcus Hartelt is a Berlin-based photographer working across fashion, editorial, runway, lifestyle and events. His work documents looks, atmosphere and key moments — shot on both digital and film.</p>
+      <p class="about-text">Available for commissions worldwide, with selected projects covering runway shows, campaigns and editorial stories.</p>
+      <div class="discipline-list" style="margin-top:16px">
+        <div class="disc-item"><span class="disc-code">101</span>FASHION</div>
+        <div class="disc-item"><span class="disc-code">102</span>EDITORIAL</div>
+        <div class="disc-item"><span class="disc-code">104</span>RUNWAY</div>
+        <div class="disc-item"><span class="disc-code">103</span>LIFESTYLE</div>
+        <div class="disc-item"><span class="disc-code">105</span>EVENTS</div>
+      </div>
+    </div>
+    <aside>
+      <ImageFrame type="portrait" label="PORTRAIT IMAGE" sub="B&W PORTRAIT" />
+      <div style="margin-top:16px">
+        <div class="about-meta-row"><span class="c-white">BASED</span><span class="c-yellow">BERLIN, DE</span></div>
+        <div class="about-meta-row"><span class="c-white">FORMATS</span><span class="c-cyan">DIGITAL + FILM</span></div>
+        <div class="about-meta-row"><span class="c-white">STATUS</span><span class="c-green">AVAILABLE</span></div>
+        <div class="about-meta-row"><span class="c-white">RANGE</span><span class="c-magenta">WORLDWIDE</span></div>
+      </div>
+    </aside>
+  </div>
+  <FooterControls />
+</TeletextScreen>

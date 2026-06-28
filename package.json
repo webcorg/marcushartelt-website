@@ -1,0 +1,19 @@
+{
+  "name": "marcus-hartelt-teletext-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "generate-images": "node scripts/generate-project-images.mjs",
+    "download-previews": "python3 scripts/download-work-preview-images.py"
+  },
+  "dependencies": {
+    "@astrojs/check": "latest",
+    "astro": "latest",
+    "typescript": "latest"
+  },
+  "devDependencies": {}
+}

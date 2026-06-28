@@ -1,0 +1,33 @@
+---
+import TeletextScreen from '@components/TeletextScreen.astro';
+import BroadcastHeader from '@components/BroadcastHeader.astro';
+import FooterControls from '@components/FooterControls.astro';
+import ImageFrame from '@components/ImageFrame.astro';
+import { firstProject } from '@data/projects';
+import { getCategoryByName } from '@data/navigation';
+const project = firstProject;
+const categoryTheme = getCategoryByName(project.category)?.theme ?? 'fashion-week';
+---
+<TeletextScreen title={`MARCUS HARTELT — ${project.title} P${project.pageNumber}/01`} screenClass={`category-theme category-theme-${categoryTheme}`}>
+  <BroadcastHeader pageCode={`P${project.pageNumber}/01`} center={project.title} />
+  <div class="category-bar">{project.category.toUpperCase()}</div>
+  <div class="detail-layout">
+    <ImageFrame type="detail" bottomLabel label="CURRENT IMAGE" sub={project.heroAlt || project.title} src={project.heroImage} />
+    <div class="project-info">
+      <h1 class="info-title">{project.title}</h1>
+      <div class="info-line">{project.category}</div>
+      {project.client && <div class="info-line">CLIENT / {project.client}</div>}
+      <div class="info-line">{project.location}</div>
+      <div class="info-line">{project.year}</div>
+      <div class="teletext-divider teletext-divider--dotted-magenta"></div>
+      <div class="info-desc">{project.description.toUpperCase()}</div>
+      <div style="flex:1"></div>
+      <nav class="nav-links">
+        <a class="nav-link" href={`/projects/${project.slug}`}><span>OPEN PROJECT PAGE</span><span class:list={["nav-val", "nav-val--yellow"]}>{project.pageNumber}</span></a>
+        <a class="nav-link" href="/projects"><span>BACK TO PROJECTS</span><span class:list={["nav-val", "nav-val--yellow"]}>200</span></a>
+        <a class="nav-link" href="/"><span>BACK TO INDEX</span><span class:list={["nav-val", "nav-val--yellow"]}>100</span></a>
+      </nav>
+    </div>
+  </div>
+  <FooterControls />
+</TeletextScreen>

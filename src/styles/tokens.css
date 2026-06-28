@@ -1,0 +1,52 @@
+:root{
+  --tt-red:#FF0000;
+  --tt-green:#00FF00;
+  --tt-yellow:#FFFF00;
+  --tt-blue:#0000FF;
+  --tt-magenta:#FF00FF;
+  --tt-cyan:#00FFFF;
+  --tt-black:#000000;
+  --tt-white:#FFFFFF;
+  --tt-font-original:'Bedstead','Teletext50','ModeSeven',monospace;
+  --tt-font-teletext50:'Teletext50','Bedstead','ModeSeven',monospace;
+  --tt-font-mode7:'ModeSeven','Bedstead','Teletext50',monospace;
+  --tt-font:var(--tt-font-teletext50);
+  --tt-screen-max:1200px;
+  --tt-gap:24px;
+  --tt-pad-desktop:32px;
+  --tt-pad-tablet:24px;
+  --tt-pad-mobile:16px;
+  --tt-line:3px;
+}
+
+@font-face{
+  font-family:'Teletext50';
+  src:
+    local('Teletext50'),
+    local('Teletext 50'),
+    url('/fonts/teletext50.otf') format('opentype'),
+    url('https://galax.xyz/Teletext50/Teletext50.otf') format('opentype'),
+    url('https://cors.eu.org/https://galax.xyz/Teletext50/Teletext50.otf') format('opentype'),
+    url('https://test.cors.workers.dev/?https://galax.xyz/Teletext50/Teletext50.otf') format('opentype');
+  font-display:block;
+}
+@font-face{
+  font-family:'ModeSeven';
+  src:
+    local('ModeSeven'),
+    local('MODE7'),
+    url('/fonts/modeseven.ttf') format('truetype');
+  font-display:block;
+}
+@font-face{
+  font-family:'Bedstead';
+  src:
+    local('Bedstead'),
+    url('/fonts/bedstead.otf') format('opentype');
+  font-display:block;
+}
+
+.c-red{color:var(--tt-red)} .c-green{color:var(--tt-green)} .c-yellow{color:var(--tt-yellow)} .c-blue{color:var(--tt-blue)}
+.c-magenta{color:var(--tt-magenta)} .c-cyan{color:var(--tt-cyan)} .c-black{color:var(--tt-black)} .c-white{color:var(--tt-white)}
+.bg-red{background:var(--tt-red)} .bg-green{background:var(--tt-green)} .bg-yellow{background:var(--tt-yellow)} .bg-blue{background:var(--tt-blue)}
+.bg-magenta{background:var(--tt-magenta)} .bg-cyan{background:var(--tt-cyan)} .bg-white{background:var(--tt-white)} .bg-black{background:var(--tt-black)}

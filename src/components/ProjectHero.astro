@@ -1,0 +1,21 @@
+---
+import ImageFrame from './ImageFrame.astro';
+const { project, active = false } = Astro.props;
+---
+<section
+  class:list={["project-hero", !active && "is-hidden"]}
+  data-project-hero
+  data-project-category={project.category.toUpperCase()}
+  data-project-slug={project.slug}
+>
+  <ImageFrame type="portrait" bottomLabel label="PROJECT PREVIEW" sub={project.heroAlt || project.title} src={project.heroImage} />
+
+  <h2 class="info-title project-preview-title">{project.title}</h2>
+  <div class="info-line">{project.category}</div>
+  <div class="info-line c-cyan">{project.location} / {project.year}</div>
+
+  <a class="teletext-open-button" href={`/projects/${project.slug}`} data-open-active-project>
+    <span>OPEN PROJECT</span>
+    <span class="nav-val">{project.pageNumber}</span>
+  </a>
+</section>

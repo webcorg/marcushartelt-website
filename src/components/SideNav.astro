@@ -1,0 +1,31 @@
+---
+import { categories } from '@data/navigation';
+const { active = '101' } = Astro.props;
+---
+<aside class="projects-side">
+  <div class="side-nav-heading">&gt;&gt; CATEGORIES</div>
+  <div class="teletext-divider teletext-divider--dotted-blue"></div>
+  <div class="category-list" data-category-list data-group data-active="category-item--active">
+    {categories.map((cat) => (
+      <button
+        class:list={["category-item", active === cat.code && "category-item--active"]}
+        type="button"
+        data-category-filter={cat.name}
+        data-category-slug={cat.slug}
+        data-category-code={cat.code}
+        data-category-theme={cat.theme}
+        data-selectable
+      >
+        <span class:list={["cat-code", `c-${cat.color}`]}>{cat.code}</span>
+        <span class:list={["cat-name", `c-${cat.color}`]}>{cat.label}</span>
+      </button>
+    ))}
+  </div>
+  <div class="side-nav-heading broadcast-info-heading">BROADCAST INFO</div>
+  <div class="teletext-divider teletext-divider--dotted-blue"></div>
+  <div class="broadcast-info-list"><div class="broadcast-info-row"><span class="c-white">CHANNEL</span><span class="c-yellow">MH1</span></div>
+  <div class="broadcast-info-row"><span class="c-white">FORMAT</span><span class="c-yellow">16:9</span></div>
+  <div class="broadcast-info-row"><span class="c-white">SIGNAL</span><span class="c-green">STRONG</span></div>
+  <div class="broadcast-info-row"><span class="c-white">ARCHIVE</span><span class="c-green">ONLINE</span></div>
+  <div class="broadcast-info-row"><span class="c-white">UPDATED</span><span class="c-magenta"><span data-local-date>JUN 22</span></span></div></div>
+</aside>

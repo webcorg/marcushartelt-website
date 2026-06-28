@@ -1,0 +1,38 @@
+---
+const {
+  type = 'portrait',
+  bottomLabel = false,
+  label = 'PROJECT IMAGE',
+  sub = 'DROP PROJECT IMAGE',
+  src = '',
+  alt = sub,
+  showLabel = true,
+  fallbackSrc = ''
+} = Astro.props;
+
+const classes = ['image-frame', `image-frame--${type}`, bottomLabel && 'image-frame--bottomlabel'];
+---
+<div class:list={classes}>
+  {src ? (
+    <img
+      class="photo-slot"
+      src={src}
+      alt={alt || sub}
+      loading="lazy"
+      decoding="async"
+      data-fallback-src={fallbackSrc}
+      onerror="if (this.dataset.fallbackSrc && this.src !== this.dataset.fallbackSrc) { this.src = this.dataset.fallbackSrc; }"
+    />
+  ) : (
+    <div class="bars" aria-hidden="true">
+      <span class="bg-white"></span>
+      <span class="bg-yellow"></span>
+      <span class="bg-cyan"></span>
+      <span class="bg-green"></span>
+      <span class="bg-magenta"></span>
+      <span class="bg-red"></span>
+      <span class="bg-blue"></span>
+    </div>
+  )}
+  {showLabel && <div class="frame-label"><span class="lab-main">{label}</span></div>}
+</div>

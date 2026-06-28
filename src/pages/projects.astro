@@ -1,0 +1,57 @@
+---
+import TeletextScreen from '@components/TeletextScreen.astro';
+import BroadcastHeader from '@components/BroadcastHeader.astro';
+import FooterControls from '@components/FooterControls.astro';
+import SideNav from '@components/SideNav.astro';
+import ProjectPreview from '@components/ProjectPreview.astro';
+import ProjectCard from '@components/ProjectCard.astro';
+import { featuredProjects, projectsForArchive } from '@data/projects';
+import { getCategoryByName } from '@data/navigation';
+
+const firstCategory = 'Fashion';
+const firstProjectInCategory = projectsForArchive.find((project) => project.category === firstCategory) ?? projectsForArchive[0];
+const firstCategoryTheme = getCategoryByName(firstCategory)?.theme ?? 'fashion';
+
+function getProjectPreviewImage(project) {
+  return `/images/previews/${project.slug}-work-preview.webp`;
+}
+
+
+
+
+
+
+
+
+---
+<TeletextScreen title="MARCUS HARTELT — PROJECTS P200" screenClass={`category-theme category-theme-${firstCategoryTheme} projects-screen-clean-images`}>
+  <BroadcastHeader pageCode="P200/01" center="BROADCAST GALLERY" />
+  <div class="teletext-divider"></div>
+  <div class="projects-layout" data-projects-page data-active-category={firstCategory.toUpperCase()} data-active-theme={firstCategoryTheme}>
+    <SideNav active="200" />
+    <div class="projects-right">
+      <div class="projects-top projects-top--list-preview">
+        <aside class="featured-list" data-group data-active="featured-item--active">
+          <div class="side-nav-heading" data-category-heading>{firstCategory.toUpperCase()} PROJECTS</div>
+          <div class="teletext-divider teletext-divider--dotted-blue"></div>
+          {featuredProjects.map((project, index) => <ProjectCard project={project} index={index} active={project.slug === firstProjectInCategory.slug} previewImage={getProjectPreviewImage(project)} />)}
+          <div class="empty-category-message is-hidden" data-empty-category>
+            NO PROJECTS IN THIS CATEGORY YET
+          </div>
+        </aside>
+
+        <div class="project-hero-stack" data-project-hero-stack>
+          <ProjectPreview project={firstProjectInCategory} previewImage={getProjectPreviewImage(firstProjectInCategory)} />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline>
+    window.setTimeout(() => {
+      document.querySelector('.projects-screen-clean-images')?.classList.add('projects-is-ready');
+    }, 700);
+  </script>
+
+  <FooterControls />
+</TeletextScreen>

@@ -1,0 +1,106 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+
+import TeletextScreen from '@components/TeletextScreen.astro';
+import BroadcastHeader from '@components/BroadcastHeader.astro';
+import FooterControls from '@components/FooterControls.astro';
+import ProjectGallery from '@components/ProjectGallery.astro';
+import { getProjectNeighbors, projects } from '@data/projects';
+import { getCategoryByName } from '@data/navigation';
+
+export function getStaticPaths() {
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project }
+  }));
+}
+
+function getLocalProjectImages(slug: string) {
+  const projectImageDir = path.join(process.cwd(), 'public', 'images', 'projects', slug);
+  const allowedExtensions = new Set(['.jpg', '.jpeg', '.png', '.webp', '.avif']);
+
+  if (!fs.existsSync(projectImageDir)) {
+    return [];
+  }
+
+  return fs
+    .readdirSync(projectImageDir)
+    .filter((fileName) => {
+      const filePath = path.join(projectImageDir, fileName);
+      const extension = path.extname(fileName).toLowerCase();
+
+      return (
+        fs.statSync(filePath).isFile() &&
+        allowedExtensions.has(extension) &&
+        !fileName.startsWith('.')
+      );
+    })
+    .sort((a, b) =>
+      a.localeCompare(b, undefined, {
+        numeric: true,
+        sensitivity: 'base'
+      })
+    )
+    .map((fileName) => `/images/projects/${slug}/${fileName}`);
+}
+
+const { project } = Astro.props;
+const { previousProject, nextProject } = getProjectNeighbors(project.slug);
+const localImages = getLocalProjectImages(project.slug);
+const fallbackImages = project.galleryImages.length > 1 ? project.galleryImages.slice(1) : project.galleryImages;
+const detailImages = localImages.length ? localImages : fallbackImages;
+const imageTotal = detailImages.length;
+const pageCode = `P${project.pageNumber}/01`;
+const categoryTheme = getCategoryByName(project.category)?.theme ?? 'fashion-week';
+
+function getNavColorClass(projectRef) {
+  return `nav-val--${getCategoryByName(projectRef?.category ?? '')?.color ?? 'yellow'}`;
+}
+---
+<TeletextScreen title={`MARCUS HARTELT — ${project.title} ${pageCode}`} screenClass={`category-theme category-theme-${categoryTheme} project-detail-screen`}>
+  <BroadcastHeader pageCode={pageCode} center={project.title} />
+
+  <div class="category-bar">{project.category.toUpperCase()}</div>
+
+  <section class="project-detail-split">
+    <div class="project-detail-gallery-column">
+      <ProjectGallery project={project} images={detailImages} />
+      <nav class="project-gallery-nav project-gallery-nav--mobile">
+        {nextProject && <a class="nav-link" href={`/projects/${nextProject.slug}`}><span>NEXT PROJECT</span><span class:list={["nav-val", getNavColorClass(nextProject)]}>{nextProject.pageNumber}</span></a>}
+        {previousProject && <a class="nav-link" href={`/projects/${previousProject.slug}`}><span>PREV PROJECT</span><span class:list={["nav-val", getNavColorClass(previousProject)]}>{previousProject.pageNumber}</span></a>}
+        <a class="nav-link" href="/projects"><span>BACK TO PROJECTS</span><span class:list={["nav-val", "nav-val--yellow"]}>200</span></a>
+        <a class="nav-link" href="/"><span>BACK TO INDEX</span><span class:list={["nav-val", "nav-val--yellow"]}>100</span></a>
+      </nav>
+    </div>
+
+    <aside class="project-detail-info-column">
+      <div class="project-info project-info--sticky">
+        <div class="section-kicker">PROJECT DETAILS</div>
+        <h1 class="info-title">{project.title}</h1>
+
+        <div class="detail-meta-list">
+          <div class="info-line">{project.category}</div>
+          {project.client && <div class="info-line">CLIENT / {project.client}</div>}
+          <div class="info-line">LOCATION / {project.location}</div>
+          <div class="info-line">YEAR / {project.year}</div>
+          <div class="info-line">IMAGES / {String(imageTotal).padStart(2, '0')}</div>
+        </div>
+
+        <div class="teletext-divider teletext-divider--dotted-magenta"></div>
+        <div class="info-desc">{project.description.toUpperCase()}</div>
+
+        <nav class="project-side-nav">
+          {nextProject && <a class="nav-link" href={`/projects/${nextProject.slug}`}><span>NEXT PROJECT</span><span class:list={["nav-val", getNavColorClass(nextProject)]}>{nextProject.pageNumber}</span></a>}
+          {previousProject && <a class="nav-link" href={`/projects/${previousProject.slug}`}><span>PREV PROJECT</span><span class:list={["nav-val", getNavColorClass(previousProject)]}>{previousProject.pageNumber}</span></a>}
+          <a class="nav-link" href="/projects"><span>BACK TO PROJECTS</span><span class:list={["nav-val", "nav-val--yellow"]}>200</span></a>
+          <a class="nav-link" href="/"><span>BACK TO INDEX</span><span class:list={["nav-val", "nav-val--yellow"]}>100</span></a>
+        </nav>
+
+
+      </div>
+    </aside>
+  </section>
+
+  <FooterControls />
+</TeletextScreen>

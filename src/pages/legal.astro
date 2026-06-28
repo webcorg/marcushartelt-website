@@ -1,0 +1,36 @@
+---
+import TeletextScreen from '@components/TeletextScreen.astro';
+import BroadcastHeader from '@components/BroadcastHeader.astro';
+import FooterControls from '@components/FooterControls.astro';
+import { legalNavigation } from '@data/legal';
+---
+<TeletextScreen title="MARCUS HARTELT — LEGAL P900">
+  <BroadcastHeader pageCode="P900/01" center="LEGAL / SITE INFO" />
+  <div class="teletext-divider teletext-divider--blue"></div>
+  <div class="legal-layout">
+    <nav class="legal-nav" aria-label="Legal navigation">
+      <div class="legal-heading">LEGAL</div>
+      <div class="teletext-divider teletext-divider--dotted-yellow"></div>
+      <div class="legal-items">
+        {legalNavigation.map((item, index) => (
+          <a class:list={["legal-nav-item", index === 0 && "legal-nav-item--active"]} href={item.href}>
+            <span class="nav-code c-cyan">{item.page}</span><span class="nav-name">{item.label}</span>
+          </a>
+        ))}
+        <a class="legal-nav-item" style="margin-top:18px;border-top:2px dotted var(--tt-white);padding-top:16px" href="/contact"><span class="nav-code c-cyan">107</span><span class="nav-name">CONTACT</span></a>
+        <a class="legal-nav-item" href="/"><span class="nav-code c-cyan">100</span><span class="nav-name">BACK TO INDEX</span></a>
+      </div>
+    </nav>
+    <section class="legal-content">
+      <h1 class="page-title">LEGAL / SITE INFO</h1>
+      <div class="teletext-divider teletext-divider--dotted-magenta"></div>
+      <p class="status-line">SITE INFORMATION / RIGHTS / PRIVACY</p>
+      <div style="margin-top:18px">
+        <p class="legal-body">This section provides important information about the legal framework of this website and services.</p>
+        <p class="legal-body">You will find details about the site operator, privacy, terms, copyright, usage rights and cookies.</p>
+      </div>
+      <div class="placeholder-notice">RECHTSTEXTE SIND PLATZHALTER. FINALE INHALTE MÜSSEN VOR VERÖFFENTLICHUNG GEPRÜFT WERDEN.</div>
+    </section>
+  </div>
+  <FooterControls />
+</TeletextScreen>

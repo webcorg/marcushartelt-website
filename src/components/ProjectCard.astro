@@ -1,0 +1,27 @@
+---
+const { project, index = 0, active = false, previewImage = `/images/previews/${project.slug}-work-preview.webp` } = Astro.props;
+const twoDigit = String(index + 1).padStart(2, '0');
+---
+<a
+  class:list={["featured-item", active && "featured-item--active"]}
+  href={`/projects/${project.slug}`}
+  data-featured-project
+  data-project-category={project.category.toUpperCase()}
+  data-project-slug={project.slug}
+  data-project-href={`/projects/${project.slug}`}
+  data-project-title={project.title}
+  data-project-image={previewImage}
+  data-project-fallback-image={project.heroImage}
+  data-project-alt={project.heroAlt || project.title}
+  data-project-location={project.location}
+  data-project-year={project.year}
+  data-project-page={project.pageNumber}
+  data-selectable
+>
+  <span class="feat-num">{twoDigit}</span>
+  <div class="feat-copy">
+    <div class="feat-title">{project.title}</div>
+    <div class="feat-sub">{project.location} / {project.year}</div>
+  </div>
+  <span class="feat-code c-yellow">{project.pageNumber}</span>
+</a>

@@ -1,0 +1,21 @@
+---
+const {
+  pageCode = 'P000/01',
+  center = 'LOCAL BROADCAST',
+  right = '',
+  branded = true,
+  index = false,
+  imageCounter = false,
+  imageIndex = 3,
+  imageTotal = 18
+} = Astro.props;
+---
+<header class="broadcast-header broadcast-header--unified">
+  <span class="page-code">{pageCode}</span>
+  <span class="header-mid">{center}</span>
+  <span class="header-right header-right--time">
+    <span class="local-date" data-local-date>JAN 01</span>
+    <span class="clock" data-local-clock>00:00:00</span>
+  </span>
+  <a class="header-index-link c-cyan" href="/">INDEX</a>
+</header>

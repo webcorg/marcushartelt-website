@@ -1,0 +1,22 @@
+---
+import { footerNavigation } from '@data/navigation';
+const { variant = 'keys', legal = false } = Astro.props;
+const items = legal
+  ? [
+      { href: '/', page: '100', label: 'INDEX', color: 'red' },
+      { href: '/about', page: '700', label: 'ABOUT', color: 'green' },
+      { href: '/contact', page: '800', label: 'CONTACT', color: 'yellow' },
+      { href: '/legal', page: '900', label: 'LEGAL', color: 'cyan' }
+    ]
+  : footerNavigation;
+---
+<footer class="footer-controls">
+  {items.map((item) => variant === 'buttons' ? (
+    <a class:list={["teletext-button", `bg-${item.color}`]} href={item.href}>{item.page} {item.label}</a>
+  ) : (
+    <a class="color-key" href={item.href}>
+      <div class:list={["key-box", `bg-${item.color}`]}>{item.page}</div>
+      <div class="key-label">{item.label}</div>
+    </a>
+  ))}
+</footer>

@@ -1,0 +1,1956 @@
+.teletext-page{
+  min-height:100svh;
+  background:var(--tt-black);
+}
+
+.teletext-stage{
+  width:100%;
+  min-height:100svh;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  background:var(--tt-black);
+}
+
+/* Glow only: no curvature, no SVG, no canvas, no delayed loading. */
+.teletext-screen.crt-glow-only{
+  filter:contrast(1.035) saturate(1.018) brightness(1.01);
+}
+
+.teletext-screen.crt-glow-only::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:800;
+  pointer-events:none;
+  background:
+    radial-gradient(ellipse at center, rgba(255,255,255,.075) 0%, rgba(255,255,255,.032) 32%, rgba(0,0,0,0) 56%),
+    radial-gradient(ellipse at center, rgba(0,0,0,0) 66%, rgba(0,0,0,.08) 88%, rgba(0,0,0,.16) 100%);
+}
+
+.teletext-screen.crt-glow-only > *{
+  position:relative;
+}
+
+.teletext-screen{
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+  font-family:var(--tt-font);
+  --scanline-opacity:.4;
+  --scanline-gap:2px;
+  max-width:var(--tt-screen-max);
+  min-height:100svh;
+  margin:0 auto;
+  padding:28px var(--tt-pad-desktop);
+  background:var(--tt-black);
+  display:flex;
+  flex-direction:column;
+}
+.teletext-screen--home{background:var(--tt-black)}
+.teletext-divider{height:var(--tt-line);background:var(--tt-white);margin:14px 0;border:0;flex:0 0 auto}
+.teletext-divider--blue{background:var(--tt-blue)}
+.teletext-divider--dotted-blue,.teletext-divider--dotted-white,.teletext-divider--dotted-magenta,.teletext-divider--dotted-yellow{height:0;background:none;border-bottom:2px dotted currentColor}
+.teletext-divider--dotted-blue{color:var(--tt-blue)} .teletext-divider--dotted-white{color:var(--tt-white)} .teletext-divider--dotted-magenta{color:var(--tt-magenta)} .teletext-divider--dotted-yellow{color:var(--tt-yellow)}
+.broadcast-header{display:flex;align-items:baseline;justify-content:space-between;gap:24px;font-size:1.35rem;letter-spacing:.06em;white-space:nowrap}
+.header-left,.header-right{display:flex;align-items:baseline;gap:18px}.brand-mh{background:var(--tt-yellow);color:var(--tt-black);padding:2px 9px;letter-spacing:.04em}.page-code{color:var(--tt-yellow)}.on-air{color:var(--tt-red)}.local-date{color:var(--tt-yellow)}.clock,.header-mid{color:var(--tt-white)}
+.hero-title{margin:0;font-size:clamp(2.6rem,8vw,6.4rem);line-height:.96;color:var(--tt-magenta);letter-spacing:.02em}.hero-title--full{font-size:clamp(3.2rem,10.9vw,8.7rem);line-height:.9;letter-spacing:-.015em;white-space:nowrap;width:100%;display:block}.page-title{margin:0;font-size:clamp(2rem,4.6vw,3.1rem);line-height:1;color:var(--tt-magenta);letter-spacing:.02em}.page-title--yellow{color:var(--tt-yellow)}.page-subtitle,.status-line{font-size:1.25rem;color:var(--tt-white);letter-spacing:.05em;line-height:1.4}.category-bar{background:var(--tt-magenta);color:var(--tt-white);text-align:center;font-size:1.7rem;letter-spacing:.12em;padding:10px 0;margin:14px 0 18px}
+.menu-list{display:flex;flex-direction:column}.menu-item{--menu-bg:transparent;display:flex;align-items:center;padding:3px 0;font-size:clamp(1.4rem,2.6vw,2.1rem);letter-spacing:.03em}.teletext-screen--home .menu-item{--menu-bg:var(--tt-black)}.menu-cat{position:relative;z-index:1001;color:var(--tt-yellow);flex:0 0 auto}.menu-dots{position:relative;z-index:1001;flex:1 1 auto;min-width:2ch;height:1em;margin:0 1ch;color:var(--tt-cyan);overflow:hidden}.menu-dots::before{content:'................................................................................................................................................................................................';position:absolute;left:0;right:0;top:50%;transform:translateY(-54%);white-space:nowrap;line-height:1}.menu-dots::after{content:'';position:absolute;right:0;top:0;width:1ch;height:100%;background:var(--menu-bg)}.menu-page{position:relative;z-index:1001;color:var(--tt-cyan);flex:0 0 auto}.menu-item:hover,.menu-item:focus-visible{--menu-bg:var(--tt-cyan);background:var(--tt-cyan);outline:0}.menu-item:hover span,.menu-item:focus-visible span{color:var(--tt-blue)}
+.booking-strip{background:var(--tt-red);color:var(--tt-black);text-align:center;font-size:clamp(1.3rem,2.6vw,2rem);letter-spacing:.16em;padding:8px 0}.phone-strip{background:var(--tt-green);color:var(--tt-black);text-align:center;font-size:clamp(2.2rem,6vw,5rem);letter-spacing:.1em;padding:8px 0 10px}.home-subtitle{font-size:clamp(1.3rem,3vw,2.1rem);letter-spacing:.05em;margin:6px 0 0}
+.side-nav-heading{color:var(--tt-cyan);font-size:1.55rem;letter-spacing:.05em}.category-list{display:flex;flex-direction:column;gap:14px}.category-item,.legal-nav-item{display:block;cursor:pointer;padding:8px 10px}.cat-code,.cat-name,.nav-code,.nav-name{display:block;font-size:1.45rem;line-height:1.1;letter-spacing:.04em}.category-item--active,.legal-nav-item--active{background:var(--tt-yellow)}.category-item--active span,.legal-nav-item--active span{color:var(--tt-black)!important}
+.projects-layout{display:grid;grid-template-columns:22fr 78fr;gap:30px}.projects-side{border-right:2px dotted var(--tt-blue);padding-right:22px}.broadcast-info-row{display:flex;justify-content:space-between;font-size:1.25rem;padding:5px 0;letter-spacing:.04em}.projects-top{display:grid;grid-template-columns:62fr 38fr;gap:24px}.featured-list{border-left:2px dotted var(--tt-blue);padding-left:22px}.featured-item{padding:10px 6px;display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center}.featured-item--active{background:var(--tt-blue)}.feat-num{color:var(--tt-yellow);font-size:1.3rem;align-self:start}.feat-title{color:var(--tt-white);font-size:1.25rem;line-height:1.25}.feat-sub{color:var(--tt-white);font-size:1.1rem;line-height:1.4}.feat-code{font-size:1.45rem;align-self:center}
+.project-table{margin-top:24px}.table-head-bar{background:var(--tt-blue);color:var(--tt-white);display:flex;justify-content:space-between;font-size:1.4rem;letter-spacing:.05em;padding:9px 12px}.table-cols,.table-row{display:grid;grid-template-columns:8fr 36fr 22fr 22fr 12fr;gap:14px}.table-cols{color:var(--tt-cyan);font-size:1.1rem;padding:12px 4px 9px;letter-spacing:.04em}.table-body{border:2px solid var(--tt-blue)}.table-row{font-size:1.1rem;padding:11px 12px;align-items:center;letter-spacing:.03em;border-bottom:2px dotted var(--tt-blue)}.table-row:last-child{border-bottom:0}.status-published{color:var(--tt-green)}.status-draft{color:var(--tt-yellow)}
+.detail-layout{display:grid;grid-template-columns:64fr 36fr;gap:28px;align-items:stretch}.project-info,.contact-info{display:flex;flex-direction:column}.info-title{margin:0;font-size:1.9rem;color:var(--tt-yellow);line-height:1.1}.info-line,.contact-line{font-size:1.3rem;color:var(--tt-white);line-height:1.45}.info-desc,.contact-desc,.about-text,.legal-body{font-size:1.3rem;color:var(--tt-white);line-height:1.55}.nav-links{margin-top:24px}.nav-link{display:flex;justify-content:space-between;align-items:center;font-size:1.4rem;padding:7px 4px;letter-spacing:.04em}.nav-val{color:var(--tt-magenta)}.nav-link:hover,.nav-link:focus-visible{background:var(--tt-magenta);color:var(--tt-black);outline:0}.nav-link:hover .nav-val,.nav-link:focus-visible .nav-val{color:var(--tt-black)}
+.about-layout{display:grid;grid-template-columns:60fr 40fr;gap:30px}.about-name,.contact-name{font-size:clamp(2rem,4vw,3rem);color:var(--tt-yellow);line-height:1.05}.about-role{font-size:1.5rem;color:var(--tt-white);letter-spacing:.04em}.about-meta-row{display:flex;justify-content:space-between;gap:12px;font-size:1.3rem;padding:6px 0;letter-spacing:.04em}.discipline-list{display:flex;flex-direction:column;gap:6px;font-size:1.4rem}.disc-code{color:var(--tt-cyan);margin-right:1ch}.contact-layout{display:grid;grid-template-columns:62fr 38fr;gap:24px;align-items:stretch}
+.legal-layout{display:grid;grid-template-columns:25fr 75fr;gap:28px}.legal-nav{border-right:2px dotted var(--tt-white);padding-right:22px}.legal-heading{color:var(--tt-cyan);font-size:1.7rem;letter-spacing:.05em}.placeholder-notice{border:3px solid var(--tt-red);color:var(--tt-red);font-size:1.15rem;letter-spacing:.06em;line-height:1.4;padding:12px 16px;margin:16px 0 22px;text-transform:uppercase}.legal-section{margin-bottom:20px}.section-head{color:var(--tt-cyan);font-size:1.4rem;letter-spacing:.04em;margin-bottom:6px}.section-body{color:var(--tt-white);font-size:1.25rem;line-height:1.6}
+.image-frame{position:relative;width:100%;border:3px solid var(--tt-white);background:var(--tt-black);display:flex;align-items:center;justify-content:center;overflow:hidden}.image-frame--portrait{aspect-ratio:3/4}.image-frame--square{aspect-ratio:1/1}.image-frame--detail{aspect-ratio:5/6}.bars{position:absolute;inset:0;display:flex}.bars span{flex:1}.frame-label{position:relative;z-index:1;text-align:center;line-height:1.4;letter-spacing:.08em;background:var(--tt-black);padding:8px 12px}.lab-main{color:var(--tt-cyan);font-size:1.05rem;display:block}.lab-sub{color:var(--tt-white);font-size:1rem;display:block}.image-frame--bottomlabel .frame-label{position:absolute;left:0;right:0;bottom:0;z-index:2}.photo-slot{width:100%;height:100%;object-fit:cover;filter:none}
+.footer-controls{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:auto;padding-top:18px}.color-key{text-align:center}.key-box{color:var(--tt-black);font-size:1.6rem;letter-spacing:.08em;padding:9px 0;border:3px solid transparent}.key-label{color:var(--tt-white);font-size:1.3rem;letter-spacing:.06em;margin-top:7px}.color-key:hover .key-box,.color-key:focus-visible .key-box{border-color:var(--tt-white)}.teletext-button{background:var(--tt-cyan);color:var(--tt-black);text-align:center;font-size:1.5rem;letter-spacing:.08em;padding:12px 0;border:3px solid transparent}.teletext-button:hover,.teletext-button:focus-visible{border-color:var(--tt-white);outline:0}
+
+
+/* ---------------------------------------------------------- */
+/* CATEGORY COLOR THEMES                                      */
+/* ---------------------------------------------------------- */
+.category-theme{
+  --theme-screen:var(--tt-black);
+  --theme-accent:var(--tt-cyan);
+  --theme-accent-alt:var(--tt-yellow);
+  --theme-on-accent:var(--tt-black);
+  background:var(--theme-screen);
+}
+.category-theme-fashion-week{--theme-screen:var(--tt-black);--theme-accent:var(--tt-yellow);--theme-accent-alt:var(--tt-magenta);--theme-on-accent:var(--tt-black)}
+.category-theme-editorial{--theme-screen:var(--tt-black);--theme-accent:var(--tt-cyan);--theme-accent-alt:var(--tt-blue);--theme-on-accent:var(--tt-black)}
+.category-theme-campaign{--theme-screen:var(--tt-black);--theme-accent:var(--tt-green);--theme-accent-alt:var(--tt-yellow);--theme-on-accent:var(--tt-black)}
+.category-theme-lookbook{--theme-screen:var(--tt-black);--theme-accent:var(--tt-magenta);--theme-accent-alt:var(--tt-cyan);--theme-on-accent:var(--tt-black)}
+.category-theme-content{--theme-screen:var(--tt-black);--theme-accent:var(--tt-red);--theme-accent-alt:var(--tt-yellow);--theme-on-accent:var(--tt-black)}
+.category-theme-lifestyle{--theme-screen:var(--tt-black);--theme-accent:var(--tt-green);--theme-accent-alt:var(--tt-cyan);--theme-on-accent:var(--tt-black)}
+.category-theme-events{--theme-screen:var(--tt-black);--theme-accent:var(--tt-yellow);--theme-accent-alt:var(--tt-red);--theme-on-accent:var(--tt-black)}
+
+.category-theme .teletext-divider{background:var(--theme-accent)}
+.category-theme .teletext-divider--dotted-blue,
+.category-theme .teletext-divider--dotted-magenta,
+.category-theme .teletext-divider--dotted-yellow{background:none;color:var(--theme-accent)}
+.category-theme .page-code,
+.category-theme .info-title,
+.category-theme .feat-num,
+.category-theme .side-nav-heading,
+.category-theme .section-head{color:var(--theme-accent)}
+.category-theme .category-bar,
+.category-theme .table-head-bar,
+.category-theme .featured-item--active,
+.category-theme .table-row:hover,
+.category-theme .table-row:focus-visible{background:var(--theme-accent);color:var(--theme-on-accent)}
+.category-theme .featured-item--active .feat-num,
+.category-theme .featured-item--active .feat-title,
+.category-theme .featured-item--active .feat-sub,
+.category-theme .featured-item--active .feat-code,
+.category-theme .table-row:hover span,
+.category-theme .table-row:focus-visible span{color:var(--theme-on-accent)!important}
+.category-theme .category-item--active{background:var(--theme-accent)}
+.category-theme .category-item--active span{color:var(--theme-on-accent)!important}
+.category-theme .projects-side,
+.category-theme .featured-list,
+.category-theme .table-body,
+.category-theme .table-row,
+.category-theme .project-meta-block,
+.category-theme .image-frame{border-color:var(--theme-accent)}
+.category-theme .table-cols,
+.category-theme .info-line.c-cyan,
+.category-theme .nav-val{color:var(--theme-accent)}
+.category-theme .nav-link:hover,
+.category-theme .nav-link:focus-visible{background:var(--theme-accent);color:var(--theme-on-accent)}
+.category-theme .nav-link:hover .nav-val,
+.category-theme .nav-link:focus-visible .nav-val{color:var(--theme-on-accent)}
+
+/* ---------------------------------------------------------- */
+/* FONT VARIANTS                                              */
+/* ---------------------------------------------------------- */
+.teletext-screen.font-original{
+  --tt-font:var(--tt-font-original);
+}
+
+.teletext-screen.font-teletext50{
+  --tt-font:var(--tt-font-teletext50);
+}
+
+.teletext-screen.font-mode7{
+  --tt-font:var(--tt-font-mode7);
+}
+
+
+/* ---------------------------------------------------------- */
+
+
+/* Claude/exact variant: 2px transparent + 1px black at 0.4 alpha. */
+.teletext-screen.scanlines-claude{
+  --scanline-opacity:.4;
+  --scanline-gap:2px;
+}
+
+/* Originaler TV/Teletext variant: softer, less LCD-striped, closer to CRT. */
+.teletext-screen.scanlines-original{
+  --scanline-opacity:.22;
+  --scanline-gap:3px;
+}
+
+
+
+.teletext-screen.no-scanlines::after{
+  display:none;
+}
+
+/* Dot leaders: keep the last visible dot uncut while resizing. */
+.menu-dots::before{
+  right:auto;
+  width:calc(100% - 1ch);
+  overflow:hidden;
+}
+
+.menu-dots::after{
+  display:none;
+}
+
+@supports (width:round(down, 100%, 1ch)){
+  .menu-dots::before{
+    width:round(down, 100%, 1ch);
+  }
+}
+
+/* JS-controlled dot leaders: no pseudo clipping, no half end dots. */
+.menu-dots{
+  overflow:hidden;
+  white-space:nowrap;
+  text-align:left;
+  line-height:1;
+}
+.menu-dots::before,
+.menu-dots::after{
+  content:none!important;
+  display:none!important;
+}
+
+.project-meta-block{
+  margin-top:18px;
+  border-top:2px dotted var(--tt-blue);
+  border-bottom:2px dotted var(--tt-blue);
+  padding:10px 0;
+}
+
+.project-hero a{
+  display:block;
+}
+
+.table-row:hover,
+.table-row:focus-visible,
+.featured-item:hover,
+.featured-item:focus-visible,
+.project-hero a:hover,
+.project-hero a:focus-visible{
+  outline:0;
+}
+
+.table-row:hover,
+.table-row:focus-visible{
+  background:var(--tt-blue);
+}
+
+/* project category switching */
+.category-item{
+  width:100%;
+  border:0;
+  background:transparent;
+  color:inherit;
+  font:inherit;
+  text-align:left;
+  appearance:none;
+}
+.project-hero-stack{
+  min-width:0;
+}
+.project-hero.is-hidden,
+.featured-item.is-hidden,
+.table-row.is-hidden,
+.empty-category-message.is-hidden{
+  display:none !important;
+}
+.empty-category-message{
+  color:var(--tt-yellow);
+  font-size:1.25rem;
+  line-height:1.25;
+  padding:12px 6px;
+  letter-spacing:.04em;
+}
+
+
+
+
+/* Visible phosphor glow — glow only, no curvature/canvas/SVG. */
+.teletext-screen.crt-glow-only{
+  text-shadow:
+    0 0 .55px currentColor,
+    0 0 1.8px color-mix(in srgb, currentColor 38%, transparent),
+    0 0 5px color-mix(in srgb, currentColor 18%, transparent);
+}
+
+/* Apply the glow to common text elements without touching layout. */
+.teletext-screen.crt-glow-only .hero-title,
+.teletext-screen.crt-glow-only .page-title,
+.teletext-screen.crt-glow-only .page-subtitle,
+.teletext-screen.crt-glow-only .status-line,
+.teletext-screen.crt-glow-only .menu-cat,
+.teletext-screen.crt-glow-only .menu-dots,
+.teletext-screen.crt-glow-only .menu-page,
+.teletext-screen.crt-glow-only .page-code,
+.teletext-screen.crt-glow-only .header-mid,
+.teletext-screen.crt-glow-only .local-date,
+.teletext-screen.crt-glow-only .clock,
+.teletext-screen.crt-glow-only .cat-code,
+.teletext-screen.crt-glow-only .cat-name,
+.teletext-screen.crt-glow-only .side-nav-heading,
+.teletext-screen.crt-glow-only .broadcast-info-row span,
+.teletext-screen.crt-glow-only .feat-num,
+.teletext-screen.crt-glow-only .feat-title,
+.teletext-screen.crt-glow-only .feat-sub,
+.teletext-screen.crt-glow-only .feat-code,
+.teletext-screen.crt-glow-only .table-cols,
+.teletext-screen.crt-glow-only .table-row span,
+.teletext-screen.crt-glow-only .info-title,
+.teletext-screen.crt-glow-only .info-line,
+.teletext-screen.crt-glow-only .info-desc,
+.teletext-screen.crt-glow-only .about-name,
+.teletext-screen.crt-glow-only .about-role,
+.teletext-screen.crt-glow-only .about-meta-row,
+.teletext-screen.crt-glow-only .about-text,
+.teletext-screen.crt-glow-only .contact-name,
+.teletext-screen.crt-glow-only .contact-line,
+.teletext-screen.crt-glow-only .contact-desc,
+.teletext-screen.crt-glow-only .legal-heading,
+.teletext-screen.crt-glow-only .placeholder-notice,
+.teletext-screen.crt-glow-only .section-head,
+.teletext-screen.crt-glow-only .section-body,
+.teletext-screen.crt-glow-only .nav-link,
+.teletext-screen.crt-glow-only .nav-val,
+.teletext-screen.crt-glow-only .lab-main,
+.teletext-screen.crt-glow-only .key-label,
+.teletext-screen.crt-glow-only .teletext-button,
+.teletext-screen.crt-glow-only .empty-category-message,
+.teletext-screen.crt-glow-only .brand-mh,
+.teletext-screen.crt-glow-only .on-air{
+  text-shadow:
+    0 0 .75px currentColor,
+    0 0 2.4px color-mix(in srgb, currentColor 48%, transparent),
+    0 0 7px color-mix(in srgb, currentColor 24%, transparent),
+    0 0 12px color-mix(in srgb, currentColor 12%, transparent);
+}
+
+/* Titles and ON AIR get a little more phosphor presence. */
+.teletext-screen.crt-glow-only .hero-title,
+.teletext-screen.crt-glow-only .page-title,
+.teletext-screen.crt-glow-only .brand-mh,
+.teletext-screen.crt-glow-only .on-air{
+  text-shadow:
+    0 0 .9px currentColor,
+    0 0 3px color-mix(in srgb, currentColor 58%, transparent),
+    0 0 9px color-mix(in srgb, currentColor 30%, transparent),
+    0 0 16px color-mix(in srgb, currentColor 16%, transparent);
+}
+
+.teletext-screen.crt-glow-only .teletext-divider,
+.teletext-screen.crt-glow-only .divider,
+.teletext-screen.crt-glow-only hr{
+  box-shadow:
+    0 0 2px rgba(255,255,255,.55),
+    0 0 8px rgba(255,255,255,.22);
+}
+
+.teletext-screen.crt-glow-only .photo-slot{
+  filter:contrast(1.02) saturate(1.012);
+}
+
+
+
+
+
+
+
+
+
+
+.project-detail-split{
+  display:grid;
+  grid-template-columns:minmax(0, 1.35fr) minmax(320px, .65fr);
+  gap:28px;
+  align-items:start;
+  padding-top:22px;
+}
+
+.project-detail-gallery-column{
+  min-width:0;
+}
+
+.project-detail-info-column{
+  min-width:0;
+}
+
+.project-info--sticky{
+  position:sticky;
+  top:24px;
+  min-height:auto;
+  padding-left:22px;
+  border-left:2px dotted var(--tt-cyan);
+}
+
+.detail-meta-list{
+  display:grid;
+  gap:4px;
+  margin-top:14px;
+}
+
+.project-side-nav{
+  display:grid;
+  gap:8px;
+  margin-top:22px;
+}
+
+.section-kicker{
+  color:var(--tt-cyan);
+  font-size:1rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+
+.project-editorial-gallery{
+  margin:0;
+}
+
+/*
+  Desktop gallery:
+  - max 2 images next to each other
+  - masonry columns so portrait + landscape images still belong together
+  - original image ratio, no forced crop
+*/
+.editorial-gallery-grid{
+  column-count:2;
+  column-gap:18px;
+}
+
+.editorial-gallery-item{
+  display:block;
+  width:100%;
+  margin:0 0 18px;
+  break-inside:avoid;
+  page-break-inside:avoid;
+  -webkit-column-break-inside:avoid;
+}
+
+.image-frame--editorial{
+  aspect-ratio:auto;
+  height:auto;
+  min-height:0;
+  padding:0;
+  border:0;
+  background:transparent;
+  overflow:visible;
+}
+
+.image-frame--editorial .photo-slot{
+  position:relative;
+  display:block;
+  width:100%;
+  height:auto;
+  max-width:100%;
+  object-fit:contain;
+  filter:none;
+}
+
+.image-frame--editorial .frame-label{
+  display:none;
+}
+
+/* No scanlines, labels, bars or glow overlays on photos. */
+.project-editorial-gallery,
+.project-editorial-gallery *,
+.project-editorial-gallery .photo-slot{
+  text-shadow:none;
+}
+
+.project-editorial-gallery .image-frame::before,
+.project-editorial-gallery .image-frame::after,
+.project-editorial-gallery .photo-slot::before,
+.project-editorial-gallery .photo-slot::after,
+.project-editorial-gallery .editorial-gallery-item::before,
+.project-editorial-gallery .editorial-gallery-item::after{
+  display:none;
+  content:none;
+}
+
+.project-editorial-gallery .photo-slot{
+  box-shadow:none;
+}
+
+.image-frame--editorial .bars{
+  aspect-ratio:4/5;
+}
+
+
+/* ---------------------------------------------------------- */
+/* PROJECT ARCHIVE: PREVIEW FIRST / OPEN BUTTON               */
+/* ---------------------------------------------------------- */
+.project-preview-title{
+  font-size:1.9rem;
+  margin-top:14px;
+}
+
+.teletext-open-button{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  margin-top:16px;
+  padding:9px 12px;
+  background:var(--tt-green);
+  color:var(--tt-black);
+  text-decoration:none;
+  font-size:1.15rem;
+  letter-spacing:.07em;
+  text-transform:uppercase;
+}
+
+.teletext-open-button:hover,
+.teletext-open-button:focus-visible{
+  background:var(--tt-yellow);
+  color:var(--tt-black);
+  outline:0;
+}
+
+.table-row--active{
+  background:var(--tt-blue);
+  color:var(--tt-white);
+}
+
+.featured-item,
+.table-row{
+  cursor:pointer;
+}
+
+
+/* ---------------------------------------------------------- */
+/* PROJECT ARCHIVE: LIST IN MIDDLE / PREVIEW RIGHT            */
+/* ---------------------------------------------------------- */
+.projects-top--list-preview{
+  grid-template-columns:minmax(280px, .82fr) minmax(360px, 1.18fr);
+  align-items:start;
+}
+
+.projects-top--list-preview .featured-list{
+  border-left:0;
+  border-right:0;
+  padding:0 22px 0 0;
+}
+
+.projects-top--list-preview .project-hero-stack{
+  min-width:0;
+}
+
+.project-preview-title{
+  font-size:1.9rem;
+  margin-top:14px;
+}
+
+.teletext-open-button{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  margin-top:16px;
+  padding:9px 12px;
+  background:var(--tt-green);
+  color:var(--tt-black);
+  text-decoration:none;
+  font-size:1.15rem;
+  letter-spacing:.07em;
+  text-transform:uppercase;
+}
+
+.teletext-open-button:hover,
+.teletext-open-button:focus-visible{
+  background:var(--tt-yellow);
+  color:var(--tt-black);
+  outline:0;
+}
+
+.featured-item,
+.table-row{
+  cursor:pointer;
+}
+
+.table-row--active{
+  background:var(--tt-blue);
+  color:var(--tt-white);
+}
+
+
+/* Project archive responsive safety */
+.projects-top--list-preview .featured-list,
+.projects-top--list-preview .project-hero-stack,
+.projects-top--list-preview .project-hero{
+  min-width:0;
+}
+
+.projects-top--list-preview .project-hero .image-frame{
+  width:100%;
+}
+
+.table-row--active{
+  background:var(--tt-blue);
+  color:var(--tt-white);
+}
+
+
+/* Four main category themes */
+.category-theme-fashion{
+  --theme-color:var(--tt-magenta);
+  --theme-accent:var(--tt-cyan);
+}
+
+.category-theme-fashion .category-bar{
+  background:var(--tt-magenta);
+  color:var(--tt-white);
+}
+
+.category-theme-fashion .featured-item--active,
+.category-theme-fashion .table-row--active{
+  background:var(--tt-magenta);
+  color:var(--tt-white);
+}
+
+
+/* Project archive mobile/tablet helpers */
+.broadcast-info-heading{
+  margin-top:26px;
+}
+
+.broadcast-info-list{
+  display:block;
+}
+
+.projects-right,
+.projects-top--list-preview,
+.project-hero-stack,
+.project-hero{
+  min-width:0;
+}
+
+
+/* Stable single project preview: no layout expansion on project switch */
+.project-preview-single{
+  min-width:0;
+}
+
+.project-preview-image-wrap{
+  width:100%;
+  min-height:0;
+}
+
+.project-preview-single .image-frame--portrait{
+  aspect-ratio:4/5;
+}
+
+
+
+
+/* Local preview images: instant switch, no loading fade */
+.project-preview-single .photo-slot{
+  backface-visibility:hidden;
+}
+
+
+/* Local work preview images */
+.project-preview-single .photo-slot{
+  backface-visibility:hidden;
+}
+
+
+
+/* ---------------------------------------------------------- */
+.image-frame,
+.photo-slot,
+.project-preview-image-wrap,
+.project-editorial-gallery,
+.project-editorial-gallery *,
+.editorial-gallery-item{
+  text-shadow:none !important;
+}
+
+.photo-slot{
+  filter:none !important;
+  mix-blend-mode:normal !important;
+  backface-visibility:hidden;
+}
+
+.image-frame::before,
+.image-frame::after,
+.photo-slot::before,
+.photo-slot::after,
+.project-preview-image-wrap::before,
+.project-preview-image-wrap::after,
+.editorial-gallery-item::before,
+.editorial-gallery-item::after{
+  display:none !important;
+  content:none !important;
+}
+
+
+
+.project-preview-single .image-frame--portrait,
+.project-preview-single .photo-slot{
+  overflow:hidden;
+}
+
+
+/* ---------------------------------------------------------- */
+img,
+picture,
+.photo-slot,
+.image-frame,
+.image-frame *,
+.project-preview-image-wrap,
+.project-preview-image-wrap *,
+.project-editorial-gallery,
+.project-editorial-gallery *,
+.editorial-gallery-grid,
+.editorial-gallery-item,
+.editorial-gallery-item *,
+.project-detail-gallery-column,
+.project-detail-gallery-column *{
+  text-shadow:none !important;
+}
+
+img,
+.photo-slot,
+.image-frame img,
+.project-editorial-gallery img,
+.project-preview-image-wrap img,
+.editorial-gallery-item img{
+  filter:none !important;
+  mix-blend-mode:normal !important;
+  opacity:1;
+  transform:translateZ(0);
+  backface-visibility:hidden;
+  isolation:isolate;
+}
+
+.image-frame,
+.project-preview-image-wrap,
+.project-editorial-gallery,
+.editorial-gallery-item{
+  position:relative;
+  isolation:isolate;
+}
+
+.image-frame img,
+.photo-slot,
+.project-editorial-gallery img,
+.project-preview-image-wrap img,
+.editorial-gallery-item img{
+  position:relative;
+  z-index:20;
+}
+
+.image-frame::before,
+.image-frame::after,
+.image-frame *::before,
+.image-frame *::after,
+.project-preview-image-wrap::before,
+.project-preview-image-wrap::after,
+.project-editorial-gallery::before,
+.project-editorial-gallery::after,
+.project-editorial-gallery *::before,
+.project-editorial-gallery *::after,
+.editorial-gallery-grid::before,
+.editorial-gallery-grid::after,
+.editorial-gallery-item::before,
+.editorial-gallery-item::after,
+.photo-slot::before,
+.photo-slot::after,
+img::before,
+img::after{
+  display:none !important;
+  content:none !important;
+  background:none !important;
+  box-shadow:none !important;
+  filter:none !important;
+  opacity:1 !important;
+}
+
+/* Detail pages: remove page-level overlays completely so they never sit over the gallery. */
+
+
+/* Project overview: keep text effect, but make preview image area clean above any overlay. */
+.projects-layout .project-hero-stack,
+.projects-layout .project-preview-single,
+.projects-layout .project-preview-image-wrap,
+.projects-layout .image-frame,
+.projects-layout .photo-slot{
+  z-index:30;
+}
+
+/* Any gallery/photo section must sit above page scanlines. */
+.project-detail-gallery-column,
+.project-editorial-gallery,
+.editorial-gallery-grid,
+.editorial-gallery-item{
+  z-index:40;
+}
+
+.project-editorial-gallery .image-frame--editorial,
+.project-editorial-gallery .photo-slot{
+  background:transparent !important;
+  box-shadow:none !important;
+}
+
+/* Prevent inherited CRT glow from affecting captions/labels inside image frames. */
+.frame-label,
+.frame-label *,
+.lab-main{
+  text-shadow:none !important;
+  filter:none !important;
+}
+
+
+/* ---------------------------------------------------------- */
+/* Page-level overlays sit above the preview image. Disable them on the project overview. */
+
+
+/* The preview photo itself stays completely clean. */
+[data-project-preview] .image-frame,
+[data-project-preview] .image-frame::before,
+[data-project-preview] .image-frame::after,
+[data-project-preview] .image-frame *::before,
+[data-project-preview] .image-frame *::after,
+[data-project-preview] .photo-slot,
+[data-project-preview] .photo-slot::before,
+[data-project-preview] .photo-slot::after{
+  background-image:none !important;
+  box-shadow:none !important;
+  filter:none !important;
+  mix-blend-mode:normal !important;
+  text-shadow:none !important;
+}
+
+/* Keep the image visible above normal content layers. */
+[data-project-preview] .photo-slot{
+  position:relative;
+  z-index:9999;
+  opacity:1 !important;
+}
+
+
+
+
+
+/* ---------------------------------------------------------- */
+/* PROJECT CATEGORY LOAD: NO WRONG CATEGORY FLASH             */
+/* ---------------------------------------------------------- */
+.projects-screen-clean-images [data-projects-page]{
+  opacity:0;
+  visibility:hidden;
+}
+
+.projects-screen-clean-images.projects-is-ready [data-projects-page]{
+  opacity:1;
+  visibility:visible;
+}
+
+
+/* ---------------------------------------------------------- */
+/* Full-screen scanline overlay stays active on every page.
+   Real images are lifted above that overlay so the UI keeps the Teletext effect,
+   but photos stay clean. */
+.image-frame,
+.image-frame--editorial,
+.project-preview-image-wrap,
+.project-editorial-gallery,
+.editorial-gallery-grid,
+.editorial-gallery-item,
+.project-detail-gallery-column,
+.project-detail-gallery-column .image-frame,
+.contact-panel .image-frame,
+.project-hero .image-frame{
+  position:relative;
+  z-index:1001;
+}
+
+img,
+.photo-slot,
+.image-frame img,
+.project-preview-image-wrap img,
+.project-editorial-gallery img,
+.editorial-gallery-item img,
+.project-detail-gallery-column img{
+  position:relative;
+  z-index:1002;
+  filter:none !important;
+  mix-blend-mode:normal !important;
+  text-shadow:none !important;
+}
+
+/* If an image frame contains its own small label bar, keep that clean too. */
+.image-frame .frame-label,
+.image-frame .lab-main{
+  position:relative;
+  z-index:1003;
+}
+
+/* ---------------------------------------------------------- */
+/* PROJECT ARCHIVE REMOVED                                   */
+/* ---------------------------------------------------------- */
+.project-table{
+  display:none !important;
+}
+
+
+
+/* ---------------------------------------------------------- */
+/* Scanlines are global again, but real image layers sit above them. */
+.image-frame,
+.image-frame--editorial,
+.project-preview-image-wrap,
+.project-hero-stack,
+.project-hero,
+.project-editorial-gallery,
+.editorial-gallery-grid,
+.editorial-gallery-item,
+.project-detail-gallery-column,
+.contact-panel .image-frame,
+.about-layout .image-frame{
+  position:relative;
+  z-index:1200;
+  isolation:isolate;
+}
+
+.image-frame img,
+.photo-slot,
+.project-preview-image-wrap img,
+.project-editorial-gallery img,
+.editorial-gallery-item img,
+.project-detail-gallery-column img,
+.contact-panel .image-frame img,
+.about-layout .image-frame img{
+  position:relative;
+  z-index:1201;
+  filter:none !important;
+  mix-blend-mode:normal !important;
+  opacity:1 !important;
+  text-shadow:none !important;
+  box-shadow:none !important;
+}
+
+/* Remove any pseudo overlays inside image frames themselves. */
+.image-frame::before,
+.image-frame::after,
+.image-frame *::before,
+.image-frame *::after,
+.project-preview-image-wrap::before,
+.project-preview-image-wrap::after,
+.project-preview-image-wrap *::before,
+.project-preview-image-wrap *::after,
+.project-editorial-gallery::before,
+.project-editorial-gallery::after,
+.project-editorial-gallery *::before,
+.project-editorial-gallery *::after,
+.editorial-gallery-grid::before,
+.editorial-gallery-grid::after,
+.editorial-gallery-item::before,
+.editorial-gallery-item::after,
+.editorial-gallery-item *::before,
+.editorial-gallery-item *::after,
+.photo-slot::before,
+.photo-slot::after{
+  display:none !important;
+  content:none !important;
+  background:none !important;
+  background-image:none !important;
+  box-shadow:none !important;
+  filter:none !important;
+}
+
+/* Keep the text/info column below the scanline layer. */
+.project-detail-info-column,
+.project-info,
+.projects-side,
+.featured-list{
+  position:relative;
+  z-index:auto;
+}
+
+
+
+/* ---------------------------------------------------------- */
+.teletext-screen{
+  --scanline-opacity:.22;
+  --scanline-gap:3px;
+}
+
+.teletext-screen::after,
+.teletext-screen.scanlines-original::after{
+  content:"" !important;
+  position:absolute !important;
+  inset:0 !important;
+  z-index:900 !important;
+  pointer-events:none !important;
+  display:block !important;
+  opacity:1 !important;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,.035) 0,
+      rgba(255,255,255,.035) 1px,
+      transparent 1px,
+      transparent var(--scanline-gap),
+      rgba(0,0,0,var(--scanline-opacity)) var(--scanline-gap),
+      rgba(0,0,0,var(--scanline-opacity)) calc(var(--scanline-gap) + 1px)
+    ) !important;
+}
+
+.teletext-screen.crt-glow-only::before{
+  z-index:800 !important;
+}
+
+.teletext-screen.crt-glow-only > *{
+  position:relative;
+}
+
+
+/* ---------------------------------------------------------- */
+/* FINAL LAYER MODEL: SCANLINES OVER UI, IMAGES ABOVE LINES   */
+/* ---------------------------------------------------------- */
+/*
+  Layer order:
+  0-1999   normal page/text/UI
+  2000     global scanline overlay
+  3000+    real photo/image layers only
+*/
+.teletext-screen{
+  --scanline-opacity:.22;
+  --scanline-gap:3px;
+  position:relative;
+  isolation:isolate;
+}
+
+.teletext-screen::after,
+.teletext-screen.scanlines-original::after{
+  content:"" !important;
+  position:absolute !important;
+  inset:0 !important;
+  z-index:2000 !important;
+  pointer-events:none !important;
+  display:block !important;
+  opacity:1 !important;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,.035) 0,
+      rgba(255,255,255,.035) 1px,
+      transparent 1px,
+      transparent var(--scanline-gap),
+      rgba(0,0,0,var(--scanline-opacity)) var(--scanline-gap),
+      rgba(0,0,0,var(--scanline-opacity)) calc(var(--scanline-gap) + 1px)
+    ) !important;
+}
+
+/* Glow stays below scanlines and below clean photo layers. */
+.teletext-screen.crt-glow-only::before{
+  z-index:1500 !important;
+}
+
+.teletext-screen.crt-glow-only > *{
+  position:relative;
+}
+
+/* Home/menu text had z-index 1001 before. Keep it below the scanline layer. */
+.menu-cat,
+.menu-dots,
+.menu-page,
+.hero-title,
+.broadcast-header,
+.booking-strip,
+.phone-strip,
+.footer-controls{
+  position:relative;
+  z-index:auto !important;
+}
+
+/* Project/category preview image chain: every parent needed to escape the screen overlay. */
+.project-hero-stack,
+.project-hero,
+.project-preview-image-wrap,
+.project-preview-image-wrap .image-frame,
+.project-preview-image-wrap .photo-slot{
+  position:relative !important;
+  z-index:3000 !important;
+  isolation:isolate;
+}
+
+/* Project detail gallery: only the image/gallery column goes above scanlines. */
+.project-detail-gallery-column,
+.project-detail-gallery-column .project-editorial-gallery,
+.project-detail-gallery-column .editorial-gallery-grid,
+.project-detail-gallery-column .editorial-gallery-item,
+.project-detail-gallery-column .image-frame,
+.project-detail-gallery-column .photo-slot{
+  position:relative !important;
+  z-index:3000 !important;
+  isolation:isolate;
+}
+
+/* Other standalone image frames, e.g. about/contact image areas. */
+.about-layout .image-frame,
+.about-layout .photo-slot,
+.contact-layout .image-frame,
+.contact-layout .photo-slot,
+.contact-panel .image-frame,
+.contact-panel .photo-slot{
+  position:relative !important;
+  z-index:3000 !important;
+  isolation:isolate;
+}
+
+/* The actual image pixels stay clean. */
+img,
+.photo-slot,
+.image-frame img,
+.project-preview-image-wrap img,
+.project-editorial-gallery img,
+.editorial-gallery-item img,
+.project-detail-gallery-column img{
+  filter:none !important;
+  mix-blend-mode:normal !important;
+  opacity:1 !important;
+  text-shadow:none !important;
+  box-shadow:none !important;
+}
+
+/* No pseudo overlays inside image containers. */
+.image-frame::before,
+.image-frame::after,
+.image-frame *::before,
+.image-frame *::after,
+.project-preview-image-wrap::before,
+.project-preview-image-wrap::after,
+.project-preview-image-wrap *::before,
+.project-preview-image-wrap *::after,
+.project-editorial-gallery::before,
+.project-editorial-gallery::after,
+.project-editorial-gallery *::before,
+.project-editorial-gallery *::after,
+.editorial-gallery-grid::before,
+.editorial-gallery-grid::after,
+.editorial-gallery-item::before,
+.editorial-gallery-item::after,
+.editorial-gallery-item *::before,
+.editorial-gallery-item *::after,
+.photo-slot::before,
+.photo-slot::after{
+  display:none !important;
+  content:none !important;
+  background:none !important;
+  background-image:none !important;
+  box-shadow:none !important;
+  filter:none !important;
+}
+
+/* Text/info columns intentionally stay under the scanline layer. */
+.project-detail-info-column,
+.project-info,
+.projects-side,
+.featured-list{
+  position:relative;
+  z-index:auto !important;
+}
+
+
+
+/* ---------------------------------------------------------- */
+/* Normal grid instead of CSS columns:
+   Desktop reads left-to-right by row.
+   Mobile reads top-to-bottom. */
+.editorial-gallery-grid{
+  display:grid !important;
+  grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
+  gap:18px !important;
+  column-count:initial !important;
+  column-gap:initial !important;
+}
+
+.editorial-gallery-item{
+  display:block !important;
+  width:100% !important;
+  margin:0 !important;
+  break-inside:auto !important;
+  page-break-inside:auto !important;
+  -webkit-column-break-inside:auto !important;
+}
+
+.image-frame--editorial{
+  aspect-ratio:auto !important;
+  height:auto !important;
+  min-height:0 !important;
+  padding:0 !important;
+  border:0 !important;
+  background:transparent !important;
+  overflow:visible !important;
+}
+
+.image-frame--editorial .photo-slot{
+  position:relative !important;
+  display:block !important;
+  width:100% !important;
+  height:auto !important;
+  max-width:100% !important;
+  object-fit:contain !important;
+  filter:none !important;
+}
+
+@media (max-width:640px){
+  .editorial-gallery-grid{
+    grid-template-columns:1fr !important;
+    gap:16px !important;
+  }
+}
+
+
+/* ---------------------------------------------------------- */
+/* PROJECT DETAIL GALLERY ORDER + TIGHT GAPS                  */
+/* ---------------------------------------------------------- */
+/* Desktop:
+   Bild 1 links, Bild 2 rechts, Bild 3 links, Bild 4 rechts.
+   Die Spalten bleiben eng wie beim alten Masonry-Look. */
+.editorial-gallery-grid{
+  display:none !important;
+}
+
+.editorial-gallery-columns{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0, 1fr));
+  gap:18px;
+  align-items:start;
+}
+
+.editorial-gallery-column{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+  min-width:0;
+}
+
+.editorial-gallery-mobile{
+  display:none;
+}
+
+.editorial-gallery-item{
+  display:block !important;
+  width:100% !important;
+  margin:0 !important;
+  break-inside:auto !important;
+  page-break-inside:auto !important;
+  -webkit-column-break-inside:auto !important;
+}
+
+.image-frame--editorial{
+  aspect-ratio:auto !important;
+  height:auto !important;
+  min-height:0 !important;
+  padding:0 !important;
+  border:0 !important;
+  background:transparent !important;
+  overflow:visible !important;
+}
+
+.image-frame--editorial .photo-slot{
+  position:relative !important;
+  display:block !important;
+  width:100% !important;
+  height:auto !important;
+  max-width:100% !important;
+  object-fit:contain !important;
+  filter:none !important;
+}
+
+@media (max-width:640px){
+  .editorial-gallery-columns{
+    display:none;
+  }
+
+  .editorial-gallery-mobile{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+  }
+}
+
+
+
+/* ---------------------------------------------------------- */
+.project-gallery-nav{
+  display:grid;
+  gap:8px;
+  margin-top:22px;
+  padding-top:14px;
+  border-top:2px dotted var(--tt-cyan);
+}
+
+.project-gallery-nav .nav-link{
+  padding:7px 4px;
+}
+
+.project-info--sticky .project-side-nav{
+  display:none;
+}
+
+
+/* ---------------------------------------------------------- */
+/* PROJECT DETAIL NAV: DESKTOP RIGHT, MOBILE BELOW IMAGES     */
+/* ---------------------------------------------------------- */
+.project-gallery-nav--mobile{
+  display:none;
+}
+
+.project-info--sticky .project-side-nav{
+  display:grid;
+  gap:8px;
+  margin-top:22px;
+}
+
+
+/* ---------------------------------------------------------- */
+/* CATEGORY EMPTY MESSAGE SAFETY                              */
+/* ---------------------------------------------------------- */
+.empty-category-message.is-hidden{
+  display:none !important;
+}
+
+
+/* ---------------------------------------------------------- */
+/* TELEVIEW COLOR SYSTEM TEST                                 */
+/* ---------------------------------------------------------- */
+/* Global rule:
+   black = background
+   white = main text
+   cyan = technical UI / dividers
+   yellow = page numbers / codes
+   green = action / open
+   category accent = active states + headings only
+*/
+.category-theme{
+  --theme-screen:var(--tt-black);
+  --theme-accent:var(--tt-cyan);
+  --theme-accent-alt:var(--tt-yellow);
+  --theme-on-accent:var(--tt-black);
+  background:var(--tt-black) !important;
+}
+
+.category-theme-fashion{
+  --theme-screen:var(--tt-black);
+  --theme-accent:var(--tt-magenta);
+  --theme-accent-alt:var(--tt-cyan);
+  --theme-on-accent:var(--tt-black);
+}
+
+.category-theme-lifestyle{
+  --theme-screen:var(--tt-black);
+  --theme-accent:var(--tt-green);
+  --theme-accent-alt:var(--tt-cyan);
+  --theme-on-accent:var(--tt-black);
+}
+
+.category-theme-fashion-week{
+  --theme-screen:var(--tt-black);
+  --theme-accent:var(--tt-yellow);
+  --theme-accent-alt:var(--tt-magenta);
+  --theme-on-accent:var(--tt-black);
+}
+
+.category-theme-events{
+  --theme-screen:var(--tt-black);
+  --theme-accent:var(--tt-blue);
+  --theme-accent-alt:var(--tt-red);
+  --theme-on-accent:var(--tt-white);
+}
+
+/* Headings use category accent. */
+.category-theme .side-nav-heading,
+.category-theme .section-kicker,
+.category-theme .project-preview-title,
+.category-theme .info-title{
+  color:var(--theme-accent) !important;
+}
+
+/* Dividers stay technical/cyan instead of becoming fully category-colored. */
+.category-theme .teletext-divider--dotted-blue,
+.category-theme .teletext-divider--dotted-magenta,
+.category-theme .teletext-divider--dotted-yellow,
+.category-theme .teletext-divider--dotted-white{
+  background:none !important;
+  color:var(--tt-cyan) !important;
+}
+
+/* Main solid divider can use category accent subtly. */
+.category-theme > .teletext-divider,
+.category-theme .projects-layout > .teletext-divider{
+  background:var(--theme-accent) !important;
+}
+
+/* Project list stays black/white; active item uses only the accent. */
+.category-theme .featured-item{
+  background:transparent !important;
+  color:var(--tt-white) !important;
+}
+
+.category-theme .featured-item--active{
+  background:var(--theme-accent) !important;
+  color:var(--theme-on-accent) !important;
+}
+
+.category-theme .featured-item--active .feat-title,
+.category-theme .featured-item--active .feat-sub,
+.category-theme .featured-item--active .feat-num,
+.category-theme .featured-item--active .feat-code{
+  color:var(--theme-on-accent) !important;
+}
+
+/* Page codes stay yellow globally. */
+.category-theme .feat-code,
+.category-theme .page-code,
+.category-theme .nav-val{
+  color:var(--tt-yellow) !important;
+}
+
+/* Left category menu: only active item uses its category accent. */
+.category-theme .category-item{
+  background:transparent !important;
+}
+
+.category-theme .category-item--active{
+  background:var(--theme-accent) !important;
+}
+
+.category-theme .category-item--active span{
+  color:var(--theme-on-accent) !important;
+}
+
+/* Open action stays green as a global action color. */
+.teletext-open-button{
+  background:var(--tt-green) !important;
+  color:var(--tt-black) !important;
+}
+
+.teletext-open-button:hover,
+.teletext-open-button:focus-visible{
+  background:var(--tt-yellow) !important;
+  color:var(--tt-black) !important;
+}
+
+
+/* ---------------------------------------------------------- */
+/* Was ich geändert habe:
+   1. Gepunktete Trenner jetzt als pixelige Teletext-Blöcke statt runde dotted borders.
+   2. In der Kategorie-Liste bekommt die obere Zeile jetzt: Nummer + Projektname + Pixel-Dots + Seitennummer.
+   3. OPEN PROJECT nimmt jetzt die jeweilige Kategorie-Akzentfarbe statt global Grün.
+*/
+.teletext-divider--dotted-blue,
+.teletext-divider--dotted-white,
+.teletext-divider--dotted-magenta,
+.teletext-divider--dotted-yellow{
+  height:4px;
+  border-bottom:0 !important;
+  background-image:repeating-linear-gradient(
+    to right,
+    currentColor 0 4px,
+    transparent 4px 10px
+  ) !important;
+  background-repeat:repeat-x !important;
+  background-size:auto 4px !important;
+  background-position:left center !important;
+}
+
+.featured-item{
+  display:block;
+  padding:10px 8px 10px 6px;
+}
+
+.feat-head{
+  display:grid;
+  grid-template-columns:auto max-content minmax(0,1fr) auto;
+  align-items:baseline;
+  gap:10px;
+  min-width:0;
+}
+
+.feat-meta{
+  padding-left:calc(2ch + 10px);
+  margin-top:4px;
+}
+
+.feat-title--head{
+  min-width:0;
+}
+
+.feat-dots{
+  align-self:center;
+  height:4px;
+  min-width:18px;
+  background-image:repeating-linear-gradient(
+    to right,
+    currentColor 0 4px,
+    transparent 4px 10px
+  );
+  background-repeat:repeat-x;
+  background-size:auto 4px;
+  background-position:left center;
+  color:var(--tt-cyan);
+}
+
+.featured-item--active .feat-dots{
+  color:var(--theme-on-accent, var(--tt-black));
+}
+
+.category-theme .teletext-open-button{
+  background:var(--theme-accent) !important;
+  color:var(--theme-on-accent) !important;
+}
+
+.category-theme .teletext-open-button .nav-val{
+  color:var(--theme-on-accent) !important;
+}
+
+.category-theme .teletext-open-button:hover,
+.category-theme .teletext-open-button:focus-visible{
+  background:var(--theme-accent-alt) !important;
+  color:var(--tt-black) !important;
+}
+
+.category-theme .teletext-open-button:hover .nav-val,
+.category-theme .teletext-open-button:focus-visible .nav-val{
+  color:var(--tt-black) !important;
+}
+
+@media (max-width: 820px){
+  .feat-head{
+    grid-template-columns:auto minmax(0,1fr) auto;
+    gap:8px;
+  }
+
+  .feat-num{
+    grid-row:1;
+  }
+
+  .feat-title--head{
+    grid-row:1;
+  }
+
+  .feat-dots{
+    display:none;
+  }
+
+  .feat-code{
+    grid-row:1;
+  }
+
+  .feat-meta{
+    padding-left:calc(2ch + 8px);
+  }
+}
+
+
+/* ---------------------------------------------------------- */
+/* REMOVE DOTS OUTSIDE HOME                                   */
+/* ---------------------------------------------------------- */
+/* Start page menu dots stay untouched.
+   Project/category/legal/detail UI uses calmer solid separators instead of dotted lines. */
+.teletext-screen:not(.teletext-screen--home) .teletext-divider--dotted-blue,
+.teletext-screen:not(.teletext-screen--home) .teletext-divider--dotted-white,
+.teletext-screen:not(.teletext-screen--home) .teletext-divider--dotted-magenta,
+.teletext-screen:not(.teletext-screen--home) .teletext-divider--dotted-yellow{
+  height:var(--tt-line);
+  border-bottom:0 !important;
+  background:currentColor !important;
+  background-image:none !important;
+}
+
+.teletext-screen:not(.teletext-screen--home) .projects-side,
+.teletext-screen:not(.teletext-screen--home) .featured-list,
+.teletext-screen:not(.teletext-screen--home) .project-info--sticky,
+.teletext-screen:not(.teletext-screen--home) .legal-nav,
+.teletext-screen:not(.teletext-screen--home) .project-gallery-nav,
+.teletext-screen:not(.teletext-screen--home) .project-meta-block{
+  border-style:solid !important;
+}
+
+.teletext-screen:not(.teletext-screen--home) .table-row{
+  border-bottom-style:solid !important;
+}
+
+.teletext-screen:not(.teletext-screen--home) .feat-dots{
+  display:none !important;
+}
+
+
+/* Remove framed outlines in category/projects overview. Keep only dividers and spacing. */
+.projects-screen-clean-images .projects-side,
+.projects-screen-clean-images .featured-list{
+  border:0 !important;
+  box-shadow:none !important;
+  outline:0 !important;
+}
+
+
+/* ---------------------------------------------------------- */
+/* PROJECT CARDS + NO CONTENT FRAMES                          */
+/* ---------------------------------------------------------- */
+/* Project page number stays right beside the project text. */
+.featured-item{
+  display:grid !important;
+  grid-template-columns:auto minmax(0, 1fr) auto !important;
+  gap:12px !important;
+  align-items:center !important;
+}
+
+.feat-copy{
+  min-width:0;
+}
+
+.feat-code{
+  align-self:center !important;
+  justify-self:end !important;
+  white-space:nowrap !important;
+}
+
+/* Remove the frame-like vertical boxes around content columns.
+   Image borders are not touched. */
+.projects-side,
+.projects-top--list-preview .featured-list,
+.featured-list,
+.project-info--sticky,
+.legal-nav,
+.project-gallery-nav,
+.project-meta-block,
+.table-body,
+.legal-section,
+.placeholder-notice{
+  border-left:0 !important;
+  border-right:0 !important;
+  box-shadow:none !important;
+  outline:0 !important;
+}
+
+/* Keep horizontal separators calmer, but no boxed look. */
+.projects-side{
+  padding-right:0 !important;
+}
+
+.projects-top--list-preview .featured-list{
+  padding-right:0 !important;
+}
+
+.project-info--sticky{
+  padding-left:0 !important;
+}
+
+.legal-nav{
+  padding-right:0 !important;
+}
+
+/* No accidental dot-leader layout in project cards. */
+.feat-dots{
+  display:none !important;
+}
+
+/* ---------------------------------------------------------- */
+/* PROJECT DETAIL: NO TOP RULE, CATEGORY COLOR TITLE          */
+/* ---------------------------------------------------------- */
+.project-detail-info-column .project-info--sticky{
+  border-top:0 !important;
+}
+
+.category-theme .project-detail-info-column .section-kicker,
+.category-theme .project-detail-info-column .info-title{
+  color:var(--theme-accent) !important;
+}
+
+
+/* ---------------------------------------------------------- */
+/* GLOBAL HEADER UNIFICATION + PROJECT NAV COLORS            */
+/* ---------------------------------------------------------- */
+.broadcast-header--unified{
+  display:grid !important;
+  grid-template-columns:auto minmax(0,1fr) auto auto;
+  align-items:baseline;
+  gap:12px 22px;
+  white-space:nowrap;
+}
+
+.broadcast-header--unified .page-code{
+  color:var(--tt-yellow);
+}
+
+.broadcast-header--unified .header-mid{
+  min-width:0;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  text-align:center;
+  color:var(--tt-white);
+}
+
+.broadcast-header--unified .header-right--time{
+  display:flex;
+  align-items:baseline;
+  gap:14px;
+}
+
+.broadcast-header--unified .header-index-link{
+  color:var(--tt-cyan);
+  text-decoration:none;
+}
+
+.broadcast-header--unified .header-index-link:hover,
+.broadcast-header--unified .header-index-link:focus-visible{
+  color:var(--tt-white);
+  outline:0;
+}
+
+.nav-link .nav-val.nav-val--red{color:var(--tt-red) !important;}
+.nav-link .nav-val.nav-val--green{color:var(--tt-green) !important;}
+.nav-link .nav-val.nav-val--yellow{color:var(--tt-yellow) !important;}
+.nav-link .nav-val.nav-val--blue{color:var(--tt-blue) !important;}
+.nav-link .nav-val.nav-val--magenta{color:var(--tt-magenta) !important;}
+.nav-link .nav-val.nav-val--cyan{color:var(--tt-cyan) !important;}
+.nav-link .nav-val.nav-val--white{color:var(--tt-white) !important;}
+
+
+
+/* ---------------------------------------------------------- */
+/* One consistent screen width across index, projects, detail, about, contact and legal. */
+.teletext-stage{
+  width:100%;
+  justify-content:center;
+}
+
+.teletext-screen{
+  width:min(100%, 1600px) !important;
+  max-width:1600px !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+}
+
+/* Prevent page-specific layouts from increasing the page width. */
+.projects-layout,
+.project-detail-split,
+.detail-layout,
+.contact-layout,
+.about-layout,
+.legal-layout,
+.projects-right,
+.projects-top,
+.projects-top--list-preview{
+  max-width:100%;
+  min-width:0;
+}
+
+@media (min-width:1601px){
+  .teletext-screen{
+    width:1600px !important;
+  }
+}
+
+
+
+/* ---------------------------------------------------------- */
+/* Desktop target: max 1600 x 1200.
+   The screen keeps 4:3 proportions but can grow taller if content needs scrolling. */
+.teletext-stage{
+  width:100%;
+  justify-content:center;
+}
+
+.teletext-screen{
+  width:min(100vw, 1600px) !important;
+  max-width:1600px !important;
+  aspect-ratio:4 / 3;
+  min-height:auto !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+}
+
+/* Keep long pages usable: content may exceed the 4:3 minimum height and scroll normally. */
+.teletext-screen > *{
+  max-width:100%;
+}
+
+/* Projects overview: reduce the right preview image so title/meta/button fit better on screen. */
+.projects-screen-clean-images .project-hero-stack{
+  align-self:start;
+}
+
+.projects-screen-clean-images .project-preview-image-wrap{
+  width:min(100%, 460px);
+  max-width:100%;
+}
+
+.projects-screen-clean-images .project-preview-image-wrap .image-frame--portrait{
+  aspect-ratio:4 / 5;
+  max-height:560px;
+}
+
+.projects-screen-clean-images .project-preview-image-wrap .photo-slot{
+  object-fit:cover;
+}
+
+@media (min-width:1400px){
+  .projects-screen-clean-images .project-preview-image-wrap{
+    width:min(100%, 520px);
+  }
+
+  .projects-screen-clean-images .project-preview-image-wrap .image-frame--portrait{
+    max-height:620px;
+  }
+}
+
+
+
+/* ---------------------------------------------------------- */
+/* The 4:3 screen stays, but the projects overview should not push
+   the footer to the very bottom with a huge empty gap. */
+.projects-screen-clean-images .footer-controls{
+  margin-top:24px !important;
+  padding-top:12px !important;
+}
+
+/* Slightly tighter project cards so long categories fit better. */
+.projects-screen-clean-images .featured-list{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+
+.projects-screen-clean-images .featured-item{
+  padding-top:7px !important;
+  padding-bottom:7px !important;
+  gap:10px !important;
+}
+
+.projects-screen-clean-images .feat-title{
+  line-height:1.14;
+}
+
+.projects-screen-clean-images .feat-sub{
+  line-height:1.22;
+}
+
+/* Preview block a little tighter too. */
+.projects-screen-clean-images .project-preview-title{
+  margin-top:10px !important;
+}
+
+.projects-screen-clean-images .info-line{
+  line-height:1.25;
+}
+
+.projects-screen-clean-images .teletext-open-button{
+  margin-top:10px !important;
+}
+
+
+
+/* ---------------------------------------------------------- */
+/* 1200x900 feels closer to a real broadcast/teletext frame than 1600x1200. */
+.teletext-stage{
+  width:100%;
+  justify-content:center;
+  align-items:flex-start;
+}
+
+.teletext-screen{
+  width:min(100vw, 1200px) !important;
+  max-width:1200px !important;
+  aspect-ratio:4 / 3;
+  min-height:auto !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+}
+
+/* Main layout groups must stay inside the same 1200px frame. */
+.projects-layout,
+.project-detail-split,
+.detail-layout,
+.contact-layout,
+.about-layout,
+.legal-layout,
+.projects-right,
+.projects-top,
+.projects-top--list-preview{
+  max-width:100%;
+  min-width:0;
+}
+
+/* Projects overview: with the smaller TV frame, keep preview balanced. */
+.projects-screen-clean-images .project-preview-image-wrap{
+  width:min(100%, 380px);
+  max-width:100%;
+}
+
+.projects-screen-clean-images .project-preview-image-wrap .image-frame--portrait{
+  aspect-ratio:4 / 5;
+  max-height:460px;
+}
+
+.projects-screen-clean-images .footer-controls{
+  margin-top:20px !important;
+}
+
+
+/* ---------------------------------------------------------- */
+/* RESTORE SCROLLING — MAX WIDTH ONLY                         */
+/* ---------------------------------------------------------- */
+/* No fixed 4:3 frame here.
+   The page can grow vertically again, so footers/buttons are not clipped. */
+.teletext-stage{
+  width:100%;
+  min-height:100svh;
+  justify-content:center;
+  align-items:flex-start;
+  overflow:visible;
+}
+
+.teletext-screen{
+  width:100% !important;
+  max-width:1200px !important;
+  min-height:100svh !important;
+  height:auto !important;
+  aspect-ratio:auto !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+  overflow:visible !important;
+}
+
+/* Keep all page layouts inside the 1200px frame, but allow vertical growth. */
+.projects-layout,
+.project-detail-split,
+.detail-layout,
+.contact-layout,
+.about-layout,
+.legal-layout,
+.projects-right,
+.projects-top,
+.projects-top--list-preview{
+  max-width:100%;
+  min-width:0;
+}
+
+/* Undo forced preview clipping from the fixed-frame test. */
+.projects-screen-clean-images .project-preview-image-wrap{
+  width:100%;
+  max-width:100%;
+}
+
+.projects-screen-clean-images .project-preview-image-wrap .image-frame--portrait{
+  max-height:none !important;
+}
+
+/* Footer can sit after content normally again. */
+.projects-screen-clean-images .footer-controls,
+.footer-controls{
+  margin-top:auto;
+}
+
+
+/* ---------------------------------------------------------- */
+/* PROJECT CARDS: HIDE DUPLICATE CATEGORY LINE                */
+/* ---------------------------------------------------------- */
+/* Category is already shown by the selected category/context.
+   Cards only show title, location/year and page number to avoid height jumps. */
+.projects-screen-clean-images .featured-item{
+  align-items:center !important;
+}
+
+.projects-screen-clean-images .feat-copy{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+}
+
+.projects-screen-clean-images .feat-title{
+  line-height:1.15;
+}
+
+.projects-screen-clean-images .feat-sub{
+  line-height:1.15;
+}
+
+
+/* ---------------------------------------------------------- */
+/* PROJECT PREVIEW: HIDE DUPLICATE CATEGORY LINE              */
+/* ---------------------------------------------------------- */
+/* The active category is already clear from the page context. */
+.projects-screen-clean-images [data-preview-category]{
+  display:none !important;
+}

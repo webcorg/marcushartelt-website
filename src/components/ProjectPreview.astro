@@ -1,0 +1,29 @@
+---
+import ImageFrame from './ImageFrame.astro';
+
+const { project, previewImage = `/images/previews/${project.slug}-work-preview.webp` } = Astro.props;
+---
+<section
+  class="project-hero project-preview-single"
+  data-project-preview
+  data-project-slug={project.slug}
+>
+  <div class="project-preview-image-wrap">
+    <ImageFrame
+      type="portrait"
+      showLabel={false}
+      sub={project.heroAlt || project.title}
+      src={previewImage}
+      alt={project.heroAlt || project.title}
+      fallbackSrc={project.heroImage}
+    />
+  </div>
+
+  <h2 class="info-title project-preview-title" data-preview-title>{project.title}</h2>
+  <div class="info-line c-cyan" data-preview-meta>{project.location} / {project.year}</div>
+
+  <a class="teletext-open-button" href={`/projects/${project.slug}`} data-open-active-project>
+    <span>OPEN PROJECT</span>
+    <span class="nav-val" data-preview-page>{project.pageNumber}</span>
+  </a>
+</section>
