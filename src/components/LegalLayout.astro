@@ -2,25 +2,27 @@
 import TeletextScreen from './TeletextScreen.astro';
 import BroadcastHeader from './BroadcastHeader.astro';
 import FooterControls from './FooterControls.astro';
-import { legalNavigation, legalNotice } from '@data/legal';
+
 const { page } = Astro.props;
 ---
 <TeletextScreen title={`MARCUS HARTELT — ${page.title} P${page.pageNumber}`}>
   <BroadcastHeader pageCode={`P${page.pageNumber}/01`} center={page.title} />
-  <div class="teletext-divider teletext-divider--blue"></div>
+  <div class="teletext-divider"></div>
+
   <h1 class="page-title">{page.title}</h1>
-  <div class="teletext-divider teletext-divider--dotted-magenta"></div>
   <p class="status-line">P{page.pageNumber} / {page.status}</p>
-  <div class="placeholder-notice">{legalNotice}</div>
+
   {page.sections.map((section) => (
     <section class="legal-section">
       <div class="section-head">{section.heading}</div>
-      <div class="section-body">{section.body}</div>
+      <div class="section-body" set:html={section.body}></div>
     </section>
   ))}
-  <nav class="nav-links" style="margin-top:10px">
-    <a class="nav-link" href="/legal"><span>BACK TO LEGAL</span><span class="nav-val">108</span></a>
+
+  <nav class="nav-links legal-back-links">
+    <a class="nav-link" href="/legal"><span>BACK TO LEGAL</span><span class="nav-val">900</span></a>
     <a class="nav-link" href="/"><span>BACK TO INDEX</span><span class="nav-val">100</span></a>
   </nav>
+
   <FooterControls />
 </TeletextScreen>

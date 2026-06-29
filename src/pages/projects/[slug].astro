@@ -87,8 +87,8 @@ function getNavColorClass(projectRef) {
           <div class="info-line">IMAGES / {String(imageTotal).padStart(2, '0')}</div>
         </div>
 
-        <div class="teletext-divider teletext-divider--dotted-magenta"></div>
-        <div class="info-desc">{project.description.toUpperCase()}</div>
+        <div class="teletext-divider teletext-divider--dotted-magenta project-info-divider"></div>
+        <div class="info-desc project-info-desc">{project.description.toUpperCase()}</div>
 
         <nav class="project-side-nav">
           {nextProject && <a class="nav-link" href={`/projects/${nextProject.slug}`}><span>NEXT PROJECT</span><span class:list={["nav-val", getNavColorClass(nextProject)]}>{nextProject.pageNumber}</span></a>}

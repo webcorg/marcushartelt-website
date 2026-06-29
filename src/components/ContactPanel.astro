@@ -1,8 +1,17 @@
 ---
-import ImageFrame from './ImageFrame.astro';
 ---
 <div class="contact-layout">
-  <ImageFrame type="square" label="PORTRAIT IMAGE" sub="B&W PORTRAIT — DROP IMAGE" />
+  <div class="contact-video-frame" aria-label="Contact video">
+      <video
+        class="contact-video"
+        src="/videos/contact-video.mp4"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+      ></video>
+    </div>
   <div class="contact-info">
     <div class="contact-name">MARCUS HARTELT</div>
     <div class="contact-line">PHOTOGRAPHER</div>

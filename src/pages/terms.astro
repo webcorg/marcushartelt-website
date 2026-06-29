@@ -1,6 +1,3 @@
 ---
-import LegalLayout from '@components/LegalLayout.astro';
-import { legalPages } from '@data/legal';
-const page = legalPages['terms'];
+return Astro.redirect('/legal');
 ---
-<LegalLayout page={page} />

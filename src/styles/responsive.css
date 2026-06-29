@@ -274,8 +274,7 @@
 }
 
 
-/* ---------------------------------------------------------- */
-/* MOBILE INDEX HEADER COMPACT                                */
+
 /* ---------------------------------------------------------- */
 @media (max-width:640px){
   .broadcast-header{
@@ -1171,8 +1170,7 @@
 }
 
 
-/* ---------------------------------------------------------- */
-/* MOBILE INDEX: MAIL BAR FIT AND WHITE BACKGROUND            */
+
 /* ---------------------------------------------------------- */
 /* Mobile index only:
    - make the email fully visible
@@ -1185,8 +1183,8 @@
   .teletext-screen--home .booking-mail,
   .teletext-screen--home .email-bar,
   .teletext-screen--home [href^="mailto:"]{
-    background:var(--tt-white, #fff) !important;
-    background-color:var(--tt-white, #fff) !important;
+    background:var(--tt-blue, #0000ff) !important;
+    background-color:var(--tt-blue, #0000ff) !important;
     color:var(--tt-black, #000) !important;
   }
 
@@ -1222,5 +1220,1703 @@
     font-size:clamp(1.25rem, 8.7vw, 2.15rem) !important;
     line-height:1.05 !important;
     letter-spacing:-0.03em !important;
+  }
+}
+
+
+/* ---------------------------------------------------------- */
+/* MOBILE INDEX: MAIL BAR FIT AND WHITE BACKGROUND            */
+/* ---------------------------------------------------------- */
+/* Real mobile index mail fix:
+   uses explicit hooks added to index.astro and fallback selectors. */
+@media (max-width:640px){
+  .teletext-screen--home .home-mail-strip,
+  .teletext-screen--home .home-mail-strip *,
+  .teletext-screen--home a.home-mail-link,
+  .teletext-screen--home a[href^="mailto:hi@marcushartelt.com"],
+  .teletext-screen--home a[href^="mailto:HI@MARCUSHARTELT.COM"]{
+    background-color:var(--tt-blue, #0000ff) !important;
+    background:var(--tt-blue, #0000ff) !important;
+    color:var(--tt-black, #000) !important;
+  }
+
+  .teletext-screen--home .home-mail-strip{
+    width:100% !important;
+    max-width:100% !important;
+    box-sizing:border-box !important;
+    overflow:hidden !important;
+    padding-left:0 !important;
+    padding-right:0 !important;
+  }
+
+  .teletext-screen--home a.home-mail-link,
+  .teletext-screen--home a[href^="mailto:hi@marcushartelt.com"],
+  .teletext-screen--home a[href^="mailto:HI@MARCUSHARTELT.COM"]{
+    display:block !important;
+    width:100% !important;
+    max-width:100% !important;
+    min-width:0 !important;
+    box-sizing:border-box !important;
+    padding:8px 6px !important;
+    white-space:nowrap !important;
+    overflow:visible !important;
+    text-overflow:clip !important;
+    text-align:center !important;
+    font-size:clamp(1.05rem, 7.15vw, 1.85rem) !important;
+    line-height:1 !important;
+    letter-spacing:-0.055em !important;
+    transform:none !important;
+  }
+}
+
+
+
+/* ---------------------------------------------------------- */
+/* The email text is direct text inside .phone-strip, not a link.
+   This forces the full address to fit on mobile. */
+@media (max-width:640px){
+  .teletext-screen--home .phone-strip,
+  .teletext-screen--home .home-mail-strip{
+    width:100% !important;
+    max-width:100% !important;
+    min-width:0 !important;
+    box-sizing:border-box !important;
+    padding-left:4px !important;
+    padding-right:4px !important;
+    overflow:visible !important;
+    white-space:nowrap !important;
+    text-align:center !important;
+    background:var(--tt-blue, #0000ff) !important;
+    background-color:var(--tt-blue, #0000ff) !important;
+    color:var(--tt-black, #000) !important;
+    font-size:clamp(0.86rem, 6.25vw, 1.45rem) !important;
+    line-height:1.05 !important;
+    letter-spacing:-0.085em !important;
+    word-spacing:-0.08em !important;
+    transform:none !important;
+  }
+}
+
+
+/* ---------------------------------------------------------- */
+/* MOBILE INDEX: PHONE STRIP NO LETTER SPACING FULL WIDTH     */
+/* ---------------------------------------------------------- */
+/* Mobile index mail:
+   - never change letter-spacing
+   - make the text large again so it reaches close to the edges
+   - keep white background */
+@media (max-width:640px){
+  .teletext-screen--home .phone-strip,
+  .teletext-screen--home .home-mail-strip{
+    width:100% !important;
+    max-width:100% !important;
+    min-width:0 !important;
+    box-sizing:border-box !important;
+    padding-left:2px !important;
+    padding-right:2px !important;
+    overflow:hidden !important;
+    white-space:nowrap !important;
+    text-align:center !important;
+    background:var(--tt-blue, #0000ff) !important;
+    background-color:var(--tt-blue, #0000ff) !important;
+    color:var(--tt-black, #000) !important;
+    font-size:clamp(1.72rem, 7.05vw, 2.7rem) !important;
+    line-height:1.05 !important;
+    letter-spacing:normal !important;
+    word-spacing:normal !important;
+    transform:none !important;
+  }
+}
+
+
+
+/* ---------------------------------------------------------- */
+/* Desktop/tablet/mobile header reset. Keeps the old teletext broadcast feel:
+   page left, title centered, date/time/index right. */
+
+/* Desktop */
+@media (min-width:1024px){
+  body .broadcast-header,
+  body .broadcast-header--unified{
+    position:relative !important;
+    display:flex !important;
+    align-items:baseline !important;
+    justify-content:flex-start !important;
+    width:100% !important;
+    max-width:none !important;
+    min-height:28px !important;
+    margin:0 0 10px !important;
+    padding:0 4px !important;
+    box-sizing:border-box !important;
+    gap:0 !important;
+    white-space:nowrap !important;
+    font-size:1.12rem !important;
+    line-height:1 !important;
+    letter-spacing:.055em !important;
+  }
+
+  body .broadcast-header--unified .page-code{
+    flex:0 0 auto !important;
+    justify-self:auto !important;
+    text-align:left !important;
+    color:var(--tt-yellow, #ffff00) !important;
+  }
+
+  body .broadcast-header--unified .header-mid{
+    position:absolute !important;
+    left:50% !important;
+    top:0 !important;
+    transform:translateX(-50%) !important;
+    width:auto !important;
+    max-width:42vw !important;
+    min-width:0 !important;
+    overflow:hidden !important;
+    text-overflow:ellipsis !important;
+    white-space:nowrap !important;
+    text-align:center !important;
+    color:var(--tt-white, #fff) !important;
+    justify-self:auto !important;
+  }
+
+  body .broadcast-header--unified .header-right--time{
+    margin-left:auto !important;
+    flex:0 0 auto !important;
+    display:flex !important;
+    flex-direction:row !important;
+    align-items:baseline !important;
+    justify-content:flex-end !important;
+    gap:12px !important;
+    width:auto !important;
+    color:var(--tt-white, #fff) !important;
+  }
+
+  body .broadcast-header--unified .local-date{
+    color:var(--tt-yellow, #ffff00) !important;
+  }
+
+  body .broadcast-header--unified .clock{
+    color:var(--tt-white, #fff) !important;
+  }
+
+  body .broadcast-header--unified .header-index-link{
+    flex:0 0 auto !important;
+    margin-left:24px !important;
+    justify-self:auto !important;
+    text-align:right !important;
+    color:var(--tt-red, #ff0000) !important;
+    text-decoration:none !important;
+  }
+}
+
+/* Tablet */
+@media (min-width:641px) and (max-width:1023px){
+  body .broadcast-header,
+  body .broadcast-header--unified{
+    position:relative !important;
+    display:flex !important;
+    align-items:baseline !important;
+    justify-content:flex-start !important;
+    width:100% !important;
+    margin:0 0 9px !important;
+    padding:0 2px !important;
+    box-sizing:border-box !important;
+    gap:0 !important;
+    white-space:nowrap !important;
+    font-size:1rem !important;
+    line-height:1 !important;
+    letter-spacing:.045em !important;
+  }
+
+  body .broadcast-header--unified .page-code{
+    flex:0 0 auto !important;
+    color:var(--tt-yellow, #ffff00) !important;
+  }
+
+  body .broadcast-header--unified .header-mid{
+    position:absolute !important;
+    left:50% !important;
+    top:0 !important;
+    transform:translateX(-50%) !important;
+    max-width:34vw !important;
+    overflow:hidden !important;
+    text-overflow:ellipsis !important;
+    white-space:nowrap !important;
+    text-align:center !important;
+    color:var(--tt-white, #fff) !important;
+  }
+
+  body .broadcast-header--unified .header-right--time{
+    margin-left:auto !important;
+    flex:0 0 auto !important;
+    display:flex !important;
+    flex-direction:row !important;
+    align-items:baseline !important;
+    gap:9px !important;
+  }
+
+  body .broadcast-header--unified .local-date{
+    color:var(--tt-yellow, #ffff00) !important;
+  }
+
+  body .broadcast-header--unified .clock{
+    color:var(--tt-white, #fff) !important;
+  }
+
+  body .broadcast-header--unified .header-index-link{
+    flex:0 0 auto !important;
+    margin-left:16px !important;
+    color:var(--tt-red, #ff0000) !important;
+    text-decoration:none !important;
+  }
+}
+
+/* Mobile */
+@media (max-width:640px){
+  body .broadcast-header,
+  body .broadcast-header--unified{
+    display:grid !important;
+    grid-template-columns:minmax(0,1fr) auto !important;
+    grid-template-areas:
+      "center center"
+      "page time"
+      "index time" !important;
+    align-items:start !important;
+    width:100% !important;
+    margin:0 0 8px !important;
+    padding:0 !important;
+    box-sizing:border-box !important;
+    gap:4px 10px !important;
+    white-space:normal !important;
+    font-size:.92rem !important;
+    line-height:1.05 !important;
+    letter-spacing:.04em !important;
+  }
+
+  body .broadcast-header--unified .header-mid{
+    position:static !important;
+    transform:none !important;
+    grid-area:center !important;
+    width:100% !important;
+    max-width:100% !important;
+    text-align:center !important;
+    white-space:nowrap !important;
+    overflow:hidden !important;
+    text-overflow:ellipsis !important;
+    color:var(--tt-white, #fff) !important;
+  }
+
+  body .broadcast-header--unified .page-code{
+    grid-area:page !important;
+    justify-self:start !important;
+    color:var(--tt-yellow, #ffff00) !important;
+  }
+
+  body .broadcast-header--unified .header-right--time{
+    grid-area:time !important;
+    justify-self:end !important;
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:flex-end !important;
+    gap:2px !important;
+    width:auto !important;
+  }
+
+  body .broadcast-header--unified .local-date{
+    color:var(--tt-yellow, #ffff00) !important;
+  }
+
+  body .broadcast-header--unified .clock{
+    color:var(--tt-white, #fff) !important;
+  }
+
+  body .broadcast-header--unified .header-index-link{
+    grid-area:index !important;
+    justify-self:start !important;
+    margin-left:0 !important;
+    color:var(--tt-red, #ff0000) !important;
+    text-decoration:none !important;
+  }
+}
+
+
+
+/* ---------------------------------------------------------- */
+
+
+/* ---------------------------------------------------------- */
+/* Same vertical feeling as the fixed index:
+   desktop/tablet pages are centered in the viewport when content fits,
+   but can still scroll naturally when content is taller. */
+@media (min-width:641px){
+  .teletext-page{
+    min-height:100svh !important;
+  }
+
+  .teletext-stage{
+    min-height:100svh !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    padding-top:24px !important;
+    padding-bottom:24px !important;
+    box-sizing:border-box !important;
+  }
+
+  .teletext-screen{
+    margin-top:auto !important;
+    margin-bottom:auto !important;
+  }
+
+  .project-detail-screen{
+    align-self:flex-start !important;
+    margin-top:0 !important;
+    margin-bottom:0 !important;
+  }
+}
+
+/* Mobile keeps the compact top flow except where individual pages need height. */
+@media (max-width:640px){
+  .teletext-stage{
+    min-height:100svh !important;
+    display:flex !important;
+    align-items:flex-start !important;
+    justify-content:center !important;
+  }
+}
+
+
+
+/* ---------------------------------------------------------- */
+/* Categories page desktop/tablet:
+   force left and right top blocks to use the same heading row and divider row.
+   This fixes the cyan bars not sitting on one horizontal line. */
+@media (min-width:641px){
+  .projects-screen-clean-images .projects-layout{
+    align-items:start !important;
+  }
+
+  .projects-screen-clean-images .projects-side,
+  .projects-screen-clean-images .projects-top--list-preview .featured-list{
+    padding-top:0 !important;
+    margin-top:0 !important;
+  }
+
+  .projects-screen-clean-images .projects-side > .side-nav-heading:first-child,
+  .projects-screen-clean-images .projects-top--list-preview .featured-list > .side-nav-heading:first-child{
+    display:flex !important;
+    align-items:flex-start !important;
+    height:1.18em !important;
+    min-height:1.18em !important;
+    max-height:1.18em !important;
+    margin:0 !important;
+    padding:0 !important;
+    line-height:1 !important;
+  }
+
+  .projects-screen-clean-images .projects-side > .teletext-divider:first-of-type,
+  .projects-screen-clean-images .projects-top--list-preview .featured-list > .teletext-divider:first-of-type{
+    height:var(--tt-line, 3px) !important;
+    min-height:var(--tt-line, 3px) !important;
+    max-height:var(--tt-line, 3px) !important;
+    margin-top:18px !important;
+    margin-bottom:18px !important;
+    padding:0 !important;
+    border:0 !important;
+    transform:none !important;
+  }
+
+  .projects-screen-clean-images .projects-side > .category-list,
+  .projects-screen-clean-images .projects-top--list-preview .featured-list > [data-featured-project]:first-of-type{
+    margin-top:0 !important;
+  }
+}
+
+
+
+/* ---------------------------------------------------------- */
+/* One frame/header behavior for all pages.
+   Desktop/tablet: content frame is vertically balanced like the good index state.
+   Mobile: compact header, no wasted first row. */
+@media (min-width:641px){
+  html,
+  body,
+  .teletext-page{
+    min-height:100svh !important;
+  }
+
+  .teletext-stage{
+    min-height:100svh !important;
+    width:100% !important;
+    display:flex !important;
+    justify-content:center !important;
+    align-items:center !important;
+    padding-top:24px !important;
+    padding-bottom:24px !important;
+    box-sizing:border-box !important;
+  }
+
+  .teletext-screen{
+    width:min(100%, 1200px) !important;
+    min-width:0 !important;
+    max-width:1200px !important;
+    min-height:auto !important;
+    height:auto !important;
+    margin:0 auto !important;
+  }
+
+  /* Long gallery/detail pages should start normally instead of being vertically centered
+     into negative overflow. */
+  .project-detail-screen{
+    align-self:flex-start !important;
+    margin-top:0 !important;
+    margin-bottom:0 !important;
+  }
+
+  .broadcast-header,
+  .broadcast-header--unified{
+    position:relative !important;
+    display:flex !important;
+    align-items:baseline !important;
+    width:100% !important;
+    min-height:1.18em !important;
+    margin:0 0 10px !important;
+    padding:0 !important;
+    gap:0 !important;
+    white-space:nowrap !important;
+    line-height:1 !important;
+    letter-spacing:.055em !important;
+  }
+
+  .broadcast-header--unified .page-code{
+    flex:0 0 auto !important;
+    justify-self:auto !important;
+    color:var(--tt-yellow, #ffff00) !important;
+  }
+
+  .broadcast-header--unified .header-mid{
+    position:absolute !important;
+    left:50% !important;
+    top:0 !important;
+    transform:translateX(-50%) !important;
+    width:auto !important;
+    max-width:44vw !important;
+    min-width:0 !important;
+    overflow:hidden !important;
+    text-overflow:ellipsis !important;
+    white-space:nowrap !important;
+    text-align:center !important;
+    color:var(--tt-white, #fff) !important;
+  }
+
+  .broadcast-header--unified .header-right--time{
+    margin-left:auto !important;
+    flex:0 0 auto !important;
+    display:flex !important;
+    flex-direction:row !important;
+    align-items:baseline !important;
+    justify-content:flex-end !important;
+    gap:10px !important;
+    width:auto !important;
+  }
+
+  .broadcast-header--unified .local-date{
+    color:var(--tt-yellow, #ffff00) !important;
+  }
+
+  .broadcast-header--unified .clock{
+    color:var(--tt-white, #fff) !important;
+  }
+
+  .broadcast-header--unified .header-index-link{
+    flex:0 0 auto !important;
+    margin-left:20px !important;
+    justify-self:auto !important;
+    color:var(--tt-red, #ff0000) !important;
+    text-decoration:none !important;
+  }
+}
+
+@media (min-width:641px) and (max-width:1023px){
+  .teletext-stage{
+    padding-top:20px !important;
+    padding-bottom:20px !important;
+  }
+
+  .broadcast-header,
+  .broadcast-header--unified{
+    font-size:1rem !important;
+    letter-spacing:.045em !important;
+    margin-bottom:9px !important;
+  }
+
+  .broadcast-header--unified .header-mid{
+    max-width:36vw !important;
+  }
+
+  .broadcast-header--unified .header-right--time{
+    gap:8px !important;
+  }
+
+  .broadcast-header--unified .header-index-link{
+    margin-left:14px !important;
+  }
+}
+
+@media (min-width:1024px){
+  .broadcast-header,
+  .broadcast-header--unified{
+    font-size:1.12rem !important;
+  }
+}
+
+@media (max-width:640px){
+  .teletext-stage{
+    min-height:100svh !important;
+    width:100% !important;
+    display:flex !important;
+    justify-content:center !important;
+    align-items:flex-start !important;
+    padding-top:0 !important;
+    padding-bottom:0 !important;
+  }
+
+  .teletext-screen{
+    width:100% !important;
+    max-width:100% !important;
+    min-width:0 !important;
+    min-height:auto !important;
+    height:auto !important;
+  }
+
+  .broadcast-header,
+  .broadcast-header--unified{
+    display:grid !important;
+    grid-template-columns:auto minmax(0, 1fr) auto !important;
+    grid-template-areas:
+      "page title date"
+      "index title clock" !important;
+    align-items:center !important;
+    column-gap:10px !important;
+    row-gap:4px !important;
+    width:100% !important;
+    margin:0 0 8px !important;
+    padding:0 !important;
+    box-sizing:border-box !important;
+    white-space:nowrap !important;
+    font-size:.92rem !important;
+    line-height:1.05 !important;
+    letter-spacing:.04em !important;
+  }
+
+  .broadcast-header--unified .page-code{
+    grid-area:page !important;
+    justify-self:start !important;
+    color:var(--tt-yellow, #ffff00) !important;
+  }
+
+  .broadcast-header--unified .header-mid{
+    grid-area:title !important;
+    position:static !important;
+    transform:none !important;
+    justify-self:center !important;
+    align-self:center !important;
+    width:auto !important;
+    max-width:100% !important;
+    min-width:0 !important;
+    overflow:hidden !important;
+    text-overflow:ellipsis !important;
+    white-space:nowrap !important;
+    text-align:center !important;
+    color:var(--tt-white, #fff) !important;
+  }
+
+  .broadcast-header--unified .header-right--time{
+    display:contents !important;
+    width:auto !important;
+  }
+
+  .broadcast-header--unified .local-date{
+    grid-area:date !important;
+    justify-self:end !important;
+    color:var(--tt-yellow, #ffff00) !important;
+  }
+
+  .broadcast-header--unified .clock{
+    grid-area:clock !important;
+    justify-self:end !important;
+    color:var(--tt-white, #fff) !important;
+  }
+
+  .broadcast-header--unified .header-index-link{
+    grid-area:index !important;
+    justify-self:start !important;
+    margin-left:0 !important;
+    color:var(--tt-red, #ff0000) !important;
+    text-decoration:none !important;
+  }
+}
+
+
+/* ---------------------------------------------------------- */
+/* PROJECTS: SHARED ROW ALIGNMENT FOR CATEGORY AND LIST        */
+/* ---------------------------------------------------------- */
+/* Categories page:
+   left category column and middle project list use the exact same rows:
+   row 1 heading, row 2 cyan divider, row 3 first active card. */
+@media (min-width:641px){
+  .projects-screen-clean-images .projects-layout,
+  .projects-screen-clean-images .projects-right,
+  .projects-screen-clean-images .projects-top,
+  .projects-screen-clean-images .projects-top--list-preview{
+    align-items:start !important;
+    margin-top:0 !important;
+    padding-top:0 !important;
+  }
+
+  .projects-screen-clean-images .projects-side,
+  .projects-screen-clean-images .projects-top--list-preview .featured-list{
+    display:grid !important;
+    grid-template-rows:1.18em 58px auto !important;
+    align-content:start !important;
+    align-items:start !important;
+    margin-top:0 !important;
+    padding-top:0 !important;
+  }
+
+  .projects-screen-clean-images .projects-side > .side-nav-heading:first-child,
+  .projects-screen-clean-images .projects-top--list-preview .featured-list > .side-nav-heading:first-child{
+    grid-row:1 !important;
+    align-self:start !important;
+    height:1.18em !important;
+    min-height:1.18em !important;
+    max-height:1.18em !important;
+    margin:0 !important;
+    padding:0 !important;
+    line-height:1 !important;
+    display:block !important;
+  }
+
+  .projects-screen-clean-images .projects-side > .teletext-divider:first-of-type,
+  .projects-screen-clean-images .projects-top--list-preview .featured-list > .teletext-divider:first-of-type{
+    grid-row:2 !important;
+    align-self:center !important;
+    height:var(--tt-line, 3px) !important;
+    min-height:var(--tt-line, 3px) !important;
+    max-height:var(--tt-line, 3px) !important;
+    margin:0 !important;
+    padding:0 !important;
+    border:0 !important;
+    transform:none !important;
+  }
+
+  .projects-screen-clean-images .projects-side > .category-list{
+    grid-row:3 !important;
+    margin-top:0 !important;
+    align-self:start !important;
+  }
+
+  .projects-screen-clean-images .projects-top--list-preview .featured-list > [data-featured-project]:first-of-type{
+    grid-row:3 !important;
+    margin-top:0 !important;
+    align-self:start !important;
+  }
+}
+
+
+
+/* ---------------------------------------------------------- */
+/* Home/index must not use a special header layout.
+   It follows the same BroadcastHeader system as every other page. */
+
+/* Desktop + tablet */
+@media (min-width:641px){
+  .teletext-screen--home .broadcast-header,
+  .teletext-screen--home .broadcast-header--unified{
+    position:relative !important;
+    display:flex !important;
+    align-items:baseline !important;
+    width:100% !important;
+    min-height:1.18em !important;
+    margin:0 0 10px !important;
+    padding:0 !important;
+    gap:0 !important;
+    white-space:nowrap !important;
+    line-height:1 !important;
+    letter-spacing:.055em !important;
+  }
+
+  .teletext-screen--home .broadcast-header--unified .page-code{
+    flex:0 0 auto !important;
+    justify-self:auto !important;
+  }
+
+  .teletext-screen--home .broadcast-header--unified .header-mid{
+    position:absolute !important;
+    left:50% !important;
+    top:0 !important;
+    transform:translateX(-50%) !important;
+    width:auto !important;
+    max-width:44vw !important;
+    min-width:0 !important;
+    overflow:hidden !important;
+    text-overflow:ellipsis !important;
+    white-space:nowrap !important;
+    text-align:center !important;
+  }
+
+  .teletext-screen--home .broadcast-header--unified .header-right--time{
+    margin-left:auto !important;
+    flex:0 0 auto !important;
+    display:flex !important;
+    flex-direction:row !important;
+    align-items:baseline !important;
+    justify-content:flex-end !important;
+    gap:10px !important;
+    width:auto !important;
+  }
+
+  .teletext-screen--home .broadcast-header--unified .header-index-link{
+    flex:0 0 auto !important;
+    margin-left:20px !important;
+    justify-self:auto !important;
+  }
+}
+
+/* Mobile */
+@media (max-width:640px){
+  .teletext-screen--home .broadcast-header,
+  .teletext-screen--home .broadcast-header--unified{
+    display:grid !important;
+    grid-template-columns:auto minmax(0, 1fr) auto !important;
+    grid-template-areas:
+      "page title date"
+      "index title clock" !important;
+    align-items:center !important;
+    column-gap:10px !important;
+    row-gap:4px !important;
+    width:100% !important;
+    margin:0 0 8px !important;
+    padding:0 !important;
+    box-sizing:border-box !important;
+    white-space:nowrap !important;
+    font-size:.92rem !important;
+    line-height:1.05 !important;
+    letter-spacing:.04em !important;
+  }
+
+  .teletext-screen--home .broadcast-header--unified .page-code{
+    grid-area:page !important;
+    justify-self:start !important;
+  }
+
+  .teletext-screen--home .broadcast-header--unified .header-mid{
+    grid-area:title !important;
+    position:static !important;
+    transform:none !important;
+    justify-self:center !important;
+    align-self:center !important;
+    width:auto !important;
+    max-width:100% !important;
+    min-width:0 !important;
+    overflow:hidden !important;
+    text-overflow:ellipsis !important;
+    white-space:nowrap !important;
+    text-align:center !important;
+  }
+
+  .teletext-screen--home .broadcast-header--unified .header-right--time{
+    display:contents !important;
+    width:auto !important;
+  }
+
+  .teletext-screen--home .broadcast-header--unified .local-date{
+    grid-area:date !important;
+    justify-self:end !important;
+  }
+
+  .teletext-screen--home .broadcast-header--unified .clock{
+    grid-area:clock !important;
+    justify-self:end !important;
+  }
+
+  .teletext-screen--home .broadcast-header--unified .header-index-link{
+    grid-area:index !important;
+    justify-self:start !important;
+    margin-left:0 !important;
+  }
+}
+
+
+/* ---------------------------------------------------------- */
+/* AUTHORITATIVE SAME HEADER ALL PAGES                        */
+/* ---------------------------------------------------------- */
+/* One header system for every page, including Index.
+   No home/index special header behavior. */
+
+/* Desktop + tablet */
+@media (min-width:641px){
+  html body .teletext-screen > header.broadcast-header.broadcast-header--unified[data-site-header],
+  html body .teletext-screen.teletext-screen--home > header.broadcast-header.broadcast-header--unified[data-site-header]{
+    position:relative !important;
+    display:flex !important;
+    flex-wrap:nowrap !important;
+    align-items:baseline !important;
+    justify-content:flex-start !important;
+    width:100% !important;
+    max-width:100% !important;
+    min-height:1.18em !important;
+    margin:0 0 10px 0 !important;
+    padding:0 !important;
+    gap:0 !important;
+    white-space:nowrap !important;
+    line-height:1 !important;
+    letter-spacing:.055em !important;
+    box-sizing:border-box !important;
+  }
+
+  html body .teletext-screen > header.broadcast-header.broadcast-header--unified[data-site-header] .page-code,
+  html body .teletext-screen.teletext-screen--home > header.broadcast-header.broadcast-header--unified[data-site-header] .page-code{
+    flex:0 0 auto !important;
+    order:1 !important;
+    margin:0 !important;
+    justify-self:auto !important;
+    text-align:left !important;
+    color:var(--tt-yellow, #ffff00) !important;
+  }
+
+  html body .teletext-screen > header.broadcast-header.broadcast-header--unified[data-site-header] .header-mid,
+  html body .teletext-screen.teletext-screen--home > header.broadcast-header.broadcast-header--unified[data-site-header] .header-mid{
+    position:absolute !important;
+    left:50% !important;
+    top:0 !important;
+    transform:translateX(-50%) !important;
+    order:2 !important;
+    width:auto !important;
+    max-width:44vw !important;
+    min-width:0 !important;
+    margin:0 !important;
+    padding:0 !important;
+    text-align:center !important;
+    white-space:nowrap !important;
+    overflow:hidden !important;
+    text-overflow:ellipsis !important;
+    color:var(--tt-white, #fff) !important;
+  }
+
+  html body .teletext-screen > header.broadcast-header.broadcast-header--unified[data-site-header] .header-right--time,
+  html body .teletext-screen.teletext-screen--home > header.broadcast-header.broadcast-header--unified[data-site-header] .header-right--time{
+    order:3 !important;
+    margin-left:auto !important;
+    flex:0 0 auto !important;
+    display:flex !important;
+    flex-direction:row !important;
+    align-items:baseline !important;
+    justify-content:flex-end !important;
+    gap:10px !important;
+    width:auto !important;
+    min-width:0 !important;
+  }
+
+  html body .teletext-screen > header.broadcast-header.broadcast-header--unified[data-site-header] .local-date,
+  html body .teletext-screen.teletext-screen--home > header.broadcast-header.broadcast-header--unified[data-site-header] .local-date{
+    color:var(--tt-yellow, #ffff00) !important;
+  }
+
+  html body .teletext-screen > header.broadcast-header.broadcast-header--unified[data-site-header] .clock,
+  html body .teletext-screen.teletext-screen--home > header.broadcast-header.broadcast-header--unified[data-site-header] .clock{
+    color:var(--tt-white, #fff) !important;
+  }
+
+  html body .teletext-screen > header.broadcast-header.broadcast-header--unified[data-site-header] .header-index-link,
+  html body .teletext-screen.teletext-screen--home > header.broadcast-header.broadcast-header--unified[data-site-header] .header-index-link{
+    order:4 !important;
+    flex:0 0 auto !important;
+    margin-left:20px !important;
+    justify-self:auto !important;
+    text-align:right !important;
+    color:var(--tt-red, #ff0000) !important;
+    text-decoration:none !important;
+  }
+}
+
+/* Desktop */
+@media (min-width:1024px){
+  html body .teletext-screen > header.broadcast-header.broadcast-header--unified[data-site-header],
+  html body .teletext-screen.teletext-screen--home > header.broadcast-header.broadcast-header--unified[data-site-header]{
+    font-size:1.12rem !important;
+  }
+}
+
+/* Tablet */
+@media (min-width:641px) and (max-width:1023px){
+  html body .teletext-screen > header.broadcast-header.broadcast-header--unified[data-site-header],
+  html body .teletext-screen.teletext-screen--home > header.broadcast-header.broadcast-header--unified[data-site-header]{
+    font-size:1rem !important;
+    letter-spacing:.045em !important;
+    margin-bottom:9px !important;
+  }
+
+  html body .teletext-screen > header.broadcast-header.broadcast-header--unified[data-site-header] .header-mid,
+  html body .teletext-screen.teletext-screen--home > header.broadcast-header.broadcast-header--unified[data-site-header] .header-mid{
+    max-width:36vw !important;
+  }
+
+  html body .teletext-screen > header.broadcast-header.broadcast-header--unified[data-site-header] .header-right--time,
+  html body .teletext-screen.teletext-screen--home > header.broadcast-header.broadcast-header--unified[data-site-header] .header-right--time{
+    gap:8px !important;
+  }
+
+  html body .teletext-screen > header.broadcast-header.broadcast-header--unified[data-site-header] .header-index-link,
+  html body .teletext-screen.teletext-screen--home > header.broadcast-header.broadcast-header--unified[data-site-header] .header-index-link{
+    margin-left:14px !important;
+  }
+}
+
+/* Mobile */
+@media (max-width:640px){
+  html body .teletext-screen > header.broadcast-header.broadcast-header--unified[data-site-header],
+  html body .teletext-screen.teletext-screen--home > header.broadcast-header.broadcast-header--unified[data-site-header]{
+    position:relative !important;
+    display:grid !important;
+    grid-template-columns:auto minmax(0, 1fr) auto !important;
+    grid-template-areas:
+      "page title date"
+      "index title clock" !important;
+    align-items:center !important;
+    justify-content:normal !important;
+    column-gap:10px !important;
+    row-gap:4px !important;
+    width:100% !important;
+    max-width:100% !important;
+    min-height:0 !important;
+    margin:0 0 8px 0 !important;
+    padding:0 !important;
+    box-sizing:border-box !important;
+    white-space:nowrap !important;
+    font-size:.92rem !important;
+    line-height:1.05 !important;
+    letter-spacing:.04em !important;
+  }
+
+  html body .teletext-screen > header.broadcast-header.broadcast-header--unified[data-site-header] .page-code,
+  html body .teletext-screen.teletext-screen--home > header.broadcast-header.broadcast-header--unified[data-site-header] .page-code{
+    grid-area:page !important;
+    justify-self:start !important;
+    align-self:center !important;
+    margin:0 !important;
+    color:var(--tt-yellow, #ffff00) !important;
+  }
+
+  html body .teletext-screen > header.broadcast-header.broadcast-header--unified[data-site-header] .header-mid,
+  html body .teletext-screen.teletext-screen--home > header.broadcast-header.broadcast-header--unified[data-site-header] .header-mid{
+    grid-area:title !important;
+    position:static !important;
+    transform:none !important;
+    justify-self:center !important;
+    align-self:center !important;
+    width:auto !important;
+    max-width:100% !important;
+    min-width:0 !important;
+    margin:0 !important;
+    padding:0 !important;
+    text-align:center !important;
+    white-space:nowrap !important;
+    overflow:hidden !important;
+    text-overflow:ellipsis !important;
+    color:var(--tt-white, #fff) !important;
+  }
+
+  html body .teletext-screen > header.broadcast-header.broadcast-header--unified[data-site-header] .header-right--time,
+  html body .teletext-screen.teletext-screen--home > header.broadcast-header.broadcast-header--unified[data-site-header] .header-right--time{
+    display:contents !important;
+    width:auto !important;
+    margin:0 !important;
+  }
+
+  html body .teletext-screen > header.broadcast-header.broadcast-header--unified[data-site-header] .local-date,
+  html body .teletext-screen.teletext-screen--home > header.broadcast-header.broadcast-header--unified[data-site-header] .local-date{
+    grid-area:date !important;
+    justify-self:end !important;
+    align-self:center !important;
+    color:var(--tt-yellow, #ffff00) !important;
+  }
+
+  html body .teletext-screen > header.broadcast-header.broadcast-header--unified[data-site-header] .clock,
+  html body .teletext-screen.teletext-screen--home > header.broadcast-header.broadcast-header--unified[data-site-header] .clock{
+    grid-area:clock !important;
+    justify-self:end !important;
+    align-self:center !important;
+    color:var(--tt-white, #fff) !important;
+  }
+
+  html body .teletext-screen > header.broadcast-header.broadcast-header--unified[data-site-header] .header-index-link,
+  html body .teletext-screen.teletext-screen--home > header.broadcast-header.broadcast-header--unified[data-site-header] .header-index-link{
+    grid-area:index !important;
+    justify-self:start !important;
+    align-self:center !important;
+    margin:0 !important;
+    color:var(--tt-red, #ff0000) !important;
+    text-decoration:none !important;
+  }
+}
+
+
+/* ---------------------------------------------------------- */
+/* REMOVE FAT COLORED BARS + MAIL WHITE + HEADER INDEX RED    */
+/* ---------------------------------------------------------- */
+/* Remove the thick colored separator bars from all non-index pages
+   and all breakpoints. Keeps normal white page dividers untouched. */
+.teletext-screen:not(.teletext-screen--home) .teletext-divider--dotted-blue,
+.teletext-screen:not(.teletext-screen--home) .teletext-divider--dotted-white,
+.teletext-screen:not(.teletext-screen--home) .teletext-divider--dotted-magenta,
+.teletext-screen:not(.teletext-screen--home) .teletext-divider--dotted-yellow,
+.teletext-screen:not(.teletext-screen--home) .projects-side > .teletext-divider,
+.teletext-screen:not(.teletext-screen--home) .featured-list > .teletext-divider,
+.teletext-screen:not(.teletext-screen--home) .project-info > .teletext-divider,
+.teletext-screen:not(.teletext-screen--home) .project-info--sticky > .teletext-divider,
+.teletext-screen:not(.teletext-screen--home) .legal-nav > .teletext-divider{
+  display:none !important;
+  height:0 !important;
+  min-height:0 !important;
+  max-height:0 !important;
+  margin:0 !important;
+  padding:0 !important;
+  border:0 !important;
+  background:none !important;
+  background-image:none !important;
+}
+
+/* Reset category/project row alignment now that the bars are gone. */
+.projects-screen-clean-images .projects-side,
+.projects-screen-clean-images .projects-top--list-preview .featured-list{
+  display:flex !important;
+  flex-direction:column !important;
+  grid-template-rows:none !important;
+}
+
+.projects-screen-clean-images .projects-side > .category-list,
+.projects-screen-clean-images .projects-top--list-preview .featured-list > [data-featured-project]:first-of-type{
+  margin-top:18px !important;
+}
+
+/* Header INDEX link: red everywhere. */
+header.broadcast-header .header-index-link,
+header.broadcast-header--unified .header-index-link,
+header[data-site-header] .header-index-link,
+.teletext-screen .broadcast-header .header-index-link,
+.teletext-screen .broadcast-header--unified .header-index-link,
+.teletext-screen .broadcast-header > .c-cyan{
+  color:var(--tt-red, #ff0000) !important;
+}
+
+/* Index mail address: white text on every breakpoint, including mobile. */
+.teletext-screen--home .phone-strip,
+.teletext-screen--home .home-mail-strip,
+.teletext-screen--home .phone-strip *,
+.teletext-screen--home .home-mail-strip *{
+  color:var(--tt-white, #fff) !important;
+}
+
+
+
+/* ---------------------------------------------------------- */
+header.broadcast-header .header-index-link,
+header.broadcast-header--unified .header-index-link,
+header[data-site-header] .header-index-link,
+.broadcast-header .header-index-link.c-red,
+.broadcast-header--unified .header-index-link.c-red{
+  color:var(--tt-red, #ff0000) !important;
+}
+
+
+/* ---------------------------------------------------------- */
+/* HEADER INDEX LINK REMOVE CYAN FORCE RED                    */
+/* ---------------------------------------------------------- */
+/* Final authority: the top header INDEX link is red on every page and breakpoint. */
+html body .teletext-screen header.broadcast-header.broadcast-header--unified[data-site-header] > a.header-index-link,
+html body .teletext-screen header.broadcast-header.broadcast-header--unified[data-site-header] > a.header-index-link.c-red,
+html body .teletext-screen header.broadcast-header.broadcast-header--unified[data-site-header] > a.header-index-link.c-cyan,
+html body .teletext-screen.teletext-screen--home header.broadcast-header.broadcast-header--unified[data-site-header] > a.header-index-link,
+html body .teletext-screen.teletext-screen--home header.broadcast-header.broadcast-header--unified[data-site-header] > a.header-index-link.c-red,
+html body .teletext-screen.teletext-screen--home header.broadcast-header.broadcast-header--unified[data-site-header] > a.header-index-link.c-cyan{
+  color:var(--tt-red, #ff0000) !important;
+}
+
+
+/* ---------------------------------------------------------- */
+/* CATEGORIES: PROJECT NUMBERS FIXED RIGHT COLUMN             */
+/* ---------------------------------------------------------- */
+/* Categories project list:
+   keep every project page number in one fixed right-aligned column,
+   independent from title length or line wrapping. */
+.projects-screen-clean-images .featured-item,
+.projects-screen-clean-images [data-featured-project]{
+  display:grid !important;
+  grid-template-columns:minmax(0, 1fr) 4.2ch !important;
+  column-gap:18px !important;
+  row-gap:0 !important;
+  align-items:start !important;
+  width:100% !important;
+  max-width:100% !important;
+  box-sizing:border-box !important;
+}
+
+.projects-screen-clean-images .featured-item .feat-copy,
+.projects-screen-clean-images [data-featured-project] .feat-copy{
+  grid-column:1 !important;
+  grid-row:1 !important;
+  min-width:0 !important;
+  max-width:100% !important;
+  overflow:visible !important;
+}
+
+.projects-screen-clean-images .featured-item .feat-title,
+.projects-screen-clean-images [data-featured-project] .feat-title,
+.projects-screen-clean-images .featured-item .feat-sub,
+.projects-screen-clean-images [data-featured-project] .feat-sub{
+  max-width:100% !important;
+  min-width:0 !important;
+  overflow-wrap:normal !important;
+  word-break:normal !important;
+}
+
+.projects-screen-clean-images .featured-item .feat-code,
+.projects-screen-clean-images [data-featured-project] .feat-code{
+  grid-column:2 !important;
+  grid-row:1 !important;
+  justify-self:end !important;
+  align-self:start !important;
+  width:4.2ch !important;
+  min-width:4.2ch !important;
+  max-width:4.2ch !important;
+  text-align:right !important;
+  white-space:nowrap !important;
+  line-height:1.15 !important;
+  padding:0 !important;
+  margin:0 !important;
+}
+
+/* Remove legacy number/dot columns if an older card variant is still present. */
+.projects-screen-clean-images .featured-item .feat-num,
+.projects-screen-clean-images [data-featured-project] .feat-num,
+.projects-screen-clean-images .featured-item .feat-dots,
+.projects-screen-clean-images [data-featured-project] .feat-dots{
+  display:none !important;
+}
+
+/* Mobile keeps the same right-number column, just slightly tighter. */
+@media (max-width:640px){
+  .projects-screen-clean-images .featured-item,
+  .projects-screen-clean-images [data-featured-project]{
+    grid-template-columns:minmax(0, 1fr) 3.4ch !important;
+    column-gap:10px !important;
+  }
+
+  .projects-screen-clean-images .featured-item .feat-code,
+  .projects-screen-clean-images [data-featured-project] .feat-code{
+    width:3.4ch !important;
+    min-width:3.4ch !important;
+    max-width:3.4ch !important;
+  }
+}
+
+
+/* ---------------------------------------------------------- */
+/* CATEGORIES: MORE SPACE BEFORE BROADCAST INFO               */
+/* ---------------------------------------------------------- */
+/* More breathing room between category buttons and broadcast info. */
+.projects-screen-clean-images .projects-side .broadcast-info-heading{
+  margin-top:54px !important;
+}
+
+@media (max-width:920px){
+  .projects-screen-clean-images .projects-side .broadcast-info-heading{
+    margin-top:36px !important;
+  }
+}
+
+@media (max-width:640px){
+  .projects-screen-clean-images .projects-side .broadcast-info-heading{
+    margin-top:28px !important;
+  }
+}
+
+
+/* ---------------------------------------------------------- */
+/* PROJECT PREVIEW: OPEN BUTTON NUMBER RIGHT ALIGNED          */
+/* ---------------------------------------------------------- */
+/* Open Project button:
+   text left, project page number right on every breakpoint. */
+.projects-screen-clean-images .teletext-open-button,
+.project-preview-single .teletext-open-button,
+.teletext-open-button{
+  display:grid !important;
+  grid-template-columns:minmax(0, 1fr) auto !important;
+  align-items:center !important;
+  column-gap:16px !important;
+  text-align:left !important;
+}
+
+.projects-screen-clean-images .teletext-open-button > :first-child,
+.project-preview-single .teletext-open-button > :first-child,
+.teletext-open-button > :first-child{
+  justify-self:start !important;
+  min-width:0 !important;
+  text-align:left !important;
+}
+
+.projects-screen-clean-images .teletext-open-button .nav-val,
+.projects-screen-clean-images .teletext-open-button > :last-child,
+.project-preview-single .teletext-open-button .nav-val,
+.project-preview-single .teletext-open-button > :last-child,
+.teletext-open-button .nav-val,
+.teletext-open-button > :last-child{
+  justify-self:end !important;
+  text-align:right !important;
+  white-space:nowrap !important;
+  margin-left:auto !important;
+}
+
+@media (max-width:640px){
+  .projects-screen-clean-images .teletext-open-button,
+  .project-preview-single .teletext-open-button,
+  .teletext-open-button{
+    column-gap:10px !important;
+  }
+}
+
+
+
+/* ---------------------------------------------------------- */
+.legal-content--single{
+  width:100%;
+  max-width:100%;
+  min-width:0;
+}
+
+.legal-content--single .status-line{
+  margin-top:10px;
+}
+
+.legal-content--single .legal-section{
+  margin-top:24px;
+}
+
+.legal-content--single .section-head{
+  color:var(--tt-magenta);
+}
+
+.legal-content--single .section-body{
+  color:var(--tt-white);
+}
+
+.legal-content--single .section-body p{
+  margin:0 0 14px;
+}
+
+.legal-content--single .section-body p:last-child{
+  margin-bottom:0;
+}
+
+.legal-back-links{
+  margin-top:28px;
+}
+
+@media (max-width:640px){
+  .legal-content--single .legal-section{
+    margin-top:20px;
+  }
+
+  .legal-content--single .section-body{
+    font-size:1rem;
+    line-height:1.25;
+  }
+}
+
+
+
+/* ---------------------------------------------------------- */
+.legal-nav-item--secondary{
+  margin-top:18px;
+  padding-top:16px;
+}
+
+.legal-section .section-body p{
+  margin:0 0 14px;
+}
+
+.legal-section .section-body p:last-child{
+  margin-bottom:0;
+}
+
+.legal-back-links{
+  margin-top:28px;
+}
+
+@media (max-width:640px){
+  .legal-section .section-body{
+    font-size:1rem;
+    line-height:1.25;
+  }
+}
+
+
+
+/* ---------------------------------------------------------- */
+.legal-layout--overview{
+  grid-template-columns:minmax(220px, 0.28fr) minmax(0, 0.72fr) !important;
+  gap:42px !important;
+  align-items:start !important;
+}
+
+.legal-layout--overview .legal-nav-item{
+  background:transparent !important;
+}
+
+.legal-layout--overview .legal-nav-item span{
+  color:inherit;
+}
+
+.legal-layout--overview .legal-items--overview{
+  gap:18px !important;
+}
+
+.legal-content--overview .page-title{
+  margin-bottom:18px !important;
+}
+
+.legal-section--intro{
+  margin-top:26px !important;
+}
+
+.legal-section--intro .section-body{
+  max-width:78ch;
+}
+
+.legal-section--intro .section-body p{
+  margin:0 0 16px;
+}
+
+.legal-section--intro .section-body p:last-child{
+  margin-bottom:0;
+}
+
+.legal-overview-links{
+  margin-top:30px !important;
+}
+
+@media (max-width:920px){
+  .legal-layout--overview{
+    grid-template-columns:1fr !important;
+    gap:28px !important;
+  }
+
+  .legal-layout--overview .legal-items--overview{
+    display:grid !important;
+    grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
+    gap:10px !important;
+  }
+}
+
+@media (max-width:640px){
+  .legal-layout--overview{
+    gap:22px !important;
+  }
+
+  .legal-layout--overview .legal-items--overview{
+    grid-template-columns:1fr !important;
+  }
+
+  .legal-content--overview .page-title{
+    margin-bottom:12px !important;
+  }
+
+  .legal-section--intro{
+    margin-top:20px !important;
+  }
+
+  .legal-section--intro .section-body{
+    font-size:1rem;
+    line-height:1.25;
+  }
+
+  .legal-overview-links{
+    margin-top:24px !important;
+  }
+}
+
+
+/* ---------------------------------------------------------- */
+/* LEGAL OVERVIEW: ABOUT STYLE                                */
+/* ---------------------------------------------------------- */
+/* /legal uses the same general composition as About:
+   title/status first, then content block + small meta block.
+   No left legal navigation on the overview page. */
+.legal-overview-about-layout{
+  align-items:start !important;
+}
+
+.legal-document-list{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.legal-document-link{
+  color:var(--tt-white);
+  text-decoration:none;
+}
+
+.legal-document-link:hover,
+.legal-document-link:focus-visible{
+  background:var(--tt-cyan);
+  color:var(--tt-blue);
+  outline:0;
+}
+
+.legal-document-link:hover .disc-code,
+.legal-document-link:focus-visible .disc-code{
+  color:var(--tt-blue);
+}
+
+.legal-overview-aside{
+  padding-top:4px;
+}
+
+@media (max-width:920px){
+  .legal-overview-about-layout{
+    grid-template-columns:1fr !important;
+    gap:22px !important;
+  }
+
+  .legal-overview-aside{
+    padding-top:0;
+  }
+}
+
+@media (max-width:640px){
+  .legal-document-list{
+    gap:6px;
+  }
+}
+
+
+/* ---------------------------------------------------------- */
+/* PROJECT DETAIL: SPACE AFTER IMAGE COUNT                    */
+/* ---------------------------------------------------------- */
+/* Adds one clean blank-line feeling between the last meta line
+   "IMAGES / XX" and the project description on every project page. */
+.project-detail-screen .detail-meta-list{
+  margin-bottom:1.15em !important;
+}
+
+.project-detail-screen .project-info-desc,
+.project-detail-screen .info-desc{
+  display:block !important;
+  margin-top:0 !important;
+}
+
+/* The colored divider in this position is intentionally hidden by the
+   current no-fat-bars setup; spacing now carries the separation instead. */
+.project-detail-screen .project-info-divider{
+  display:none !important;
+}
+
+
+
+/* ---------------------------------------------------------- */
+.contact-video-frame{
+  position:relative;
+  width:100%;
+  aspect-ratio:3 / 4;
+  overflow:hidden;
+  border:3px solid var(--tt-white);
+  background:var(--tt-black);
+}
+
+.contact-video{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+
+
+
+
+
+/* ---------------------------------------------------------- */
+/* CONTACT VIDEO AUTOPLAY FRAME                               */
+/* ---------------------------------------------------------- */
+.contact-video-frame{
+  position:relative;
+  width:100%;
+  aspect-ratio:3 / 4;
+  overflow:hidden;
+  border:3px solid var(--tt-white);
+  background:var(--tt-black);
+}
+
+.contact-video{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+
+
+/* ---------------------------------------------------------- */
+/* About image uses the same square sizing behavior as category preview images. */
+.about-preview-image-wrap{
+  width:100% !important;
+  max-width:420px !important;
+  aspect-ratio:1 / 1 !important;
+  overflow:hidden !important;
+  margin:0 !important;
+}
+
+.about-preview-image-wrap .image-frame,
+.about-preview-image-wrap .image-frame--square{
+  width:100% !important;
+  height:100% !important;
+  aspect-ratio:1 / 1 !important;
+  border:0 !important;
+  overflow:hidden !important;
+}
+
+.about-preview-image-wrap .photo-slot{
+  width:100% !important;
+  height:100% !important;
+  object-fit:cover !important;
+}
+
+/* Contact video stays 1:1 on every breakpoint. */
+.contact-video-frame{
+  aspect-ratio:1 / 1 !important;
+}
+
+.contact-video{
+  width:100% !important;
+  height:100% !important;
+  object-fit:cover !important;
+}
+
+@media (min-width:1024px){
+  .about-preview-image-wrap{
+    max-width:420px !important;
+  }
+}
+
+@media (min-width:641px) and (max-width:1023px){
+  .about-preview-image-wrap{
+    max-width:360px !important;
+  }
+}
+
+@media (max-width:640px){
+  .about-preview-image-wrap{
+    max-width:100% !important;
+  }
+
+  .contact-video-frame{
+    aspect-ratio:1 / 1 !important;
+  }
+}
+
+
+
+/* ---------------------------------------------------------- */
+/* About portrait is a normal square image, not category-preview styled. */
+.about-image-square{
+  width:100% !important;
+  aspect-ratio:1 / 1 !important;
+  overflow:hidden !important;
+}
+
+.about-image-square .image-frame,
+.about-image-square .image-frame--square{
+  width:100% !important;
+  height:100% !important;
+  aspect-ratio:1 / 1 !important;
+  overflow:hidden !important;
+}
+
+.about-image-square .photo-slot{
+  width:100% !important;
+  height:100% !important;
+  object-fit:cover !important;
+}
+
+/* Keep the contact video square on every breakpoint. */
+.contact-video-frame{
+  aspect-ratio:1 / 1 !important;
+}
+
+.contact-video{
+  width:100% !important;
+  height:100% !important;
+  object-fit:cover !important;
+}
+
+
+/* ---------------------------------------------------------- */
+/* ABOUT IMAGE LIKE CATEGORY PREVIEW + CONTACT VIDEO SQUARE   */
+/* ---------------------------------------------------------- */
+/* About image uses the same square sizing behavior as category preview images. */
+.about-preview-image-wrap{
+  width:100% !important;
+  max-width:420px !important;
+  aspect-ratio:1 / 1 !important;
+  overflow:hidden !important;
+  margin:0 !important;
+}
+
+.about-preview-image-wrap .image-frame,
+.about-preview-image-wrap .image-frame--square{
+  width:100% !important;
+  height:100% !important;
+  aspect-ratio:1 / 1 !important;
+  border:0 !important;
+  overflow:hidden !important;
+}
+
+.about-preview-image-wrap .photo-slot{
+  width:100% !important;
+  height:100% !important;
+  object-fit:cover !important;
+}
+
+/* Contact video stays 1:1 on every breakpoint. */
+.contact-video-frame{
+  aspect-ratio:1 / 1 !important;
+}
+
+.contact-video{
+  width:100% !important;
+  height:100% !important;
+  object-fit:cover !important;
+}
+
+@media (min-width:1024px){
+  .about-preview-image-wrap{
+    max-width:420px !important;
+  }
+}
+
+@media (min-width:641px) and (max-width:1023px){
+  .about-preview-image-wrap{
+    max-width:360px !important;
+  }
+}
+
+@media (max-width:640px){
+  .about-preview-image-wrap{
+    max-width:100% !important;
+  }
+
+  .contact-video-frame{
+    aspect-ratio:1 / 1 !important;
   }
 }

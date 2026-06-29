@@ -263,7 +263,7 @@ export const projects: Project[] = [
     videoVertical: true,
     galleryImages: ["https://framerusercontent.com/images/4ymrky5vVXuBpTSTc1GIteO6FI.jpg"],
     description: "Official Photographer at rebekka ruètz AW26 runway show at Berlin Fashion Week.",
-    pageNumber: "401",
+    pageNumber: "404",
     featured: true
   },
   {
@@ -282,7 +282,7 @@ export const projects: Project[] = [
     videoVertical: true,
     galleryImages: ["https://framerusercontent.com/images/0Zw029vJTUqjBrjb3rnvrBQXnmo.jpg"],
     description: "Official photographer for Hengdi Wang’s SS26 collection during London Fashion Week.",
-    pageNumber: "402",
+    pageNumber: "403",
     featured: true
   },
   {
@@ -301,7 +301,7 @@ export const projects: Project[] = [
     videoVertical: true,
     galleryImages: ["https://framerusercontent.com/images/af9pMPIw88BXiOtZ2db50kZs4e8.jpg"],
     description: "Official photographer for Poet-Lab’s SS26 show at London Fashion Week.",
-    pageNumber: "403",
+    pageNumber: "402",
     featured: true
   },
   {
@@ -320,7 +320,26 @@ export const projects: Project[] = [
     videoVertical: true,
     galleryImages: ["https://framerusercontent.com/images/4iqoxbvIYEHpMfkePdFzFNqj0JA.jpg"],
     description: "Photographer at Walter Van Beirendonck’s SS26 show during Paris Fashion Week.",
-    pageNumber: "404",
+    pageNumber: "401",
+    featured: true
+  },
+  {
+    id: "mh-018",
+    slug: "purish-x-revitalash-2026",
+    title: "Purish x RevitaLash",
+    category: "Events",
+    location: "Berlin",
+    year: "2026",
+    client: "Purish GmbH",
+    status: 'published',
+    updatedAt: "2026-06-29",
+    heroImage: "/images/projects/purish-x-revitalash-2026/08.webp",
+    heroAlt: "A runner in pastel sportswear and pink sunglasses is captured mid run in the city during the Run for Confidence charity event.",
+    previewVideo: "",
+    videoVertical: true,
+    galleryImages: ["/images/projects/purish-x-revitalash-2026/08.webp"],
+    description: "Run for Confidence 2026 brought the community together for the second charity run with RevitaLash Cosmetics. Shot for Green Eyes Media, the project captures movement, connection and the energy of a day that opened YES!CON. Every step supported a bigger cause and together the community raised 10.000 € for the Carl Jakob Haupt organisation.",
+    pageNumber: "502",
     featured: true
   },
   {

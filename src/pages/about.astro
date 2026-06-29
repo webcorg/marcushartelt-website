@@ -9,7 +9,7 @@ import ImageFrame from '@components/ImageFrame.astro';
   <div class="teletext-divider teletext-divider--blue"></div>
   <h1 class="page-title">ABOUT / PROFILE</h1>
   <div class="teletext-divider teletext-divider--dotted-magenta"></div>
-  <p class="status-line">P700 / PHOTOGRAPHER / BERLIN</p>
+  <p class="status-line">PHOTOGRAPHER / BERLIN</p>
   <div class="about-layout" style="margin-top:18px">
     <div>
       <div class="about-name">MARCUS HARTELT</div>
@@ -26,7 +26,14 @@ import ImageFrame from '@components/ImageFrame.astro';
       </div>
     </div>
     <aside>
-      <ImageFrame type="portrait" label="PORTRAIT IMAGE" sub="B&W PORTRAIT" />
+      <div class="about-preview-image-wrap">
+        <ImageFrame
+          type="square"
+          src="/images/about/marcus-hartelt-portrait.webp"
+          alt="Portrait of Marcus Hartelt"
+          showLabel={false}
+        />
+      </div>
       <div style="margin-top:16px">
         <div class="about-meta-row"><span class="c-white">BASED</span><span class="c-yellow">BERLIN, DE</span></div>
         <div class="about-meta-row"><span class="c-white">FORMATS</span><span class="c-cyan">DIGITAL + FILM</span></div>

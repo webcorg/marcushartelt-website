@@ -10,13 +10,12 @@ const {
   imageTotal = 18
 } = Astro.props;
 ---
-<header class="broadcast-header broadcast-header--unified">
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, viewport-fit=cover" />
-  <span class="page-code">{pageCode}</span>
+<header class="broadcast-header broadcast-header--unified" data-site-header>
+<span class="page-code">{pageCode}</span>
   <span class="header-mid">{center}</span>
   <span class="header-right header-right--time">
     <span class="local-date" data-local-date>JAN 01</span>
     <span class="clock" data-local-clock>00:00:00</span>
   </span>
-  <a class="header-index-link c-cyan" href="/">INDEX</a>
+  <a class="header-index-link c-red" href="/">INDEX</a>
 </header>
