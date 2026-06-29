@@ -1169,3 +1169,58 @@
     margin-right:auto !important;
   }
 }
+
+
+/* ---------------------------------------------------------- */
+/* MOBILE INDEX: MAIL BAR FIT AND WHITE BACKGROUND            */
+/* ---------------------------------------------------------- */
+/* Mobile index only:
+   - make the email fully visible
+   - change the email bar background from green to white */
+@media (max-width:640px){
+  .teletext-screen--home .booking-email,
+  .teletext-screen--home .contact-email,
+  .teletext-screen--home .home-email,
+  .teletext-screen--home .availability-email,
+  .teletext-screen--home .booking-mail,
+  .teletext-screen--home .email-bar,
+  .teletext-screen--home [href^="mailto:"]{
+    background:var(--tt-white, #fff) !important;
+    background-color:var(--tt-white, #fff) !important;
+    color:var(--tt-black, #000) !important;
+  }
+
+  .teletext-screen--home .booking-email,
+  .teletext-screen--home .contact-email,
+  .teletext-screen--home .home-email,
+  .teletext-screen--home .availability-email,
+  .teletext-screen--home .booking-mail,
+  .teletext-screen--home .email-bar{
+    width:100% !important;
+    max-width:100% !important;
+    box-sizing:border-box !important;
+    overflow:hidden !important;
+  }
+
+  .teletext-screen--home .booking-email a,
+  .teletext-screen--home .contact-email a,
+  .teletext-screen--home .home-email a,
+  .teletext-screen--home .availability-email a,
+  .teletext-screen--home .booking-mail a,
+  .teletext-screen--home .email-bar a,
+  .teletext-screen--home [href^="mailto:"]{
+    display:block !important;
+    width:100% !important;
+    max-width:100% !important;
+    box-sizing:border-box !important;
+    padding-left:8px !important;
+    padding-right:8px !important;
+    white-space:nowrap !important;
+    overflow:hidden !important;
+    text-overflow:clip !important;
+    text-align:center !important;
+    font-size:clamp(1.25rem, 8.7vw, 2.15rem) !important;
+    line-height:1.05 !important;
+    letter-spacing:-0.03em !important;
+  }
+}
