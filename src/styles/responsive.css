@@ -1128,3 +1128,44 @@
 /* ---------------------------------------------------------- */
 /* MOBILE PROJECT DETAIL: EXACT CATEGORIES LAYERING           */
 /* ---------------------------------------------------------- */
+
+
+
+/* ---------------------------------------------------------- */
+/* Last rule in responsive.css so it wins over earlier 1440/1600 desktop rescue rules. */
+@media (min-width:1024px){
+  body .teletext-screen,
+  body .projects-screen-clean-images,
+  body .project-detail-screen{
+    width:min(100%, 1200px) !important;
+    max-width:1200px !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+  }
+}
+
+
+/* ---------------------------------------------------------- */
+/* DESKTOP WIDTH: RESTORE PRE-SCANLINE-KILL FRAME             */
+/* ---------------------------------------------------------- */
+/* The zoom safety used min-width:100%, which forced desktop back to full
+   viewport width. Desktop gets its old centered 1200px frame back here. */
+@media (min-width:1024px){
+  body .teletext-stage{
+    width:100% !important;
+    max-width:none !important;
+    display:flex !important;
+    justify-content:center !important;
+    align-items:flex-start !important;
+  }
+
+  body .teletext-screen,
+  body .projects-screen-clean-images,
+  body .project-detail-screen{
+    width:min(100%, 1200px) !important;
+    min-width:0 !important;
+    max-width:1200px !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+  }
+}

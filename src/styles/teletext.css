@@ -2347,3 +2347,20 @@ body{
   max-width:100%;
   box-sizing:border-box;
 }
+
+
+/* ---------------------------------------------------------- */
+/* DESKTOP WIDTH: 1200PX CAP                                  */
+/* ---------------------------------------------------------- */
+/* Desktop was too wide after the layout rescue. Bring the teletext screen
+   back to the tighter 1200px feeling without touching mobile/tablet logic. */
+@media (min-width:1024px){
+  .teletext-screen,
+  .projects-screen-clean-images,
+  .project-detail-screen{
+    width:min(100%, 1200px) !important;
+    max-width:1200px !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+  }
+}
