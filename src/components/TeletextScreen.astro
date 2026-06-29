@@ -1,6 +1,8 @@
 ---
 import '@styles/global.css';
+import { inject } from '@vercel/analytics';
 const { title = 'Marcus Hartelt', home = false, screenClass = '' } = Astro.props;
+inject();
 ---
 <html lang="en">
   <head>
