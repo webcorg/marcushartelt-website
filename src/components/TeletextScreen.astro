@@ -1,5 +1,6 @@
 ---
 import '@styles/global.css';
+import SpeedInsights from '@vercel/speed-insights/astro';
 const { title = 'Marcus Hartelt', home = false, screenClass = '' } = Astro.props;
 ---
 <html lang="en">
@@ -8,6 +9,7 @@ const { title = 'Marcus Hartelt', home = false, screenClass = '' } = Astro.props
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, viewport-fit=cover" />
     <meta name="description" content="Marcus Hartelt photography portfolio in a teletext broadcast gallery design." />
     <title>{title}</title>
+    <SpeedInsights />
   </head>
   <body id="top" class="teletext-page">
     <div class="teletext-stage">
