@@ -2319,3 +2319,31 @@ video.photo-slot,
   background-image:none !important;
   opacity:0 !important;
 }
+
+
+/* ---------------------------------------------------------- */
+/* GLOBAL: ZOOM ONLY SAFETY                                   */
+/* ---------------------------------------------------------- */
+/* Pinch zoom is allowed, but the page cannot become visually
+   smaller than the viewport when zooming back out. */
+html,
+body{
+  width:100%;
+  min-width:100%;
+  max-width:100%;
+  overflow-x:hidden;
+  touch-action:auto !important;
+}
+
+body{
+  margin:0;
+}
+
+.teletext-screen,
+.projects-screen-clean-images,
+.project-detail-screen{
+  width:100%;
+  min-width:100%;
+  max-width:100%;
+  box-sizing:border-box;
+}
